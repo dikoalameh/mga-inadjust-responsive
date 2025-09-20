@@ -46,6 +46,10 @@ Route::get('/erb/research-records', function () {
     return view('erb.research-records');
 });
 
+Route::get('/erb/submitted-documents', function () {
+    return view('erb.submitted-documents');
+});
+
 Route::get('/erb/iro-approved-accounts', function () {
     return view('erb.iro-approved-accounts');
 });

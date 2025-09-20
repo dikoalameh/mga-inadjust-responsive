@@ -29,7 +29,12 @@
                 <!-- inalis ko muna ung File ID sa table -->
                 <tr>
                     <td>Brain Injury: Prevention and Treatment of Chronic Brain Injury</td>
-                    <td>John Doe</td>
+                    <td>
+                        <!-- url for the array in submitted-documents.blade.php -->
+                        <a href="{{ url('/erb/submitted-documents?user_id=1') }}">
+                            John Doe
+                        </a> 
+                    </td>
                     <td>2025/05/06<br>16:43:20</td>
                     <td>Expedited</td>
                     <td>Ongoing Review</td>

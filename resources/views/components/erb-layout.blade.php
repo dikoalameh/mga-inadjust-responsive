@@ -121,6 +121,7 @@
             "/erb/pending-reviews": "PENDING REVIEWS",
             "/erb/research-records": "RESEARCH RECORDS",
             "/erb/reviewers-checklist": "REVIEWERS CHECKLIST",
+            "/erb/submitted-documents": "SUBMITTED DOCUMENTS",
             "/erb/settings": "SETTINGS",
         };
 

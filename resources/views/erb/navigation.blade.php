@@ -61,7 +61,7 @@
         <!-- Research Records -->
         <li>
             <a href="{{ url('/erb/research-records') }}" class="flex items-center justify-between px-3 py-4 transition-all flex duration-200 hover:text-secondary
-                {{ Request::is('erb/research-records') ? 'text-secondary' : '' }}">
+                {{ Request::is('erb/research-records') ? 'text-secondary' : '' }} {{ Request::is('erb/submitted-documents') ? 'text-secondary' : '' }}">
                 <i class="bi bi-database"></i>
                 <span class="w-full flex justify-between items-center px-3">
                     Research Records
@@ -180,7 +180,7 @@
             <!-- Research Records -->
             <li>
                 <a href="{{ url('/erb/research-records') }}" class="flex items-center justify-between px-3 py-4 transition-all flex duration-200 hover:text-secondary
-                {{ Request::is('erb/research-records') ? 'text-secondary' : '' }}">
+                {{ Request::is('erb/research-records') ? 'text-secondary' : '' }} {{ Request::is('erb/submitted-documents') ? 'text-secondary' : '' }}">
                     <i class="bi bi-database"></i>
                     <span class="w-full flex justify-between items-center px-3">
                         Research Records
