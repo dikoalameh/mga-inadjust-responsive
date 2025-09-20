@@ -173,6 +173,11 @@ Route::get('/reviewer/forms/form2j',function () {
 Route::get('/reviewer/forms/form3e',function () {
     return view('reviewer.forms.form3e');
 });
+
+Route::get('/reviewer/forms/form3b',function () {
+    return view('reviewer.forms.form3b');
+});
+
 // student
 Route::middleware(['auth','access:Principal Investigator'])->prefix('student')->group(function () {
 
@@ -222,9 +227,9 @@ Route::middleware(['auth','access:Principal Investigator'])->prefix('student')->
             return view('student.forms.form3a');
         });
 
-        // Route::get('/form3b', function () {
-        //     return view('student.forms.form3b');
-        // });
+        Route::get('/form3b', function () {
+            return view('student.forms.form3b');
+        });
 
         Route::get('/form3c', function () {
             return view('student.forms.form3c');
