@@ -252,38 +252,110 @@
             </div>
             <div class="mt-3 p-1 max-w-full bg-lightgray rounded mx-auto shadow-md">
                 <div class="p-3 space-y-2 max-sm:text-sm">
-                    <!-- CATEGORY OF INVESTIGATOR -->
-                    <h2 class="font-bold text-lg max-2xl:text-base max-md:text-sm uppercase">Recommendation of Primary
+                    <h2 class="font-semibold text-lg max-lg:text-base max-md:text-sm uppercase">To be filled up by
+                        Primary Reviewer</h2>
+                    <div>
+                        <label>
+                            <span class="font-semibold">
+                                Were the recommendations met(Yes/No)
+                            </span><br>
+                        </label>
+                        <textarea name="summary_recommendations" id="" placeholder="Summary of Recommendations"
+                            class="mt-1 w-full resize-none max-sm:text-sm"></textarea>
+                    </div>
+                </div>
+                <div class="p-3 space-y-2 max-sm:text-sm">
+                    <label class="font-semibold">1. Address protocol-related issues</label>
+                    <div class="pl-4">
+                        <label class="block mb-1">1.1</label>
+                        <input type="text" name="protocol_issues_1_comment"
+                            class="w-full h-[35px] max-lg:h-[30px] max-md:text-sm rounded"
+                            placeholder="Reviewer's Comment" />
+                    </div>
+                    <div class="pl-4">
+                        <label class="block mb-1">1.2</label>
+                        <input type="text" name="protocol_issues_2_comment"
+                            class="w-full h-[35px] max-lg:h-[30px] max-md:text-sm rounded"
+                            placeholder="Reviewer's Comment" />
+                    </div>
+                </div>
+                <div class="p-3 space-y-2 max-sm:text-sm">
+                    <label class="font-semibold">2. Address ethical-related issues</label>
+                    <div class="pl-4">
+                        <label class="block mb-1">2.1</label>
+                        <input type="text" name="ethical_issues_1_comment"
+                            class="w-full h-[35px] max-lg:h-[30px] max-md:text-sm rounded"
+                            placeholder="Reviewer's Comment" />
+                    </div>
+                    <div class="pl-4">
+                        <label class="block mb-1">2.2</label>
+                        <input type="text" name="ethical_issues_2_comment"
+                            class="w-full h-[35px] max-lg:h-[30px] max-md:text-sm rounded"
+                            placeholder="Reviewer's Comment" />
+                    </div>
+                </div>
+                <div class="p-3 space-y-2 max-sm:text-sm">
+                    <label class="font-semibold">3. Address informed consent-related issues</label>
+                    <div class="pl-4">
+                        <label class="block mb-1">3.1</label>
+                        <input type="text" name="consent_issues_1_comment"
+                            class="w-full h-[35px] max-lg:h-[30px] max-md:text-sm rounded"
+                            placeholder="Reviewer's Comment" />
+                    </div>
+                    <div class="pl-4">
+                        <label class="block mb-1">3.2</label>
+                        <input type="text" name="consent_issues_2_comment"
+                            class="w-full h-[35px] max-lg:h-[30px] max-md:text-sm rounded"
+                            placeholder="Reviewer's Comment" />
+                    </div>
+                </div>
+                <div class="p-3 space-y-2 max-sm:text-sm">
+                    <label class="font-semibold">4. Changes that were not part of the initial review</label>
+                    <div class="pl-4">
+                        <label class="block mb-1">4.1</label>
+                        <input type="text" name="review_changes_1_comment"
+                            class="w-full h-[35px] max-lg:h-[30px] max-md:text-sm rounded"
+                            placeholder="Reviewer's Comment" />
+                    </div>
+                    <div class="pl-4">
+                        <label class="block mb-1">4.2</label>
+                        <input type="text" name="review_changes_2_comment"
+                            class="w-full h-[35px] max-lg:h-[30px] max-md:text-sm rounded"
+                            placeholder="Reviewer's Comment" />
+                    </div>
+                </div>
+                <div class="p-3 space-y-2 max-sm:text-sm">
+                    <h2 class="font-semibold max-md:text-sm uppercase">Recommendation of Primary
                         Reviewer</h2>
                     <div class="grid 2xl:grid-cols-3 max-md:grid-cols-1 md:grid-cols-2 max-lg:grid-cols-2 gap-y-3">
-                        <!-- UNDERGRADUATE STUDENTS -->
+                        <!-- APPROVE -->
                         <label class="flex items-start space-x-2 max-sm:text-sm/6">
                             <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                name="investigator_type" value="Undergraduate" data-group="1">
+                                name="recommendations" data-group="1">
                             <span>Approve</span>
                         </label>
-                        <!-- GRADUATE STUDENTS -->
+                        <!-- MINOR MODIFICATION -->
                         <label class="flex items-start space-x-2 max-sm:text-sm/6">
                             <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                name="investigator_type" value="Graduate" data-group="1">
+                                name="recommendations" data-group="1">
                             <span>Minor Modification</span>
                         </label>
-                        <!-- FACULTIES -->
+                        <!-- MAJOR MODIFICATION -->
                         <label class="flex items-start space-x-2 max-sm:text-sm/6">
                             <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                name="investigator_type" value="Faculty" data-group="1">
+                                name="recommendations" data-group="1">
                             <span>Major Modification</span>
                         </label>
-                        <!-- NON-TEACHING STAFF -->
+                        <!-- DISAPPROVE -->
                         <label class="flex items-start space-x-2 max-sm:text-sm/6">
                             <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                name="investigator_type" value="Non-Teaching Staff" data-group="1">
+                                name="recommendations" data-group="1">
                             <span>Disapprove</span>
                         </label>
-                        <!-- ADMINISTRATIVE STAFF -->
+                        <!-- PENDING -->
                         <label class="flex items-start space-x-2 max-sm:text-sm/6">
                             <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                name="investigator_type" value="Administrative Staff" data-group="1">
+                                name="recommendations" data-group="1">
                             <span>Pending (If Major Clarifications are required before a decision can be made)</span>
                         </label>
                     </div>
@@ -305,7 +377,7 @@
                                 Summary of Recommendations
                             </span><br>
                         </label>
-                        <div class="mt-2">
+                        <div>
                             <label>
                                 <span>
                                     1.
@@ -357,6 +429,7 @@
                     </div>
                 </div>
             </div>
+            <!-- ICOMMENT NALANG TO PAG DI SA REVIEWER SIDE TONG LAST PART -->
             <div class="mt-3 p-1 max-w-full bg-lightgray rounded mx-auto shadow-md">
                 <div
                     class="p-3 flex flex-col md:flex-row justify-between items-start md:space-x-5 space-y-4 md:space-y-0">
