@@ -26,7 +26,7 @@
                     <td>Brain Injury: Prevention and Treatment of Chronic Brain Injury</td>
                     <td>John Doe</td>
                     <td>ERB 2025-001</td>
-                    <td>Amendment Review</td>
+                    <td>Full Board</td>
                     <td>
                         <a href="{{ url('reviewer/forms/form2e') }}">
                             <button type="button" class="border-2 p-[5px] hover:bg-gray">

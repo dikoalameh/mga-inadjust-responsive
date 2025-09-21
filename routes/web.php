@@ -235,9 +235,9 @@ Route::middleware(['auth','access:Principal Investigator'])->prefix('student')->
             return view('student.forms.form3c');
         });
 
-        // Route::get('/form3d', function () {
-        //     return view('student.forms.form3d');
-        // });
+        Route::get('/form3d', function () {
+            return view('student.forms.form3d');
+        });
 
         Route::get('/form3l', function () {
             return view('student.forms.form3l');

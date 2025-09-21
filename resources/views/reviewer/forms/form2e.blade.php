@@ -45,13 +45,13 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="main_idea_study" data-group="1">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="main_idea_study">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="main_idea_study" data-group="1">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="main_idea_study">
                                 <span>No</span>
                             </label>
                         </div>
@@ -67,13 +67,13 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="scientific_significance" data-group="2">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="scientific_significance">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="scientific_significance" data-group="2">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="scientific_significance">
                                 <span>No</span>
                             </label>
                         </div>
@@ -88,13 +88,13 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="human_participants" data-group="3">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="human_participants">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="human_participants" data-group="3">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="human_participants">
                                 <span>No</span>
                             </label>
                         </div>
@@ -110,13 +110,13 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="problem_statement" data-group="4">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="problem_statement">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="problem_statement" data-group="4">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="problem_statement">
                                 <span>No</span>
                             </label>
                         </div>
@@ -131,13 +131,13 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="background_study" data-group="5">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="background_study">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="background_study" data-group="5">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="background_study">
                                 <span>No</span>
                             </label>
                         </div>
@@ -153,13 +153,13 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="relevant_information" data-group="6">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="relevant_information">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="relevant_information" data-group="6">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="relevant_information">
                                 <span>No</span>
                             </label>
                         </div>
@@ -174,13 +174,13 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="population" data-group="7">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="population">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="population" data-group="7">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="population">
                                 <span>No</span>
                             </label>
                         </div>
@@ -196,13 +196,13 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="sample_size" data-group="8">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="sample_size">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="sample_size" data-group="8">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="sample_size">
                                 <span>No</span>
                             </label>
                         </div>
@@ -218,13 +218,11 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]" name="manner"
-                                    data-group="9">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]" name="manner">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]" name="manner"
-                                    data-group="9">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]" name="manner">
                                 <span>No</span>
                             </label>
                         </div>
@@ -239,13 +237,13 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="study_site" data-group="10">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="study_site">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="study_site" data-group="10">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="study_site">
                                 <span>No</span>
                             </label>
                         </div>
@@ -261,13 +259,13 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="scientific_significance" data-group="11">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="scientific_significance">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="scientific_significance" data-group="11">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="scientific_significance">
                                 <span>No</span>
                             </label>
                         </div>
@@ -282,13 +280,13 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="research_questions" data-group="12">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="research_questions">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="research_questions" data-group="12">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="research_questions">
                                 <span>No</span>
                             </label>
                         </div>
@@ -305,13 +303,13 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="conditions_characteristics" data-group="13">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="conditions_characteristics">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="conditions_characteristics" data-group="13">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="conditions_characteristics">
                                 <span>No</span>
                             </label>
                         </div>
@@ -327,13 +325,13 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="characteristics" data-group="14">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="characteristics">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="characteristics" data-group="14">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="characteristics">
                                 <span>No</span>
                             </label>
                         </div>
@@ -352,13 +350,13 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="participant_vulnerability" data-group="15">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="participant_vulnerability">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="participant_vulernability" data-group="15">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="participant_vulernability">
                                 <span>No</span>
                             </label>
                         </div>
@@ -375,13 +373,13 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="special_vulnerability" data-group="16">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="special_vulnerability">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="special_vulnerability" data-group="16">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="special_vulnerability">
                                 <span>No</span>
                             </label>
                         </div>
@@ -397,13 +395,13 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="special_measures" data-group="17">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="special_measures">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="special_measures" data-group="17">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="special_measures">
                                 <span>No</span>
                             </label>
                         </div>
@@ -418,13 +416,13 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="study_procedure" data-group="18">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="study_procedure">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="study_procedure" data-group="18">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="study_procedure">
                                 <span>No</span>
                             </label>
                         </div>
@@ -440,13 +438,13 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="overall_procedures" data-group="19">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="overall_procedures">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="overall_procedures" data-group="19">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="overall_procedures">
                                 <span>No</span>
                             </label>
                         </div>
@@ -462,13 +460,13 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="anonymity_confidentiality" data-group="20">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="anonymity_confidentiality">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="anonymity_confidentiality" data-group="20">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="anonymity_confidentiality">
                                 <span>No</span>
                             </label>
                         </div>
@@ -485,13 +483,13 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="maintained" data-group="21">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="maintained">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="maintained" data-group="21">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="maintained">
                                 <span>No</span>
                             </label>
                         </div>
@@ -509,13 +507,13 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="data_confidentiality" data-group="22">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="data_confidentiality">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="data_confidentiality" data-group="22">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="data_confidentiality">
                                 <span>No</span>
                             </label>
                         </div>
@@ -532,13 +530,13 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="records_data" data-group="23">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="records_data">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="records_data" data-group="23">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="records_data">
                                 <span>No</span>
                             </label>
                         </div>
@@ -554,13 +552,13 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="risks_likelihood" data-group="24">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="risks_likelihood">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="risks_likelihood" data-group="24">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="risks_likelihood">
                                 <span>No</span>
                             </label>
                         </div>
@@ -576,13 +574,11 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="duration" data-group="25">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]" name="duration">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="duration" data-group="25">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]" name="duration">
                                 <span>No</span>
                             </label>
                         </div>
@@ -598,13 +594,13 @@
                         </label>
                         <div class="flex mt-1 space-x-1 gap-x-2">
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="techniques" data-group="26">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="techniques">
                                 <span>Yes</span>
                             </label>
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
-                                    name="techniques" data-group="26">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                    name="techniques">
                                 <span>No</span>
                             </label>
                         </div>
@@ -663,33 +659,28 @@
                             class="grid 2xl:grid-cols-2 max-md:grid-cols-1 md:grid-cols-2 max-lg:grid-cols-2 gap-x-5 gap-y-3 max-sm:gap-y-2">
                             <!-- APPROVE -->
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]" name="action"
-                                    data-group="27">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]" name="action">
                                 <span>Approve</span>
                             </label>
                             <!-- MINOR MODIFICATIONS -->
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]" name="action"
-                                    data-group="27">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]" name="action">
                                 <span>Minor Modifications</span>
                             </label>
                             <!-- MAJOR MODIFICATIONS -->
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]" name="action"
-                                    data-group="27">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]" name="action">
                                 <span>Major Modifications</span>
                             </label>
                             <!-- DISAPPROVE -->
                             <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]" name="action"
-                                    data-group="27">
+                                <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]" name="action">
                                 <span>Disapprove</span>
                             </label>
                             <!-- PENDING IF MAJOR CLARIFICATIONS ARE REQUIRED BEFORE A DECISION CAN BE MADE -->
                             <label class="flex max-sm:block max-sm:space-x-1 items-start space-x-2 max-sm:text-sm/6">
-                                <input type="checkbox" id="toggleCheckBox"
-                                    class="check mt-1 max-sm:mt-0 max-sm:w-[14px] max-sm:h-[14px]" name="action"
-                                    data-group="27">
+                                <input type="radio" id="toggleradio"
+                                    class="check mt-1 max-sm:mt-0 max-sm:w-[14px] max-sm:h-[14px]" name="action">
                                 <span>Pending if Major Clarifications are Required Before a Decision can be Made</span>
                             </label>
                         </div>
@@ -698,7 +689,8 @@
 
                 <!-- JUSTIFICATION FOR RECOMMENDED ACTION -->
                 <div class="p-3 mt-2 space-y-2 text-base max-sm:text-sm">
-                    <h2 class="pb-2 font-bold text-lg max-2xl:text-base max-sm:text-sm">JUSTIFICATION FOR RECOMMENDED ACTION:
+                    <h2 class="pb-2 font-bold text-lg max-2xl:text-base max-sm:text-sm">JUSTIFICATION FOR RECOMMENDED
+                        ACTION:
                     </h2>
                     <div>
                         <textarea name="justification" id="" placeholder="Summary of Recommendations"
