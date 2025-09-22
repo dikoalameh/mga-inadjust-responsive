@@ -107,6 +107,14 @@ Route::get('/iacuc/settings', function () {
     return view('iacuc.settings');
 });
 
+Route::get('/iacuc/forms/protocol-review', function () {
+    return view('iacuc.forms.protocol-review');
+});
+
+Route::get('/iacuc/forms/protocol-review-checklist', function () {
+    return view('iacuc.forms.protocol-review-checklist');
+});
+
 // superadmin
 Route::middleware(['auth', 'access:Superadmin'])->prefix('superadmin')->group(function () {
 
