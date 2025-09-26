@@ -101,7 +101,8 @@
             "/reviewer/settings": "SETTINGS",
             "/reviewer/forms/form2e": "FORM 2(E)",
             "/reviewer/forms/form2j": "FORM 2(J)",
-            "/reviewer/forms/form3e": "FORM 3(E)"
+            "/reviewer/forms/form3e": "FORM 3(E)",
+            "/reviewer/forms/form3b": "FORM 3(B)"
         };
 
         const path = window.location.pathname;

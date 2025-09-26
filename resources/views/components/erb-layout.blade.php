@@ -120,9 +120,9 @@
             "/erb/iro-approved-accounts": "APPROVED ACCOUNTS",
             "/erb/pending-reviews": "PENDING REVIEWS",
             "/erb/research-records": "RESEARCH RECORDS",
-            "/erb/reviewers-checklist": "REVIEWERS CHECKLIST",
+            "/erb/ongoing-reviews": "ONGOING REVIEWS",
             "/erb/submitted-documents": "SUBMITTED DOCUMENTS",
-            "/erb/settings": "SETTINGS",
+            "/erb/settings": "SETTINGS"
         };
 
         const path = window.location.pathname;

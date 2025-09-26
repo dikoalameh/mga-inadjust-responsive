@@ -142,7 +142,7 @@
             "/iacuc/iro-approved-accounts": "APPROVED ACCOUNTS",
             "/iacuc/pending-reviews": "PENDING REVIEWS",
             "/iacuc/research-records": "RESEARCH RECORDS",
-            "/iacuc/reviewers-checklist": "REVIEWERS CHECKLIST",
+            "/iacuc/ongoing-reviews": "ONGOING REVIEWS",
             "/iacuc/settings": "SETTINGS",
             "/iacuc/forms/protocol-review": "PROTOCOL REVIEW FORM",
             "/iacuc/forms/protocol-review-checklist": "PROTOCOL REVIEW CHECKLIST"

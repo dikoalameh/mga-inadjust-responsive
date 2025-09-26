@@ -1,7 +1,7 @@
 @section('title', 'Approved Accounts')
 <x-erb-layout>
     <!-- Main Content -->
-    <main class="xl:ml-[335px] max-xl:ml-auto p-4">
+    <main class="xl:ml-[335px] max-xl:ml-auto p-4 max-md:p-2">
         <h2 class="max-xl:hidden text-left bg-[#f2f2f2] shadow-lg p-[35px] rounded-[30px] font-medium text-[28px]">
             APPROVED ACCOUNTS
         </h2>
@@ -45,8 +45,8 @@
             <div class="flex mx-4 gap-6 grid grid-cols-2 max-md:grid-cols-1">
                 <!-- Left Selection -->
                 <div class="bg-lightgray p-4 shadow-md rounded-md">
-                    <h3 class="text-lg font-semibold mb-3">Assignment of Forms</h3>
-                    <div class="flex grid grid-cols-3 max-sm:grid-cols-2 gap-y-3 gap-x-3 font-semibold">
+                    <h3 class="text-lg font-semibold max-md:text-base mb-3">Assignment of Forms</h3>
+                    <div class="flex grid grid-cols-3 max-sm:grid-cols-2 gap-y-3 gap-x-3 font-semibold max-md:text-sm">
                         @foreach ($selectForms as $form)
                             <div class="room cursor-pointer bg-gray hover:bg-darkgray px-3 py-2 rounded-md"
                                 data-room="{{ $form->form_id }}" data-view="{{ $form->form_view }}">
@@ -58,9 +58,9 @@
 
                 <!-- Right Display -->
                 <div class="bg-lightgray p-4 shadow-md rounded-md">
-                    <h3 class="text-lg font-semibold mb-3">Assigned Rooms</h3>
+                    <h3 class="text-lg font-semibold max-md:text-base mb-3">Assigned Forms</h3>
                     <ul id="assignedList"
-                        class="list-disc mx-2 pl-6 pt-2 flex grid grid-cols-3 max-sm:grid-cols-2 gap-x-2 gap-y-3"></ul>
+                        class="list-disc mx-2 pl-6 pt-2 flex grid grid-cols-3 max-sm:grid-cols-2 gap-x-2 gap-y-3 max-md:text-sm"></ul>
                 </div>
             </div>
 
@@ -80,13 +80,6 @@
     </main>
 </x-erb-layout>
 <script>
-    $('#myTable').DataTable({
-        retrieve: true,
-        responsive: true,
-        autoWidth: false,
-        pageLength: 10,
-        order: []
-    });
     const rooms = document.querySelectorAll(".room");
     const assignedList = document.getElementById("assignedList");
     const submitBtn = document.getElementById("submitBtn");

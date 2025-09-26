@@ -17,7 +17,7 @@
         <li class="px-3 py-4">
             <button
                 class="dropdownToggle w-full flex justify-between items-center hover:text-secondary transition-all 
-                {{ Request::is('superadmin/reviewers-checklist') ? 'text-secondary' : '' }} {{ Request::is('superadmin/assign-reviewer') ? 'text-secondary' : '' }}">
+                {{ Request::is('superadmin/ongoing-reviews') ? 'text-secondary' : '' }} {{ Request::is('superadmin/assign-reviewer') ? 'text-secondary' : '' }}">
                 <i class="bi bi-file-earmark-fill"></i>
                 <span class="mr-auto px-3">View Documents</span>
                 <svg class="dropdownArrow w-4 h-4 transition-transform" fill="none" stroke="currentColor"
@@ -26,13 +26,13 @@
                 </svg>
             </button>
             <ul class="dropdownMenu ml-1 mt-4 space-y-1 hidden">
-                <!-- Reviewer Checklist -->
+                <!-- Ongoing Reviews -->
                 <li>
-                    <a href="{{ url('/superadmin/reviewers-checklist') }}" class="block hover:text-secondary duration-200 px-2 py-2 flex 
-                        {{ Request::is('superadmin/reviewers-checklist') ? 'text-secondary' : '' }}">
+                    <a href="{{ url('/superadmin/ongoing-reviews') }}" class="block hover:text-secondary duration-200 px-2 py-2 flex 
+                        {{ Request::is('superadmin/ongoing-reviews') ? 'text-secondary' : '' }}">
                         <i class="bi bi-check-circle"></i>
                         <span class="w-full flex justify-between items-center px-3">
-                            Reviewer Checklist
+                            Ongoing Reviews
                         </span>
                     </a>
                 </li>
@@ -145,7 +145,7 @@
             <li class="px-3 py-4">
                 <button
                     class="dropdownToggle w-full flex justify-between items-center hover:text-secondary transition-all 
-                    {{ Request::is('superadmin/reviewers-checklist') ? 'text-secondary' : '' }} {{ Request::is('superadmin/assign-reviewer') ? 'text-secondary' : '' }}">
+                    {{ Request::is('superadmin/ongoing-reviews') ? 'text-secondary' : '' }} {{ Request::is('superadmin/assign-reviewer') ? 'text-secondary' : '' }}">
                     <i class="bi bi-file-earmark-fill"></i>
                     <span class="mr-auto px-3">View Documents</span>
                     <svg class="dropdownArrow w-4 h-4 transition-transform" fill="none" stroke="currentColor"
@@ -154,13 +154,13 @@
                     </svg>
                 </button>
                 <ul class="dropdownMenu ml-1 mt-4 space-y-1 hidden">
-                    <!-- Reviewer Checklist -->
+                    <!-- Ongoing Reviews -->
                     <li>
-                        <a href="{{ url('/superadmin/reviewers-checklist') }}" class="block hover:text-secondary duration-200 px-2 py-2 flex 
-                        {{ Request::is('superadmin/reviewers-checklist') ? 'text-secondary' : '' }}">
+                        <a href="{{ url('/superadmin/ongoing-reviews') }}" class="block hover:text-secondary duration-200 px-2 py-2 flex 
+                        {{ Request::is('superadmin/ongoing-reviews') ? 'text-secondary' : '' }}">
                             <i class="bi bi-check-circle"></i>
                             <span class="w-full flex justify-between items-center px-3">
-                                Reviewer Checklist
+                                Ongoing Reviews
                             </span>
                         </a>
                     </li>

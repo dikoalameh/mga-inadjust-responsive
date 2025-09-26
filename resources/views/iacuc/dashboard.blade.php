@@ -1,7 +1,7 @@
 @section('title', 'Dashboard')
 <x-iacuc-layout>
     <!-- Main Content -->
-    <main class="ml-[335px] max-2xl:ml-auto p-4">
+    <main class="xl:ml-[335px] max-xl:ml-auto p-4 max-md:p-2">
         <h2 class="max-xl:hidden text-left bg-[#f2f2f2] shadow-lg p-[35px] rounded-[30px] font-medium text-[28px]">
             DASHBOARD
         </h2>
@@ -114,8 +114,8 @@
                 </main>
                 <div class="flex-1 space-y-10 overflow-auto">
                     <table id="myTable"
-                        class="min-w-full display overflow-scroll whitespace-no-wrap border-collapse w-full">
-                        <thead class="bg-primary text-white text-[18px]/7 max-lg:text-[16px]/7">
+                        class="display overflow-scroll border-collapse w-full">
+                        <thead class="bg-primary text-white text-lg/7 max-lg:text-base/7">
                             <tr class="header-table">
                                 <th class="w-[25.00%]">Research Protocol</th>
                                 <th class="w-[25.00%]">Research Title</th>
@@ -123,7 +123,7 @@
                                 <th class="w-[25.00%]">Status</th>
                             </tr>
                         </thead>
-                        <tbody class="text-[17px]/6 max-lg:text-[15px]/6">
+                        <tbody class="text-base/7 max-lg:text-sm/6">
                             <tr>
                                 <td>2025-001</td>
                                 <td>Exploring the Relationship Between Exercise and Cognitive Function in Older Adults

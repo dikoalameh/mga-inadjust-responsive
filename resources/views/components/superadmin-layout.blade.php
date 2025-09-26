@@ -106,12 +106,13 @@
 
             const titles = {
                 "/superadmin/dashboard": "DASHBOARD",
-                "/superadmin/reviewers-checklist": "REVIEWERS CHECKLIST",
+                "/superadmin/ongoing-reviews": "ONGOING REVIEWS",
                 "/superadmin/assign-reviewer": "ASSIGN REVIEWER",
                 "/superadmin/accounts-classifications": "ACCOUNTS CLASSIFICATION",
                 "/superadmin/research-records": "RESEARCH RECORDS",
                 "/superadmin/pending-reviews": "PENDING REVIEWS",
                 "/superadmin/permission-control": "PERMISSION CONTROL",
+                "/superadmin/monitoring": "MONITORING STATUS",
                 "/superadmin/settings": "SETTINGS"
             };
 

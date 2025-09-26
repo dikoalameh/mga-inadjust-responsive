@@ -1,6 +1,6 @@
 @section('title', 'Form 2(A)')
 <x-student-layout>
-    <main class="xl:ml-[335px] max-xl:ml-auto p-4">
+    <main class="xl:ml-[335px] max-xl:ml-auto p-4 max-md:p-2">
         <form action="{{ route('form2a.store') }}" method="POST" class="block">
             @csrf
             <div class="mt-3 p-1 max-w-7xl w-full bg-lightgray rounded mx-auto shadow-md">

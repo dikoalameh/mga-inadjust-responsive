@@ -1,6 +1,6 @@
 @section('title', 'Form 5(E)')
 <x-student-layout>
-    <main class="xl:ml-[335px] max-xl:ml-auto p-4">
+    <main class="xl:ml-[335px] max-xl:ml-auto p-4 max-md:p-2">
         <form action="" method="POST" class="block">
             <div class="mt-3 p-1 max-w-7xl w-full bg-lightgray rounded mx-auto shadow-md">
                 <p class="text-right mt-3 mr-3 max-lg:text-sm max-md:text-sm max-sm:text-xs">FORM 5(E)</p>

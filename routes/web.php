@@ -66,8 +66,8 @@ Route::get('/erb/assign-reviewer', function () {
     return view('erb.assign-reviewer');
 });
 
-Route::get('/erb/reviewers-checklist', function () {
-    return view('erb.reviewers-checklist');
+Route::get('/erb/ongoing-reviews', function () {
+    return view('erb.ongoing-reviews');
 });
 
 Route::get('/erb/settings', function () {
@@ -95,8 +95,8 @@ Route::get('/iacuc/assign-reviewer', function () {
     return view('iacuc.assign-reviewer');
 });
 
-Route::get('/iacuc/reviewers-checklist', function () {
-    return view('iacuc.reviewers-checklist');
+Route::get('/iacuc/ongoing-reviews', function () {
+    return view('iacuc.ongoing-reviews');
 });
 
 Route::get('/iacuc/dashboard', function () {
@@ -144,8 +144,8 @@ Route::middleware(['auth', 'access:Superadmin'])->prefix('superadmin')->group(fu
         return view('superadmin.research-records');
     });
 
-    Route::get('/reviewers-checklist', function () {
-        return view('superadmin.reviewers-checklist');
+    Route::get('/ongoing-reviews', function () {
+        return view('superadmin.ongoing-reviews');
     });
 
     Route::get('/monitoring', function () {
