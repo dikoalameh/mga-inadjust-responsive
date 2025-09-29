@@ -150,7 +150,6 @@
 
         const path = window.location.pathname;
         const pageTitle = titles[path] || "Page";
-
         // Update the text content of the header
         document.getElementById("page-title").textContent = pageTitle;
     </script>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\FormAssignment;
+use App\Http\Controllers\MonitoringDashboard;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
@@ -148,9 +149,7 @@ Route::middleware(['auth', 'access:Superadmin'])->prefix('superadmin')->group(fu
         return view('superadmin.ongoing-reviews');
     });
 
-    Route::get('/monitoring', function () {
-        return view('superadmin.monitoring');
-    });
+    Route::get('/monitoring', [MonitoringDashboard::class, 'index'])->name('monitoring');
 
     Route::get('/settings', function () {
         return view('superadmin.settings');
