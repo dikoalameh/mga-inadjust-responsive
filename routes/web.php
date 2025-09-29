@@ -186,6 +186,10 @@ Route::get('/reviewer/forms/form3b',function () {
     return view('reviewer.forms.form3b');
 });
 
+Route::get('/reviewer/college-dept',function () {
+    return view('reviewer.college-dept');
+});
+
 // student
 Route::middleware(['auth','access:Principal Investigator'])->prefix('student')->group(function () {
 
