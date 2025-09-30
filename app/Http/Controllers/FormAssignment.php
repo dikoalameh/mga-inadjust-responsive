@@ -9,18 +9,25 @@ use App\Models\User;
 class FormAssignment extends Controller
 {
     public function approvedAccounts()
-        {
-            // You’re probably also fetching your users via joins here
-            $approvedAccounts = User::with(['forms', 'researchInformation', 'classifications'])
-            ->whereHas('classifications', function ($q) {
-                $q->where('classificationStatus', 'Approved');
-            })
-            ->get();
+    {
+        // You’re probably also fetching your users via joins here
+        $approvedAccounts = User::with(['forms', 'researchInformation', 'classifications'])
+        ->whereHas('classifications', function ($q) {
+            $q->where('classificationStatus', 'Approved');
+        })
+        ->get();
 
-            $selectForms = FormsTable::all();
+        $selectForms = FormsTable::whereIn('form_code', [
+            'Form 2(A)',
+            'Form 2(B)',
+            'Form 2(C)',
+            'Form 2(D)',
+            'Form 5(E)',
+            'FORM 2(A) Soft Copy',
+        ])->get();
 
-            return view('erb.iro-approved-accounts', compact('selectForms','approvedAccounts'));
-        }
+        return view('erb.iro-approved-accounts', compact('selectForms','approvedAccounts'));
+    }
     public function assignFormsAjax(Request $request)
     {
         $request->validate([
@@ -38,5 +45,14 @@ class FormAssignment extends Controller
         }
 
         return response()->json(['success' => true, 'message' => 'Forms assigned successfully!']);
+    }
+    public function assignedFormsDisplay(){
+        $student = auth()->user();
+        
+        $assignedForms = $student->forms()
+        ->where('form_type','Forms')
+        ->get();
+
+        return view('student.download-forms', compact('assignedForms'));
     }
 }

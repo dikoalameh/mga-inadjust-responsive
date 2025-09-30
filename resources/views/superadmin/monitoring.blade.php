@@ -22,14 +22,14 @@
             <!-- Table body -->
             <tbody class="text-base/7 max-lg:text-sm/6">
                 @foreach ($monitor as $users)
-                <tr>
-                    <td>{{ $users -> user_ID }}</td>
-                    <td>{{ $users -> user_Fname }} {{ $users->user_MI ? $users->user_MI : '' }} {{ $users->user_Lname }}</td>
-                    <td>{{ optional($users->classifications?->classificationDate)->format('n/j/Y') ?? 'N/A' }}</td>
-                    <td>{{ optional($users->classifications?->classificationDate)->format('n/j/Y') ?? 'N/A' }}</td>
-                    <td>{{ optional($users->classifications?->classificationDate)->format('n/j/Y') ?? 'N/A' }}</td>
-                    <td>{{ optional($users->classifications?->classificationDate)->format('n/j/Y') ?? 'N/A' }}</td>
-                </tr>
+                    <tr>
+                        <td>{{ $users -> user_ID }}</td>
+                        <td>{{ $users -> user_Fname }} {{ $users->user_MI ? $users->user_MI : '' }} {{ $users->user_Lname }}</td>
+                        <td>{{ optional($users->classifications?->classificationDate)->format('n/j/Y') ?? 'N/A' }}</td>
+                        <td>{{ optional($users->classifications?->classificationDate)->format('n/j/Y') ?? 'N/A' }}</td>
+                        <td>{{ optional($users->classifications?->classificationDate)->format('n/j/Y') ?? 'N/A' }}</td>
+                        <td>{{ optional($users->classifications?->classificationDate)->format('n/j/Y') ?? 'N/A' }}</td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>

@@ -205,9 +205,8 @@ Route::middleware(['auth','access:Principal Investigator'])->prefix('student')->
         return view('student.submit-tickets');
     });
 
-    Route::get('/download-forms', function () {
-        return view('student.download-forms');
-    });
+    Route::get('/download-forms', [FormAssignment::class, 'assignedFormsDisplay'])
+    ->name('student.download-forms');
 
     Route::get('/settings', function () {
         return view('student.settings');
@@ -285,7 +284,7 @@ Route::post('/assign-forms-ajax', [FormAssignment::class, 'assignFormsAjax'])
     ->name('assign.forms.ajax');
 
 //Storing Data for Form2A
-Route::get('/student/download-forms', [Form2AController::class, 'index'])->name('download-forms');
+//Route::get('/student/download-forms', [Form2AController::class, 'index'])->name('download-forms');
 Route::post('/student/store', [Form2AController::class, 'store'])->name('form2a.store');
 Route::get('/export-form2a', [PdfExportController::class, 'exportForm2A'])->name('export.form2a');
 

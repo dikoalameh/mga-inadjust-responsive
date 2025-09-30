@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('form_id');
             $table->string('form_code')->unique();
             $table->string('form_name')->nullable();
+            $table->string('form_type')->nullable();
             $table->string('form_view')->nullable();
             $table->timestamps();
         });

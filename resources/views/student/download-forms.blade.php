@@ -9,7 +9,33 @@
             <div>
                 <h2 class="text-xl font-semibold mb-4">FORMS</h2>
                 <div class="grid max-md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <!-- FORM 2(A) -->
+                    @if ($assignedForms->isEmpty())
+                        <p class="text-gray-500">⚠ No forms have been assigned to you yet.</p>
+                    @else
+                        <div class="grid max-md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                @foreach($assignedForms as $form)
+                                    <a href="{{ url( $form->form_view) }}">
+                                        <div class="card bg-lightgray p-4 rounded-lg flex justify-between items-center cursor-pointer">
+                                            <div class="block items-center flex-wrap gap-[10px]">
+                                                <h2 class="text-xl max-md:text-[18px] font-semibold">
+                                                    {{ $form->form_code }}
+                                                </h2>
+                                                <p class="text-xs font-medium">
+                                                    {{ $form->form_name }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                @endforeach
+                            </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </main>
+</x-student-layout>
+
+<!----
                     <a href="{{ url('student/forms/form2a') }}">
                         <div class="card bg-lightgray p-4 rounded-lg flex justify-between items-center cursor-pointer">
                             <div class="block items-center flex-wrap gap-[10px]">
@@ -19,7 +45,6 @@
                         </div>
                     </a>
 
-                    <!-- FORM 2(B) -->
                     <a href="{{ url('student/forms/form2b') }}">
                         <div class="card bg-lightgray p-4 rounded-lg flex justify-between items-center">
                             <div class="block items-center flex-wrap gap-[10px]">
@@ -29,7 +54,6 @@
                         </div>
                     </a>
 
-                    <!-- FORM 2(C) -->
                     <a href="{{ url('student/forms/form2c') }}">
                         <div class="card bg-lightgray p-4 rounded-lg flex justify-between items-center">
                             <div class="block items-center flex-wrap gap-[10px]">
@@ -39,7 +63,6 @@
                         </div>
                     </a>
 
-                    <!-- FORM 2(D) -->
                     <a href="{{ url('student/forms/form2d') }}">
                         <div class="card bg-lightgray p-4 rounded-lg flex justify-between items-center">
                             <div class="block items-center flex-wrap gap-[10px]">
@@ -49,7 +72,6 @@
                         </div>
                     </a>
 
-                    <!-- FORM 5(E) -->
                     <a href="{{ url('student/forms/form5e') }}">
                         <div class="card bg-lightgray p-4 rounded-lg flex justify-between items-center">
                             <div class="blockitems-center flex-wrap gap-[10px]">
@@ -59,7 +81,6 @@
                         </div>
                     </a>
 
-                    <!-- FORM 2(E) -->
                     <a href="{{ url('student/forms/form2e') }}">
                         <div class="card bg-lightgray p-4 rounded-lg flex justify-between items-center">
                             <div class="block items-center flex-wrap gap-[10px]">
@@ -69,7 +90,6 @@
                         </div>
                     </a>
 
-                    <!-- FORM 2(J) -->
                     <a href="">
                         <div class="card bg-lightgray p-4 rounded-lg flex justify-between items-center">
                             <div class="block items-center flex-wrap gap-[10px]">
@@ -79,7 +99,6 @@
                         </div>
                     </a>
 
-                    <!-- FORM 3(A) -->
                     <a href="">
                         <div class="card bg-lightgray p-4 rounded-lg flex justify-between items-center">
                             <div class="block items-center flex-wrap gap-[10px]">
@@ -89,7 +108,6 @@
                         </div>
                     </a>
 
-                    <!-- FORM 3(B) -->
                     <a href="">
                         <div class="card bg-lightgray p-4 rounded-lg flex justify-between items-center">
                             <div class="block items-center flex-wrap gap-[10px]">
@@ -99,7 +117,6 @@
                         </div>
                     </a>
 
-                    <!-- FORM 3(D) -->
                     <a href="">
                         <div class="card bg-lightgray p-4 rounded-lg flex justify-between items-center">
                             <div class="block items-center flex-wrap gap-[10px]">
@@ -109,7 +126,6 @@
                         </div>
                     </a>
 
-                    <!-- FORM 3(E) -->
                     <a href="">
                         <div class="card bg-lightgray p-4 rounded-lg flex justify-between items-center">
                             <div class="block items-center flex-wrap gap-[10px]">
@@ -119,7 +135,6 @@
                         </div>
                     </a>
 
-                    <!-- FORM 3(C) -->
                     <a href="">
                         <div class="card bg-lightgray p-4 rounded-lg flex justify-between items-center">
                             <div class="block items-center flex-wrap gap-[10px]">
@@ -129,7 +144,6 @@
                         </div>
                     </a>
 
-                    <!-- FORM 3(L) -->
                     <a href="">
                         <div class="card bg-lightgray p-4 rounded-lg flex justify-between items-center">
                             <div class="block items-center flex-wrap gap-[10px]">
@@ -138,8 +152,4 @@
                             </div>
                         </div>
                     </a>
-                </div>
-            </div>
-        </div>
-    </main>
-</x-student-layout>
+                    ---->
