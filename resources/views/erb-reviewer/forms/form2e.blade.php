@@ -1,5 +1,5 @@
 @section('title', 'Form 2(E)')
-<x-review-layout>
+<x-erb-reviewer>
     <main class="xl:ml-[335px] max-xl:ml-auto p-4 max-md:p-2">
         <form action="" method="POST" class="block">
             <div class="mt-3 p-1 max-w-7xl w-full bg-lightgray rounded mx-auto shadow-md">
@@ -711,4 +711,4 @@
             </div>
         </form>
     </main>
-</x-review-layout>
+</x-erb-reviewer>

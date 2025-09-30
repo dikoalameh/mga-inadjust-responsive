@@ -7,24 +7,24 @@
     <ul class="mt-12 flex-1 text-[18px]">
         <li>
             <!-- Dashboard -->
-            <a href="{{ url('/reviewer/dashboard') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary
-                {{ Request::is('reviewer/dashboard') ? 'text-secondary' : '' }}">
+            <a href="{{ url('/iacuc-reviewer/dashboard') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary
+                {{ Request::is('iacuc-reviewer/dashboard') ? 'text-secondary' : '' }}">
                 <i class="bi bi-file-earmark-bar-graph-fill"></i>
                 <span class="w-full flex justify-between items-center px-3">Dashboard</span>
             </a>
         </li>
         <!-- Assigned Research Protocol -->
         <li>
-            <a href="{{ url('reviewer/protocol-assign') }}" class="px-3 py-4 transition-all flex duration-200 hover:text-secondary
-                {{ Request::is('reviewer/protocol-assign') || Request::is('reviewer/forms/*') ? 'text-secondary' : '' }}">
+            <a href="{{ url('iacuc-reviewer/protocol-assign') }}" class="px-3 py-4 transition-all flex duration-200 hover:text-secondary
+                {{ Request::is('iacuc-reviewer/protocol-assign') || Request::is('iacuc-reviewer/forms/*') ? 'text-secondary' : '' }}">
                 <i class="bi bi-file-earmark-fill"></i>
                 <span class="w-full flex justify-between items-center px-3">Assigned Research Protocol</span>
             </a>
         </li>
         <!-- Settings -->
         <li>
-            <a href="{{ url('reviewer/settings') }}" class="px-3 py-4 transition-all flex duration-200 hover:text-secondary
-                {{ Request::is('reviewer/settings') ? 'text-secondary' : '' }}">
+            <a href="{{ url('iacuc-reviewer/settings') }}" class="px-3 py-4 transition-all flex duration-200 hover:text-secondary
+                {{ Request::is('iacuc-reviewer/settings') ? 'text-secondary' : '' }}">
                 <i class="bi bi-gear-wide-connected"></i>
                 <span class="w-full flex justify-between items-center px-3">Settings</span>
             </a>
@@ -35,7 +35,7 @@
                 <img src="" alt="" class="h-[45px] w-[45px] object-cover rounded-[50%] mr-[10px] border-2 border-white">
                 <div class="">
                     <div class="text-[16px] whitespace-nowrap" name="userName">{{ Auth::user()->user_Fname }} {{ Auth::user()->user_MI }} {{ Auth::user()->user_Lname }}</div>
-                    <div class="text-[14px] whitespace-nowrap" name="userAccess">Reviewer</div>
+                    <div class="text-[14px] whitespace-nowrap" name="userAccess">IACUC Reviewer</div>
                 </div>
             </div>
             <form method="POST" action="{{ route('logout') }}" class="inline">
@@ -55,22 +55,22 @@
         <ul class="text-white max-2xl:mt-[65px] max-sm:mt-[55px]">
             <li>
                 <!-- Dashboard -->
-                <a href="{{ url('/reviewer/dashboard') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary
-                    {{ Request::is('reviewer/dashboard') ? 'text-secondary' : '' }}">
+                <a href="{{ url('/iacuc-reviewer/dashboard') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary
+                    {{ Request::is('iacuc-reviewer/dashboard') ? 'text-secondary' : '' }}">
                     <i class="bi bi-file-earmark-bar-graph-fill"></i>
                     <span class="w-full flex justify-between items-center px-3">Dashboard</span>
                 </a>
             </li>
             <!-- Assigned Research Protocol -->
-            <a href="{{ url('reviewer/protocol-assign') }}" class="px-3 py-4 transition-all flex duration-200 hover:text-secondary
-                {{ Request::is('reviewer/protocol-assign') || Request::is('reviewer/forms/*') ? 'text-secondary' : '' }}">
+            <a href="{{ url('iacuc-reviewer/protocol-assign') }}" class="px-3 py-4 transition-all flex duration-200 hover:text-secondary
+                {{ Request::is('iacuc-reviewer/protocol-assign') || Request::is('iacuc-reviewer/forms/*') ? 'text-secondary' : '' }}">
                 <i class="bi bi-file-earmark-fill"></i>
                 <span class="w-full flex justify-between items-center px-3">Assigned Research Protocol</span>
             </a>
             <!-- Settings -->
             <li>
-                <a href="{{ url('reviewer/settings') }}" class="px-3 py-4 transition-all flex duration-200 hover:text-secondary
-                    {{ Request::is('reviewer/settings') ? 'text-secondary' : '' }}">
+                <a href="{{ url('iacuc-reviewer/settings') }}" class="px-3 py-4 transition-all flex duration-200 hover:text-secondary
+                    {{ Request::is('iacuc-reviewer/settings') ? 'text-secondary' : '' }}">
                     <i class="bi bi-gear-wide-connected"></i>
                     <span class="w-full flex justify-between items-center px-3">Settings</span>
                 </a>
@@ -82,7 +82,7 @@
                         class="h-[45px] w-[45px] object-cover rounded-[50%] mr-[10px] border-2 border-white">
                     <div class="">
                         <div class="text-[16px] whitespace-nowrap" name="userName">{{ Auth::user()->user_Fname }} {{ Auth::user()->user_MI }} {{ Auth::user()->user_Lname }}</div>
-                        <div class="text-[14px] whitespace-nowrap" name="userAccess">Reviewer</div>
+                        <div class="text-[14px] whitespace-nowrap" name="userAccess">IACUC Reviewer</div>
                     </div>
                 </div>
                 <a href="{{ url('/') }}" class="duration-200 hover:text-secondary">

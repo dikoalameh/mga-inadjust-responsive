@@ -1,5 +1,5 @@
 @section('title', 'Protocol Review Checklist')
-<x-iacuc-layout>
+<x-iacuc-reviewer>
     <main class="xl:ml-[335px] max-xl:ml-auto p-4 max-md:p-2">
         <form action="" method="POST" class="block">
             <div class="mt-3 p-1 max-w-full bg-lightgray rounded mx-auto shadow-md">
@@ -601,4 +601,4 @@
             </div>
         </form>
     </main>
-</x-iacuc-layout>
+</x-iacuc-reviewer>

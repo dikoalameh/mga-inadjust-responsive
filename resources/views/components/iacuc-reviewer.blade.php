@@ -29,7 +29,7 @@
 
 <body>
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-        @include('reviewer.navigation')
+        @include('iacuc-reviewer.navigation')
 
         <!-- Page Heading -->
         @isset($header)
@@ -96,13 +96,11 @@
 
         // Set Page Title Based on URL Path
         const titles = {
-            "/reviewer/dashboard": "DASHBOARD",
-            "/reviewer/protocol-assign": "PROTOCOL ASSIGN",
-            "/reviewer/settings": "SETTINGS",
-            "/reviewer/forms/form2e": "FORM 2(E)",
-            "/reviewer/forms/form2j": "FORM 2(J)",
-            "/reviewer/forms/form3e": "FORM 3(E)",
-            "/reviewer/forms/form3b": "FORM 3(B)"
+            "/iacuc-reviewer/dashboard": "DASHBOARD",
+            "/iacuc-reviewer/protocol-assign": "PROTOCOL ASSIGN",
+            "/iacuc-reviewer/settings": "SETTINGS",
+            "/iacuc-reviewer/forms/protocol-review": "REVIEW FORM",
+            "/iacuc-reviewer/forms/protocol-review-checklist": "REVIEW CHECKLIST",
         };
 
         const path = window.location.pathname;
