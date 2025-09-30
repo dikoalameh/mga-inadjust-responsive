@@ -22,7 +22,6 @@ class Form2AController extends Controller
     return view('student.download-forms', compact('form2a'));
     }
 
-
     public function store(Request $request)
     {
         $validate = $request->validate([

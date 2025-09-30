@@ -24,6 +24,22 @@ class FormAssignment extends Controller
             'Form 2(D)',
             'Form 5(E)',
             'FORM 2(A) Soft Copy',
+            'FORM 2(B) Soft Copy',
+            'Proof of Enrollment',
+            'Technical Review Letter',
+            'Study Protocol',
+            'Form 2(C) Soft Copy - ENG',
+            'Form 2(C) Soft Copy - FIL',
+            'Data Collection Tools',
+            'Certificates of Validators',
+            'Child Assent for Children Ages 7-12 years - ENG',
+            'Child Assent for Children Ages 7-12 years - FIL',
+            'Child Assent for Children Ages 13-17 years - ENG',
+            'Child Assent for Children Ages 13-17 years - FIL',
+            'Recruitment advertisement',
+            'Curriculum Vitae',
+            'Good Clinical Practice (GCP) or Health Research Ethics Training Certificate',
+            'Gantt chart',
         ])->get();
 
         return view('erb.iro-approved-accounts', compact('selectForms','approvedAccounts'));
