@@ -161,33 +161,62 @@ Route::middleware(['auth', 'access:Superadmin'])->prefix('superadmin')->group(fu
     })->name('superadmin.notifications.markAllRead');
 });
 
-// reviewer
-Route::get('/reviewer/dashboard', function () {
-    return view('reviewer.dashboard');
+// erb reviewer
+Route::get('/erb-reviewer/dashboard', function () {
+    return view('erb-reviewer.dashboard');
 });
 
-Route::get('/reviewer/protocol-assign', function () {
-    return view('reviewer.protocol-assign');
+Route::get('/erb-reviewer/protocol-assign', function () {
+    return view('erb-reviewer.protocol-assign');
 });
 
-Route::get('/reviewer/settings', function () {
-    return view('reviewer.settings');
+Route::get('/erb-reviewer/settings', function () {
+    return view('erb-reviewer.settings');
 });
 
-Route::get('/reviewer/forms/form2e',function () {
-    return view('reviewer.forms.form2e');
+Route::get('/erb-reviewer/forms/form2e',function () {
+    return view('erb-reviewer.forms.form2e');
 });
 
-Route::get('/reviewer/forms/form2j',function () {
-    return view('reviewer.forms.form2j');
+Route::get('/erb-reviewer/forms/form2j',function () {
+    return view('erb-reviewer.forms.form2j');
 });
 
-Route::get('/reviewer/forms/form3e',function () {
-    return view('reviewer.forms.form3e');
+Route::get('/erb-reviewer/forms/form3e',function () {
+    return view('erb-reviewer.forms.form3e');
 });
 
-Route::get('/reviewer/forms/form3b',function () {
-    return view('reviewer.forms.form3b');
+Route::get('/erb-reviewer/forms/form3b',function () {
+    return view('erb-reviewer.forms.form3b');
+});
+
+Route::get('/erb-reviewer/college-dept',function () {
+    return view('erb-reviewer.college-dept');
+});
+
+// iacuc reviewer
+Route::get('/iacuc-reviewer/dashboard', function () {
+    return view('iacuc-reviewer.dashboard');
+});
+
+Route::get('/iacuc-reviewer/protocol-assign', function () {
+    return view('iacuc-reviewer.protocol-assign');
+});
+
+Route::get('/iacuc-reviewer/settings', function () {
+    return view('iacuc-reviewer.settings');
+});
+
+Route::get('/iacuc-reviewer/college-dept',function () {
+    return view('iacuc-reviewer.college-dept');
+});
+
+Route::get('/iacuc-reviewer/forms/protocol-review',function () {
+    return view('iacuc-reviewer.forms.protocol-review');
+});
+
+Route::get('/iacuc-reviewer/forms/protocol-review-checklist',function () {
+    return view('iacuc-reviewer.forms.protocol-review-checklist');
 });
 
 // student
