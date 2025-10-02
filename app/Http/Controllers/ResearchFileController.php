@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ResearchInformation;
 use Illuminate\Http\Request;
 use App\Models\FormsTable;
 use App\Models\ResearchFiles;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 class ResearchFileController extends Controller
@@ -55,5 +57,19 @@ class ResearchFileController extends Controller
         }
 
         return redirect()->back()->with('success', 'Files submitted successfully!');
+    }
+
+    public function submittedDocuments($userId){
+        
+        $piFiles = User::with('researchFiles')->findOrFail($userId);
+
+        return view('erb.submitted-documents', compact('piFiles'));
+    }
+
+    public function researchRecords(){
+        $researchRecords = ResearchInformation::with(['user.researchFiles'])->get();
+
+        // Pass the data to the Blade view
+        return view('erb.research-records', compact('researchRecords'));
     }
 }

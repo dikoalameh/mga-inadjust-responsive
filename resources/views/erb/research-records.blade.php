@@ -16,34 +16,42 @@
                     <th class="w-[10.00%]">P.I. Name</th>
                     <th class="w-[10.00%]">Date of Submission</th>
                     <th class="w-[10.00%]">Classification of Reviews</th>
+                    <th class="w-[10.00%]">Reviewer no. 1</th>
                     <th class="w-[10.00%]">Status of Review</th>
-                    <th class="w-[10.00%]">Reviewer</th>
+                    <th class="w-[10.00%]">Reviewer no. 2</th>
+                    <th class="w-[10.00%]">Status of Review</th>
                     <th class="w-[10.00%]">Decision</th>
-                    <th class="w-[10.00%]">Research File Type</th>
-                    <th class="w-[10.00%]">Date Edited</th>
-                    <th class="w-[10.00%]">Remarks</th>
                 </tr>
             </thead>
             <!-- Table body -->
             <tbody class="text-base/7 max-lg:text-sm/6">
                 <!-- inalis ko muna ung File ID sa table -->
+                 @foreach($researchRecords as $research)
                 <tr>
-                    <td>Brain Injury: Prevention and Treatment of Chronic Brain Injury</td>
+                    <td>{{ $research->research_title }}</td>
                     <td>
                         <!-- url for the array in submitted-documents.blade.php -->
-                        <a href="{{ url('/erb/submitted-documents?user_id=1') }}">
-                            John Doe
+                        <a href="{{ route('erb.submitted-documents', $research->user_ID) }}">
+                            {{ $research->user->full_name }}
                         </a> 
                     </td>
-                    <td>2025/05/06<br>16:43:20</td>
+                    @php
+                        $latestSubmission = $research->user->researchFiles->max('submitted_at');
+                    @endphp
+                    <td>@if($latestSubmission)
+                        {{ \Carbon\Carbon::parse($latestSubmission)->format('Y/m/d h:i:s A') }}
+                        @else
+                            N/A
+                        @endif
+                    </td>
                     <td>Expedited</td>
+                    <td>Thomas Hardy</td>
                     <td>Ongoing Review</td>
                     <td>Thomas Hardy</td>
+                    <td>Ongoing Review</td>
                     <td>Ongoing</td>
-                    <td>form2a.pdf</td>
-                    <td>N/A</td>
-                    <td>Rejected</td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </main>

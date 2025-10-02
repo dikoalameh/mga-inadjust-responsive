@@ -15,6 +15,9 @@ class FormAssignment extends Controller
         ->whereHas('classifications', function ($q) {
             $q->where('classificationStatus', 'Approved');
         })
+        ->whereDoesntHave('forms', function($q) {
+            $q->where('form_type','Forms'); // only consider forms that have been assigned
+        })
         ->get();
 
         $selectForms = FormsTable::whereIn('form_code', [

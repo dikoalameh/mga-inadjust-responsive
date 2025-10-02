@@ -44,13 +44,11 @@ Route::get('/register-co-inv', function () {
 });
 
 // erb
-Route::get('/erb/research-records', function () {
-    return view('erb.research-records');
-});
+Route::get('/erb/research-records', [ResearchFileController::class, 'researchRecords'])
+    ->name('erb.research-records');
 
-Route::get('/erb/submitted-documents', function () {
-    return view('erb.submitted-documents');
-});
+Route::get('/erb/submitted-documents/{userId}', [ResearchFileController::class, 'submittedDocuments'])
+    ->name('erb.submitted-documents');
 
 Route::get('/erb/iro-approved-accounts', function () {
     return view('erb.iro-approved-accounts');
@@ -131,7 +129,7 @@ Route::middleware(['auth', 'access:Superadmin'])->prefix('superadmin')->group(fu
 
     // Account classification
     Route::get('/accounts-classifications', [ClassificationController::class, 'index'])->name('accounts-classifications');
-    Route::post('/classifications/{id}/update', [ClassificationController::class, 'update']);
+    Route::post('/classifications/bulk-update', [ClassificationController::class, 'bulkUpdate'])->name('classifications.bulk-update');
 
     // Other pages
     Route::get('/pending-reviews', function () {

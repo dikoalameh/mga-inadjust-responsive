@@ -83,7 +83,9 @@
     const rooms = document.querySelectorAll(".room");
     const assignedList = document.getElementById("assignedList");
     const submitBtn = document.getElementById("submitBtn");
+    const selectedUsersList = document.getElementById("selectedUsers");
 
+    // Add/remove forms to the assigned list
     rooms.forEach(room => {
         room.addEventListener("click", () => {
             const formId = room.dataset.room;
@@ -91,10 +93,8 @@
             const existingItem = assignedList.querySelector(`[data-room="${formId}"]`);
 
             if (existingItem) {
-                // Remove if already assigned
-                existingItem.remove();
+                existingItem.remove(); // Remove if already selected
             } else {
-                // Add new item
                 const li = document.createElement("li");
                 li.textContent = formCode;
                 li.setAttribute("data-room", formId);
@@ -103,15 +103,10 @@
         });
     });
 
-    // Example action for submit
+    // Submit assigned forms
     submitBtn.addEventListener("click", (e) => {
-        console.log("Submit button clicked ✅");
-
         const selectedUsers = [...document.querySelectorAll(".user-checkbox:checked")].map(cb => cb.value);
         const selectedForms = [...assignedList.querySelectorAll("li")].map(li => li.dataset.room);
-
-        console.log("Users:", selectedUsers);
-        console.log("Forms:", selectedForms);
 
         if (selectedUsers.length === 0 || selectedForms.length === 0) {
             alert("Please select at least one user and one form.");
@@ -129,19 +124,44 @@
                 form_ids: selectedForms
             })
         })
-            .then(res => res.json())
-            .then(data => {
-                console.log("Server response:", data);
-                if (data.success) {
-                    alert(data.message);
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message);
 
-                    // Reset UI
-                    document.querySelectorAll(".user-checkbox").forEach(cb => cb.checked = false);
-                    assignedList.innerHTML = "";
-                } else {
-                    alert("Something went wrong.");
-                }
-            })
-            .catch(err => console.error("Fetch error:", err));
+                // Remove the assigned users from the table immediately
+                selectedUsers.forEach(id => {
+                    const row = document.querySelector(`tr[data-user-id="${id}"]`);
+                    if (row) row.remove();
+                });
+
+                // Reset checkboxes and assigned list
+                document.querySelectorAll(".user-checkbox").forEach(cb => cb.checked = false);
+                assignedList.innerHTML = "";
+                selectedUsersList.innerHTML = "";
+            } else {
+                alert("Something went wrong.");
+            }
+        })
+        .catch(err => console.error("Fetch error:", err));
+    });
+
+    // Optional: update selectedUsersList dynamically when checking/unchecking users
+    const userCheckboxes = document.querySelectorAll(".user-checkbox");
+    userCheckboxes.forEach(cb => {
+        cb.addEventListener("change", () => {
+            const userId = cb.value;
+            const userName = cb.dataset.name;
+            const existing = selectedUsersList.querySelector(`[data-user-id="${userId}"]`);
+
+            if (cb.checked && !existing) {
+                const li = document.createElement("li");
+                li.textContent = userName;
+                li.setAttribute("data-user-id", userId);
+                selectedUsersList.appendChild(li);
+            } else if (!cb.checked && existing) {
+                existing.remove();
+            }
+        });
     });
 </script>
