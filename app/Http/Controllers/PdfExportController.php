@@ -37,7 +37,7 @@ class PdfExportController extends Controller
         return Pdf::view('student.forms.form2bPdf', compact('protocol'))
             ->format('Letter')
             ->margins(15, 15, 15, 15)
-            ->inline('FORM-2B.pdf');
+            ->download('FORM-2B.pdf');
     }
     public function exportForm2C()
     {
