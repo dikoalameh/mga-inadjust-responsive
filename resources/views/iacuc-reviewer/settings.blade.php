@@ -1,5 +1,5 @@
 @section('title', 'Settings')
-<x-review-layout>
+<x-iacuc-reviewer>
     <main class="xl:ml-[335px] max-xl:ml-auto p-2 2xl:p-4">
         <div class="py-8 max-md:m-3">
             <div class="max-w-full mx-auto sm:px-6 lg:px-4 space-y-6">
@@ -19,4 +19,4 @@
             </div>
         </div>
     </main>
-</x-review-layout>
+</x-iacuc-reviewer>

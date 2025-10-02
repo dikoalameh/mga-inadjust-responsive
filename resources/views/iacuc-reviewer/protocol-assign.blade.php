@@ -1,5 +1,5 @@
 @section('title', 'Research Protocol Assign')
-<x-review-layout>
+<x-iacuc-reviewer>
     <main class="xl:ml-[335px] max-xl:ml-auto p-4 max-xl:p-2">
         <h2 class="max-xl:hidden text-left bg-[#f2f2f2] shadow-lg p-[35px] rounded-[30px] font-medium text-[28px]">
             RESEARCH PROTOCOL ASSIGN
@@ -10,13 +10,12 @@
             <!-- Table header -->
             <thead class="bg-primary text-white text-lg/7 max-lg:text-base/7">
                 <tr class="header-table">
-                    <th class="w-[14.28%]">Research Title</th>
-                    <th class="w-[14.28%]">P.I. Name</th>
-                    <th class="w-[14.28%]">Research Protocol</th>
-                    <th class="w-[14.28%]">Type of Review</th>
-                    <th class="w-[14.28%]">Form 2(E)</th>
-                    <th class="w-[14.28%]">Form 2(J)</th>
-                    <th class="w-[14.28%]">Form 3(E)</th>
+                    <th class="w-[16.66%]">Research Title</th>
+                    <th class="w-[16.66%]">P.I. Name</th>
+                    <th class="w-[16.66%]">Research Protocol</th>
+                    <th class="w-[16.66%]">Type of Review</th>
+                    <th class="w-[16.66%]">Review Form</th>
+                    <th class="w-[16.66%]">Review Checklist</th>
                 </tr>
             </thead>
 
@@ -28,21 +27,14 @@
                     <td>ERB 2025-001</td>
                     <td>Full Board</td>
                     <td>
-                        <a href="{{ url('reviewer/forms/form2e') }}">
+                        <a href="{{ url('iacuc-reviewer/forms/protocol-review') }}">
                             <button type="button" class="border-2 p-[5px] hover:bg-gray">
                                 View
                             </button>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ url('reviewer/forms/form2j') }}">
-                            <button type="button" class="border-2 p-[5px] hover:bg-gray">
-                                View
-                            </button>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="{{ url('reviewer/forms/form3e') }}">
+                        <a href="{{ url('iacuc-reviewer/forms/protocol-review-checklist') }}">
                             <button type="button" class="border-2 p-[5px] hover:bg-gray">
                                 View
                             </button>
@@ -52,4 +44,4 @@
             </tbody>
         </table>
     </main>
-</x-review-layout>
+</x-iacuc-reviewer>

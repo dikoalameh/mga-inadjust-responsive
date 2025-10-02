@@ -60,10 +60,10 @@ class RegisteredUserController extends Controller
             'research_CoInvestigator' => ['nullable', 'string', 'max:255'],
             'research_title' => ['required', 'string', 'max:255'],
 
-    // ✅ School required only if checkmcu IS present
-    'research_college' => [Rule::requiredIf(!$request->has('research_checkmcu')), 'nullable', 'string', 'max:255'],
-    'research_department' => [Rule::requiredIf(!$request->has('research_checkmcu')), 'nullable', 'string', 'max:255'],
-    'research_school' => [Rule::requiredIf($request->has('research_checkmcu')), 'nullable', 'string', 'max:255'],
+            // ✅ School required only if checkmcu IS present
+            'research_college' => [Rule::requiredIf(!$request->has('research_checkmcu')), 'nullable', 'string', 'max:255'],
+            'research_department' => [Rule::requiredIf(!$request->has('research_checkmcu')), 'nullable', 'string', 'max:255'],
+            'research_school' => [Rule::requiredIf($request->has('research_checkmcu')), 'nullable', 'string', 'max:255'],
         ]);
 
         DB::beginTransaction();
@@ -95,7 +95,7 @@ class RegisteredUserController extends Controller
 
             // ✅ Determine school value
             if ($request->has('research_checkmcu')) {
-    // Not MCU student
+                // Not MCU student
                 $research_college = null;
                 $research_department = null;
                 $research_school = $request->input('research_school');
@@ -176,48 +176,17 @@ class RegisteredUserController extends Controller
 
     return redirect()->route('permission-control')
                      ->with('success', 'New user added successfully.');
-        /*
-        // Create user folder
-        $folderPath = 'piFolder/' . $user->pi_ID;
-        Storage::makeDirectory($folderPath);
-
-        if ($request->hasFile('pi_LetterOfIntent')) {
-            $file = $request->file('pi_LetterOfIntent');
-            $filename = $user->pi_ID . '_' . time() . '.' . $file->getClientOriginalExtension(); // optional: unique filename
-            $path = $file->storeAs($folderPath, $filename, 'public');
-
-            // Save only the file path in DB
-            $user->pi_LetterOfIntent = $path;
-            $user->save();
-        }
-        */
-
-        //$plainPassword = $validate['pi_Password']; // store plain password before hashing
-        //Mail::to($user->pi_Email)->send(new UserCredentialMail($user, $plainPassword));
-        /*
-        $request->validate([
-            'userLname' => ['required', 'string', 'max:255'],
-            'pi_fname' => ['required', 'string', 'max:255'],
-            'userMI' => ['nullable|string|max:4'],
-            //'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            //'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            //'email' => $request->email,
-            //'password' => Hash::make($request->password),
-        ]); */
     }
     private function generateCustomID(?string $user_Access): string
     {
         $user_Access = $user_Access ?: 'Principal Investigator';
 
         $prefixMap = [
-            'Reviewer' => 'r',
             'IACUC Admin' => 'i',
             'ERB Admin' => 'e',
             'Superadmin' => 's',
+            'IACUC Reviewer' => 'iR',
+            'ERB Reviewer' => 'eR',
             'Principal Investigator' => 'p'
         ];
 

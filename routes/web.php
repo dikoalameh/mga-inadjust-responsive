@@ -44,74 +44,103 @@ Route::get('/register-co-inv', function () {
 });
 
 // erb
-Route::get('/erb/research-records', [ResearchFileController::class, 'researchRecords'])
-    ->name('erb.research-records');
+Route::middleware(['auth', 'access:ERB Admin'])->prefix('erb')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('erb.dashboard');
+    })->name('erb.dashboard');
 
-Route::get('/erb/submitted-documents/{userId}', [ResearchFileController::class, 'submittedDocuments'])
-    ->name('erb.submitted-documents');
+    // Research Records
+    Route::get('/research-records', [ResearchFileController::class, 'researchRecords'])
+        ->name('erb.research-records');
 
-Route::get('/erb/iro-approved-accounts', function () {
-    return view('erb.iro-approved-accounts');
-});
+    // Submitted Documents for a specific user
+    Route::get('/submitted-documents/{userId}', [ResearchFileController::class, 'submittedDocuments'])
+        ->name('erb.submitted-documents');
+    
+    Route::get('/iro-approved-accounts', [FormAssignment::class, 'approvedAccounts'])
+    ->name('erb.iro-approved-accounts');
 
-Route::get('/erb/approved-accounts', [FormAssignment::class, 'assignedFormsLogs'])
-    ->name('erb.approved.accounts');
+    Route::post('/assign-forms-ajax', [FormAssignment::class, 'assignFormsAjax'])
+        ->name('assign.forms.ajax');
 
-Route::get('/erb/pending-reviews', function () {
-    return view('erb.pending-reviews');
-});
+    // Approved Accounts
+    Route::get('/approved-accounts', [FormAssignment::class, 'assignedFormsLogs'])
+        ->name('erb.approved.accounts');
 
-Route::get('/erb/assign-reviewer', function () {
-    return view('erb.assign-reviewer');
-});
+    // Pending Reviews
+    Route::get('/pending-reviews', function () {
+        return view('erb.pending-reviews');
+    });
 
-Route::get('/erb/ongoing-reviews', function () {
-    return view('erb.ongoing-reviews');
-});
+    // Assign Reviewer
+    Route::get('/assign-reviewer', function () {
+        return view('erb.assign-reviewer');
+    });
 
-Route::get('/erb/settings', function () {
-    return view('erb.settings');
+    // Ongoing Reviews
+    Route::get('/ongoing-reviews', function () {
+        return view('erb.ongoing-reviews');
+    });
+
+    // Settings
+    Route::get('/settings', function () {
+        return view('erb.settings');
+    });
+
 });
 
 // iacuc
-Route::get('/iacuc/research-records', function () {
-    return view('iacuc.research-records');
-});
+Route::middleware(['auth', 'access:IACUC Admin'])->prefix('iacuc')->group(function () {
 
-Route::get('/iacuc/iro-approved-accounts', function () {
-    return view('iacuc.iro-approved-accounts');
-});
+    // Dashboard
+    Route::get('/dashboard', function () {
+        return view('iacuc.dashboard');
+    })->name('iacuc.dashboard');
 
-Route::get('/iacuc/approved-accounts', function () {
-    return view('iacuc.approved-accounts');
-});
+    // Research Records
+    Route::get('/research-records', function () {
+        return view('iacuc.research-records');
+    })->name('iacuc.research-records');
 
-Route::get('/iacuc/pending-reviews', function () {
-    return view('iacuc.pending-reviews');
-});
+    // IRO Approved Accounts
+    Route::get('/iro-approved-accounts', function () {
+        return view('iacuc.iro-approved-accounts');
+    })->name('iacuc.iro-approved-accounts');
 
-Route::get('/iacuc/assign-reviewer', function () {
-    return view('iacuc.assign-reviewer');
-});
+    // Approved Accounts
+    Route::get('/approved-accounts', function () {
+        return view('iacuc.approved-accounts');
+    })->name('iacuc.approved-accounts');
 
-Route::get('/iacuc/ongoing-reviews', function () {
-    return view('iacuc.ongoing-reviews');
-});
+    // Pending Reviews
+    Route::get('/pending-reviews', function () {
+        return view('iacuc.pending-reviews');
+    })->name('iacuc.pending-reviews');
 
-Route::get('/iacuc/dashboard', function () {
-    return view('iacuc.dashboard');
-});
+    // Assign Reviewer
+    Route::get('/assign-reviewer', function () {
+        return view('iacuc.assign-reviewer');
+    })->name('iacuc.assign-reviewer');
 
-Route::get('/iacuc/settings', function () {
-    return view('iacuc.settings');
-});
+    // Ongoing Reviews
+    Route::get('/ongoing-reviews', function () {
+        return view('iacuc.ongoing-reviews');
+    })->name('iacuc.ongoing-reviews');
 
-Route::get('/iacuc/forms/protocol-review', function () {
-    return view('iacuc.forms.protocol-review');
-});
+    // Settings
+    Route::get('/settings', function () {
+        return view('iacuc.settings');
+    })->name('iacuc.settings');
 
-Route::get('/iacuc/forms/protocol-review-checklist', function () {
-    return view('iacuc.forms.protocol-review-checklist');
+    // Forms
+    Route::get('/forms/protocol-review', function () {
+        return view('iacuc.forms.protocol-review');
+    })->name('iacuc.forms.protocol-review');
+
+    Route::get('/forms/protocol-review-checklist', function () {
+        return view('iacuc.forms.protocol-review-checklist');
+    })->name('iacuc.forms.protocol-review-checklist');
+
 });
 
 // superadmin
@@ -159,33 +188,62 @@ Route::middleware(['auth', 'access:Superadmin'])->prefix('superadmin')->group(fu
     })->name('superadmin.notifications.markAllRead');
 });
 
-// reviewer
-Route::get('/reviewer/dashboard', function () {
-    return view('reviewer.dashboard');
+//erb reviewer
+Route::get('/erb-reviewer/dashboard', function () {
+    return view('erb-reviewer.dashboard');
+})->name('erb-reviewer.dashboard');
+
+Route::get('/erb-reviewer/protocol-assign', function () {
+    return view('erb-reviewer.protocol-assign');
 });
 
-Route::get('/reviewer/protocol-assign', function () {
-    return view('reviewer.protocol-assign');
+Route::get('/erb-reviewer/settings', function () {
+    return view('erb-reviewer.settings');
 });
 
-Route::get('/reviewer/settings', function () {
-    return view('reviewer.settings');
+Route::get('/erb-reviewer/forms/form2e',function () {
+    return view('erb-reviewer.forms.form2e');
 });
 
-Route::get('/reviewer/forms/form2e',function () {
-    return view('reviewer.forms.form2e');
+Route::get('/erb-reviewer/forms/form2j',function () {
+    return view('erb-reviewer.forms.form2j');
 });
 
-Route::get('/reviewer/forms/form2j',function () {
-    return view('reviewer.forms.form2j');
+Route::get('/erb-reviewer/forms/form3e',function () {
+    return view('erb-reviewer.forms.form3e');
 });
 
-Route::get('/reviewer/forms/form3e',function () {
-    return view('reviewer.forms.form3e');
+Route::get('/erb-reviewer/forms/form3b',function () {
+    return view('erb-reviewer.forms.form3b');
 });
 
-Route::get('/reviewer/forms/form3b',function () {
-    return view('reviewer.forms.form3b');
+Route::get('/erb-reviewer/college-dept',function () {
+    return view('erb-reviewer.college-dept');
+});
+
+//iacuc reviewer
+Route::get('/iacuc-reviewer/dashboard', function () {
+    return view('iacuc-reviewer.dashboard');
+})->name('iacuc-reviewer.dashboard');
+
+Route::get('/iacuc-reviewer/protocol-assign', function () {
+    return view('iacuc-reviewer.protocol-assign');
+});
+
+Route::get('/iacuc-reviewer/settings', function () {
+    return view('iacuc-reviewer.settings');
+});
+
+Route::get('/iacuc-reviewer/college-dept',function () {
+    return view('iacuc-reviewer.college-dept');
+});
+
+Route::get('/iacuc-reviewer/forms/protocol-review',function () {
+    return view('iacuc-reviewer.forms.protocol-review');
+});
+
+Route::get('/iacuc-reviewer/forms/protocol-review-checklist',function () {
+    return view('iacuc-reviewer.forms.protocol-review-checklist');
 });
 
 // student
@@ -268,22 +326,10 @@ Route::post('/classifications/{id}/update', [ClassificationController::class, 'u
 */
 
 //Verification for login
-Route::get('/erb/dashboard', function () {
-    return view('erb.dashboard');
-})->name('erb.dashboard');
-
-Route::get('/iacucadmin/dashboard', function () {
-    return view('iacucadmin.dashboard');
-})->name('iacucadmin.dashboard');
 
 Route::get('/reviewer/dashboard', function () {
     return view('reviewer.dashboard');
 })->name('reviewer.dashboard');
-
-Route::get('/erb/iro-approved-accounts', [FormAssignment::class, 'approvedAccounts'])
-    ->name('erb.iro-approved-accounts');
-Route::post('/assign-forms-ajax', [FormAssignment::class, 'assignFormsAjax'])
-    ->name('assign.forms.ajax');
 
 //Storing Data for Form2A
 //Route::get('/student/download-forms', [Form2AController::class, 'index'])->name('download-forms');

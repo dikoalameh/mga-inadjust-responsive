@@ -1,5 +1,5 @@
 @section('title', 'Dashboard')
-<x-review-layout>
+<x-erb-reviewer>
     <!-- Main Content -->
     <main class="xl:ml-[335px] max-xl:ml-auto p-4 max-xl:p-2">
         <h2 class="max-xl:hidden text-left bg-[#f2f2f2] shadow-lg p-[35px] rounded-[30px] font-medium text-[28px]">
@@ -78,4 +78,4 @@
             </div>
         </div>
     </main>
-</x-review-layout>
+</x-erb-reviewer>

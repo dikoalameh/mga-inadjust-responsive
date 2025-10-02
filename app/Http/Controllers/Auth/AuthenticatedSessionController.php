@@ -37,8 +37,10 @@ class AuthenticatedSessionController extends Controller
                 return redirect()->route('erb.dashboard');
             case 'IACUC Admin':
                 return redirect()->route('iacuc.dashboard');
-            case 'Reviewer':
-                return redirect()->route('reviewer.dashboard');
+            case 'ERB Reviewer':
+                return redirect()->route('erb-reviewer.dashboard');
+            case 'IACUC Reviewer':
+                return redirect()->route('iacuc-reviewer.dashboard');
             case 'Principal Investigator':
                 return redirect()->route('student.dashboard');
             default:
