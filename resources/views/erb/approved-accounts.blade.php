@@ -10,32 +10,43 @@
         <table id="myTable" class="display overflow-scroll border-collapse w-full">
             <thead class="bg-primary text-white text-lg/7 max-lg:text-base/7">
                 <tr class="header-table">
-                    <th class="w-[33.33%]">P.I. Name</th>
-                    <th class="w-[33.33%]">Date Registered</th>
-                    <th class="w-[33.33%]">Date Approved</th>
+                    <th class="w-[25%]">P.I. Name</th>
+                    <th class="w-[25%]">Date Registered</th>
+                    <th class="w-[25%]">Assigned Forms</th> <!-- New column -->
+                    <th class="w-[25%]">Assigned Date/Time</th> <!-- New column -->
                 </tr>
             </thead>
             <tbody class="text-base/7 max-lg:text-sm/6">
-                <tr>
-                    <td>Renate Messner</td>
-                    <td>4/15/2025<br>21:37:23</td>
-                    <td>Pending</td>
-                </tr>
-                <tr>
-                    <td>John Doe</td>
-                    <td>4/15/2025<br>21:37:23</td>
-                    <td>4/16/2025<br>22:57:53</td>
-                </tr>
-                <tr>
-                    <td>John Steel</td>
-                    <td>4/15/2025<br>21:37:23</td>
-                    <td>Pending</td>
-                </tr>
-                <tr>
-                    <td>Carlos González</td>
-                    <td>4/15/2025<br>21:37:23</td>
-                    <td>4/15/2025<br>21:37:23</td>
-                </tr>
+                @foreach($approvedAccounts as $user)
+                    <tr data-user-id="{{ $user->user_ID }}">
+                        <td>{{ $user->user_Fname }} {{ $user->user_MI ? $user->user_MI : '' }} {{ $user->user_Lname }}</td>
+                        <td>{{ optional($user->created_at)->format('n/j/Y H:i:s') }}</td>
+                        <td>
+                            @if($user->forms && $user->forms->count() > 0)
+                                <ul class="list-disc pl-5">
+                                    @foreach($user->forms as $form)
+                                        <li>{{ $form->form_code }}</li>
+                                    @endforeach
+                                </ul>
+                            @else
+                                N/A
+                            @endif
+                        </td>
+                        <td>
+                            @if($user->forms && $user->forms->count() > 0)
+                                @php
+                                    // Get the latest timestamp from pivot table
+                                    $latestTimestamp = $user->forms->max(function($form) {
+                                        return $form->pivot->created_at;
+                                    });
+                                @endphp
+                                {{ $latestTimestamp ? \Carbon\Carbon::parse($latestTimestamp)->format('n/j/Y h:i:s') : 'N/A' }}
+                            @else
+                                N/A
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </main>

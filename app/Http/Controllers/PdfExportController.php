@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Spatie\LaravelPdf\Facades\Pdf;
-
+use App\Models\Form2B;
 class PdfExportController extends Controller
 {
     public function exportForm2A()
@@ -26,13 +26,12 @@ class PdfExportController extends Controller
     public function exportForm2B()
     {
         //sample code
-        $protocol = (object)[
-            'mcuerb_code' => 'MCU-2025-001',
-            'title' => 'Effect of AI on Research Practices',
-            'principal_investigator' => 'Dr. Juan Dela Cruz',
-            'co_investigator' => 'Prof. Maria Santos',
-            'review_type' => 'EXPEDITED',
-        ];
+        $user = auth()->user();
+
+        // Fetch the Form2B record for this user
+        $protocol = Form2B::where('user_ID', $user->user_ID)
+            ->with('researchInfo') // if you need related info
+            ->firstOrFail();
 
         //dito din palitan mo nalang din
         return Pdf::view('student.forms.form2bPdf', compact('protocol'))

@@ -54,9 +54,8 @@ Route::get('/erb/iro-approved-accounts', function () {
     return view('erb.iro-approved-accounts');
 });
 
-Route::get('/erb/approved-accounts', function () {
-    return view('erb.approved-accounts');
-});
+Route::get('/erb/approved-accounts', [FormAssignment::class, 'assignedFormsLogs'])
+    ->name('erb.approved.accounts');
 
 Route::get('/erb/pending-reviews', function () {
     return view('erb.pending-reviews');
@@ -223,6 +222,7 @@ Route::middleware(['auth','access:Principal Investigator'])->prefix('student')->
 
         Route::get('/form2b', [Form2BController::class, 'edit'])->name('form2b.edit');
         Route::post('/form2b', [Form2BController::class, 'store'])->name('form2b.store');
+        Route::get('/export-form2b', [PdfExportController::class, 'exportForm2B'])->name('export.form2b');
 
         Route::get('/form2c', function () {
             return view('student.forms.form2c');
@@ -288,7 +288,6 @@ Route::post('/assign-forms-ajax', [FormAssignment::class, 'assignFormsAjax'])
 //Storing Data for Form2A
 //Route::get('/student/download-forms', [Form2AController::class, 'index'])->name('download-forms');
 Route::post('/student/store', [Form2AController::class, 'store'])->name('form2a.store');
-Route::get('/export-form2a', [PdfExportController::class, 'exportForm2A'])->name('export.form2a');
 
 //pdf exporter
 Route::get('/export-form2b', [PdfExportController::class, 'exportForm2B'])->name('export.form2b');

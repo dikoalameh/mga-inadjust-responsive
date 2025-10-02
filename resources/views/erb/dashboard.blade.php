@@ -22,19 +22,37 @@
                 </div>
             </div>
             <!-- User Account Cards -->
+             @php
+
+                // Total users classified under ERB
+                $totalUsers = App\Models\User::where('user_Access', 'Principal Investigator')
+                    ->whereHas('classifications', function($query) {
+                        $query->where('reviewClassification', 'ERB');
+                    })->count();
+
+                // Pending users: PIs without assigned forms
+                $pendingUsers = App\Models\User::where('user_Access', 'Principal Investigator')
+                    ->doesntHave('forms')
+                    ->count();
+
+                // Approved users: PIs with assigned forms
+                $approvedUsers = App\Models\User::where('user_Access', 'Principal Investigator')
+                    ->has('forms')
+                    ->count();
+            @endphp
             <div>
                 <h2 class="text-[20px] max-sm:text-[17px] font-semibold mb-4">USERS ACCOUNT</h2>
                 <div class="grid max-md:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     <div class="card bg-lightgray p-4 rounded-lg border border-gray shadow">
-                        <h3 class="text-2xl max-md:text-[22px] max-sm:text-xl font-semibold">12</h3>
+                        <h3 class="text-2xl max-md:text-[22px] max-sm:text-xl font-semibold">{{ $totalUsers }}</h3>
                         <p class="max-xl:text-sm">TOTAL USERS</p>
                     </div>
                     <div class="card bg-lightgray p-4 rounded-lg border border-gray shadow">
-                        <h3 class="text-2xl max-md:text-[22px] max-sm:text-xl font-semibold">12</h3>
+                        <h3 class="text-2xl max-md:text-[22px] max-sm:text-xl font-semibold">{{ $pendingUsers }}</h3>
                         <p class="max-xl:text-sm">PENDING</p>
                     </div>
                     <div class="card bg-lightgray p-4 rounded-lg border border-gray shadow">
-                        <h3 class="text-2xl max-md:text-[22px] max-sm:text-xl font-semibold">7</h3>
+                        <h3 class="text-2xl max-md:text-[22px] max-sm:text-xl font-semibold">{{ $approvedUsers }}</h3>
                         <p class="max-xl:text-sm">APPROVED</p>
                     </div>
                     <div class="card bg-lightgray p-4 rounded-lg border border-gray shadow">
