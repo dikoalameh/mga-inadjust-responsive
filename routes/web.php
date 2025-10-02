@@ -10,8 +10,9 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\PdfExportController;
 use App\Http\Controllers\ClassificationController;
 use App\Http\Controllers\ResearchFileController;
+use App\Http\Controllers\ReviewerInformationController;
+use App\Http\Middleware\CheckReviewerInformation;
 use Laravel\Tinker\ClassAliasAutoloader;
-
 use App\Http\Controllers\Form2AController;
 use App\Http\Controllers\Form2BController;
 //use App\Http\Controllers\Form2CController;
@@ -189,37 +190,47 @@ Route::middleware(['auth', 'access:Superadmin'])->prefix('superadmin')->group(fu
 });
 
 //erb reviewer
-Route::get('/erb-reviewer/dashboard', function () {
-    return view('erb-reviewer.dashboard');
-})->name('erb-reviewer.dashboard');
+Route::middleware(['auth','access:ERB Reviewer',CheckReviewerInformation::class])->prefix('erb-reviewer')->group(function () {
 
-Route::get('/erb-reviewer/protocol-assign', function () {
-    return view('erb-reviewer.protocol-assign');
+    // Dashboard
+    Route::get('/dashboard', function () {
+        return view('erb-reviewer.dashboard');
+    })->name('erb-reviewer.dashboard');
+
+    // Protocol assignment page
+    Route::get('/protocol-assign', function () {
+        return view('erb-reviewer.protocol-assign');
+    });
+
+    // Settings
+    Route::get('/settings', function () {
+        return view('erb-reviewer.settings');
+    });
+
+    // Forms
+    Route::get('/forms/form2e', function () {
+        return view('erb-reviewer.forms.form2e');
+    });
+    Route::get('/forms/form2j', function () {
+        return view('erb-reviewer.forms.form2j');
+    });
+    Route::get('/forms/form3e', function () {
+        return view('erb-reviewer.forms.form3e');
+    });
+    Route::get('/forms/form3b', function () {
+        return view('erb-reviewer.forms.form3b');
+    });
 });
 
-Route::get('/erb-reviewer/settings', function () {
-    return view('erb-reviewer.settings');
-});
+// ====================
+// ERB Reviewer College-Dept Form
+// ====================
+// Outside middleware to allow redirect if reviewer info is missing
+Route::get('/erb-reviewer/college-dept', [ReviewerInformationController::class, 'erbCreate'])
+     ->name('erb-reviewer.college-dept');
 
-Route::get('/erb-reviewer/forms/form2e',function () {
-    return view('erb-reviewer.forms.form2e');
-});
-
-Route::get('/erb-reviewer/forms/form2j',function () {
-    return view('erb-reviewer.forms.form2j');
-});
-
-Route::get('/erb-reviewer/forms/form3e',function () {
-    return view('erb-reviewer.forms.form3e');
-});
-
-Route::get('/erb-reviewer/forms/form3b',function () {
-    return view('erb-reviewer.forms.form3b');
-});
-
-Route::get('/erb-reviewer/college-dept',function () {
-    return view('erb-reviewer.college-dept');
-});
+Route::post('/erb-reviewer/college-dept', [ReviewerInformationController::class, 'erbStore'])
+     ->name('erb-reviewer.college-dept.store');
 
 //iacuc reviewer
 Route::get('/iacuc-reviewer/dashboard', function () {

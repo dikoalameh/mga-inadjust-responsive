@@ -44,7 +44,7 @@ class AuthenticatedSessionController extends Controller
             case 'Principal Investigator':
                 return redirect()->route('student.dashboard');
             default:
-                return redirect()->route('login'); // fallback
+                return redirect()->route('login');// fallback
         }
     }
 

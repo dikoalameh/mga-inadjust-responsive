@@ -106,4 +106,9 @@ class User extends Authenticatable
 
         return "{$this->user_Fname} {$mi} {$this->user_Lname}";
     }
+
+    public function reviewerInformation()
+    {
+        return $this->hasOne(ReviewerInformation::class, 'user_ID', 'user_ID');
+    }
 }
