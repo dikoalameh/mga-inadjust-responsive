@@ -12,15 +12,15 @@
             <thead class="bg-primary text-white text-lg/7 max-sm:text-base/7">
                 <!-- inalis ko muna ung File ID sa table -->
                 <tr class="header-table">
-                    <th class="w-[10.00%]">Research Title</th>
-                    <th class="w-[10.00%]">P.I. Name</th>
-                    <th class="w-[10.00%]">Date of Submission</th>
-                    <th class="w-[10.00%]">Classification of Reviews</th>
-                    <th class="w-[10.00%]">Reviewer no. 1</th>
-                    <th class="w-[10.00%]">Status of Review</th>
-                    <th class="w-[10.00%]">Reviewer no. 2</th>
-                    <th class="w-[10.00%]">Status of Review</th>
-                    <th class="w-[10.00%]">Decision</th>
+                    <th class="w-[11.11%]">Research Title</th>
+                    <th class="w-[11.11%]">P.I. Name</th>
+                    <th class="w-[11.11%]">Date of Submission</th>
+                    <th class="w-[11.11%]">Classification of Reviews</th>
+                    <th class="w-[11.11%]">Reviewer no. 1</th>
+                    <th class="w-[11.11%]">Status of Review</th>
+                    <th class="w-[11.11%]">Reviewer no. 2</th>
+                    <th class="w-[11.11%]">Status of Review</th>
+                    <th class="w-[11.11%]">Decision</th>
                 </tr>
             </thead>
             <!-- Table body -->

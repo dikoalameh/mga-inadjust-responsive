@@ -21,7 +21,7 @@ class PdfExportController extends Controller
         return Pdf::view('student.forms.form2aPdf', compact('protocol'))
             ->format('Letter')
             ->margins(15, 15, 15, 15)
-            ->inline('FORM-2D.pdf');
+            ->inline('FORM-2A.pdf');
     }
     public function exportForm2B()
     {
@@ -55,5 +55,48 @@ class PdfExportController extends Controller
             ->format('Letter')
             ->margins(15, 15, 15, 15)
             ->inline('FORM-2C.pdf');
+    }
+
+    public function exportForm3C()
+    {
+        //sample code
+        $protocol = (object)[
+            
+        ];
+
+        //dito din palitan mo nalang din
+        return Pdf::view('student.forms.form3cPdf', compact('protocol'))
+            ->format('Letter')
+            ->margins(15, 15, 15, 15)
+            ->inline('FORM-3C.pdf');
+    }
+
+    public function exportForm3D()
+    {
+        //sample code
+        $protocol = (object)[
+            
+        ];
+
+        //dito din palitan mo nalang din
+        return Pdf::view('student.forms.form3dPdf', compact('protocol'))
+            ->format('Letter')
+            ->margins(15, 15, 15, 15)
+            ->inline('FORM-3D.pdf');
+    }
+
+
+    public function exportForm3L()
+    {
+        //sample code
+        $protocol = (object)[
+            
+        ];
+
+        //dito din palitan mo nalang din
+        return Pdf::view('student.forms.form3lPdf', compact('protocol'))
+            ->format('Letter')
+            ->margins(15, 15, 15, 15)
+            ->inline('FORM-3L.pdf');
     }
 }

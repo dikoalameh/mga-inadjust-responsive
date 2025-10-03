@@ -349,6 +349,10 @@ Route::post('/student/store', [Form2AController::class, 'store'])->name('form2a.
 //pdf exporter
 Route::get('/export-form2b', [PdfExportController::class, 'exportForm2B'])->name('export.form2b');
 Route::get('/export-form2c', [PdfExportController::class, 'exportForm2C'])->name('export.form2c');
+Route::get('/export-form2a', [PdfExportController::class, 'exportForm2A'])->name('export.form2a');
+Route::get('/export-form3d', [PdfExportController::class, 'exportForm3D'])->name('export.form3d');
+Route::get('/export-form3c', [PdfExportController::class, 'exportForm3C'])->name('export.form3c');
+Route::get('/export-form3l', [PdfExportController::class, 'exportForm3L'])->name('export.form3l');
 
 //Storing Data for Form2B
 

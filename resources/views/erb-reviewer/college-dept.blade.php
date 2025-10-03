@@ -29,7 +29,7 @@
             <div class="mt-2">
                 <x-input-label for="reviewer_College" :value="__('College')" />
                 <select id="reviewer_College" name="reviewer_College" onchange="updateDepartments()"
-                    class="block border-gray-300 mt-1 w-full text-sm h-[35px] rounded-md">
+                    class="block border-gray mt-1 w-full text-sm rounded-md">
                     <option value="" disabled selected>Select College</option>
                     <option value="cas">CAS</option>
                     <option value="ioe">IOE</option>
