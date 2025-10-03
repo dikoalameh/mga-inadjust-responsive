@@ -98,17 +98,24 @@
                 </tr>
             </tbody>
         </table>
-        <div class="grid grid-cols-4 max-sm:block gap-x-5">
-            <div class="max-sm:max-w-full">
-                <label for="reviewer1" class="block max-sm:text-sm">Reviewer 1</label>
-                <select name="reviewer1" id="reviewer1" class="w-full max-sm:text-sm border border-darkgray rounded-md">
+        <div class="grid grid-cols-4 max-xl:grid-cols-2 max-sm:block gap-x-5">
+            <div class="mt-2 max-sm:max-w-full">
+                <label for="reviewtype" class="block max-sm:text-sm">Type of Review</label>
+                <select name="reviewtype" id="reviewtype" class="w-full max-sm:text-sm border border-darkgray rounded-md h-[35px] leading-[18px] max-md:leading-[15px]">
+                    <option disabled selected>Choose type</option>
+                    <option value="exempted">Exempted</option>
+                    <option value="expedite">Expedite</option>
+                    <option value="fullboard">Full Board</option>
+                </select>
+                <label for="reviewer1" class="mt-3 block max-sm:text-sm">Reviewer 1</label>
+                <select name="reviewer1" id="reviewer1" class="w-full max-sm:text-sm border border-darkgray rounded-md h-[35px] leading-[18px] max-md:leading-[15px]">
                     <option disabled selected>Choose Reviewer</option>
                     <option value="no1">no.1</option>
                     <option value="no2">no.2</option>
                     <option value="no3">no.3</option>
                 </select>
                 <label for="reviewer2" class="mt-3 block max-sm:text-sm">Reviewer 2</label>
-                <select name="reviewer2" id="reviewer2" class="w-full max-sm:text-sm border border-darkgray rounded-md">
+                <select name="reviewer2" id="reviewer2" class="w-full max-md:text-sm border border-darkgray rounded-md h-[35px] leading-[18px] max-md:leading-[15px]">
                     <option disabled selected>Choose Reviewer</option>
                     <option value="no1">no.1</option>
                     <option value="no2">no.2</option>
@@ -127,7 +134,7 @@
                     </div>
                 </div>
             </div>
-            <div class="max-md:mt-3 bg-lightgray shadow-md rounded-md p-3">
+            <div class="mt-2 max-md:mt-3 bg-lightgray shadow-md rounded-md p-3">
                 <h3 class="text-lg font-semibold max-md:text-base mb-3">Reviewer 1</h3>
                 <div class="grid grid-cols-[max-content_1fr] max-sm:grid-cols-1 gap-x-2 gap-y-3">
                     <div class="font-bold max-sm:text-sm">Name:</div>
@@ -140,7 +147,7 @@
                     <div class="mb-2 max-sm:text-sm">Form 2E</div>
                 </div>
             </div>
-            <div class="max-md:mt-3 bg-lightgray shadow-md rounded-md p-3">
+            <div class="mt-2 max-md:mt-3 bg-lightgray shadow-md rounded-md p-3">
                 <h3 class="text-lg font-semibold max-md:text-base mb-3">Reviewer 2</h3>
                 <div class="grid grid-cols-[max-content_1fr] max-sm:grid-cols-1 gap-x-2 gap-y-3">
                     <div class="font-bold max-sm:text-sm">Name:</div>
@@ -153,7 +160,7 @@
                     <div class="mb-2 max-md:text-sm">Form 2E</div>
                 </div>
             </div>
-            <div class="max-md:mt-3 bg-lightgray shadow-md rounded-md p-3">
+            <div class="mt-2 max-md:mt-3 bg-lightgray shadow-md rounded-md p-3">
                 <h3 class="text-lg font-semibold max-md:text-base mb-3">Assigned Forms</h3>
                 <ul id="assignedList" class="list-disc px-6 grid grid-cols-2 max-md:text-sm gap-x-2 gap-y-3"></ul>
             </div>

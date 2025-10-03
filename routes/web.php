@@ -190,37 +190,37 @@ Route::middleware(['auth', 'access:Superadmin'])->prefix('superadmin')->group(fu
 });
 
 //erb reviewer
-Route::middleware(['auth','access:ERB Reviewer',CheckReviewerInformation::class])->prefix('erb-reviewer')->group(function () {
+// Route::middleware(['auth','access:ERB Reviewer',CheckReviewerInformation::class])->prefix('erb-reviewer')->group(function () {
 
-    // Dashboard
-    Route::get('/dashboard', function () {
-        return view('erb-reviewer.dashboard');
-    })->name('erb-reviewer.dashboard');
+//     // Dashboard
+//     Route::get('/dashboard', function () {
+//         return view('erb-reviewer.dashboard');
+//     })->name('erb-reviewer.dashboard');
 
-    // Protocol assignment page
-    Route::get('/protocol-assign', function () {
-        return view('erb-reviewer.protocol-assign');
-    });
+//     // Protocol assignment page
+//     Route::get('/protocol-assign', function () {
+//         return view('erb-reviewer.protocol-assign');
+//     });
 
-    // Settings
-    Route::get('/settings', function () {
-        return view('erb-reviewer.settings');
-    });
+//     // Settings
+//     Route::get('/settings', function () {
+//         return view('erb-reviewer.settings');
+//     });
 
-    // Forms
-    Route::get('/forms/form2e', function () {
-        return view('erb-reviewer.forms.form2e');
-    });
-    Route::get('/forms/form2j', function () {
-        return view('erb-reviewer.forms.form2j');
-    });
-    Route::get('/forms/form3e', function () {
-        return view('erb-reviewer.forms.form3e');
-    });
-    Route::get('/forms/form3b', function () {
-        return view('erb-reviewer.forms.form3b');
-    });
-});
+//     // Forms
+//     Route::get('/forms/form2e', function () {
+//         return view('erb-reviewer.forms.form2e');
+//     });
+//     Route::get('/forms/form2j', function () {
+//         return view('erb-reviewer.forms.form2j');
+//     });
+//     Route::get('/forms/form3e', function () {
+//         return view('erb-reviewer.forms.form3e');
+//     });
+//     Route::get('/forms/form3b', function () {
+//         return view('erb-reviewer.forms.form3b');
+//     });
+// });
 
 // ====================
 // ERB Reviewer College-Dept Form
@@ -233,6 +233,30 @@ Route::post('/erb-reviewer/college-dept', [ReviewerInformationController::class,
      ->name('erb-reviewer.college-dept.store');
 
 //iacuc reviewer
+Route::get('/erb-reviewer/dashboard', function () {
+    return view('erb-reviewer.dashboard');
+})->name('erb-reviewer.dashboard');
+
+Route::get('/erb-reviewer/protocol-assign', function () {
+    return view('erb-reviewer.protocol-assign');
+});
+
+Route::get('/erb-reviewer/settings', function () {
+    return view('erb-reviewer.settings');
+});
+
+Route::get('/erb-reviewer/college-dept',function () {
+    return view('erb-reviewer.college-dept');
+});
+
+Route::get('/erb-reviewer/forms/protocol-review',function () {
+    return view('erb-reviewer.forms.protocol-review');
+});
+
+Route::get('/erb-reviewer/forms/protocol-review-checklist',function () {
+    return view('erb-reviewer.forms.protocol-review-checklist');
+});
+
 Route::get('/iacuc-reviewer/dashboard', function () {
     return view('iacuc-reviewer.dashboard');
 })->name('iacuc-reviewer.dashboard');

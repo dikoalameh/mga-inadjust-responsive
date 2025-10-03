@@ -47,12 +47,14 @@
         <div class="grid grid-cols-2 max-md:grid-cols-1 max-md:block gap-x-5 mt-4">
             <div class="max-md:mt-3 bg-lightgray shadow-md rounded-md p-3">
                 <h3 class="text-lg font-semibold max-md:text-base mb-3">USERS LIST</h3>
-                <ul id="selectedUsers" class="max-md:text-sm flex grid grid-cols-3 max-md:grid-cols-2 list-disc pl-5"></ul>
+                <div class="h-16 overflow-y-auto">
+                    <ul id="selectedUsers" class="max-md:text-sm flex grid grid-cols-3 max-md:grid-cols-2 list-disc pl-5"></ul>
+                </div>
             </div>
 
             <div class="max-md:mt-3 bg-lightgray shadow-md rounded-md p-3">
                 <h3 class="text-lg font-semibold max-md:text-base mb-3">CLASSIFY ACCOUNTS</h3>
-                <div class="max-sm:mb-2 max-sm:text-sm grid grid-cols-3 gap-x-2">
+                <div class="h-16 max-sm:mb-2 max-sm:text-sm grid grid-cols-3 gap-x-2">
                     <div class="flex gap-x-1">
                         <input type="radio" name="reviewClassification" value="ERB" class="mt-1 w-[14px] h-[14px] max-sm:w-[12px] max-sm:h-[12px]">
                         <span>ERB</span>
