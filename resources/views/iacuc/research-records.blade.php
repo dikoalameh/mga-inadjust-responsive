@@ -11,31 +11,34 @@
             <!-- Table header -->
             <thead class="bg-primary text-white text-lg/7 max-lg:text-base/6">
                 <tr class="header-table">
-                    <th class="w-[10.00%]">P.I. Name</th>
-                    <th class="w-[10.00%]">Research Title</th>
-                    <th class="w-[10.00%]">Date of Submission</th>
-                    <th class="w-[10.00%]">Classification of Reviews</th>
-                    <th class="w-[10.00%]">Status of Review</th>
-                    <th class="w-[10.00%]">Reviewer</th>
-                    <th class="w-[10.00%]">Decision</th>
-                    <th class="w-[10.00%]">Research File Type</th>
-                    <th class="w-[10.00%]">Date Edited</th>
-                    <th class="w-[10.00%]">Remarks</th>
+                    <th class="w-[11.11%]">Research Title</th>
+                    <th class="w-[11.11%]">P.I. Name</th>
+                    <th class="w-[11.11%]">Date of Submission</th>
+                    <th class="w-[11.11%]">Classification of Reviews</th>
+                    <th class="w-[11.11%]">Reviewer no. 1</th>
+                    <th class="w-[11.11%]">Status of Review</th>
+                    <th class="w-[11.11%]">Reviewer no. 2</th>
+                    <th class="w-[11.11%]">Status of Review</th>
+                    <th class="w-[11.11%]">Decision</th>
                 </tr>
             </thead>
             <!-- Table body -->
             <tbody class="text-base/7 max-lg:text-sm/6">
                 <tr>
-                    <td>John Doe</td>
                     <td>Brain Injury: Prevention and Treatment of Chronic Brain Injury</td>
+                    <td>
+                        <!-- url for the array in submitted-documents.blade.php -->
+                        <a href="{{ url('/iacuc/submitted-documents?user_id=1') }}">
+                            John Doe
+                        </a> 
+                    </td>
                     <td>2025/05/06<br>16:43:20</td>
                     <td>Expedited</td>
-                    <td>Ongoing Review</td>
-                    <td>Thomas Hardy</td>
-                    <td>Ongoing</td>
-                    <td>form2a.pdf</td>
-                    <td>N/A</td>
-                    <td>Rejected</td>
+                    <td>Reviewer 1</td>
+                    <td>Status</td>
+                    <td>Reviewer 2</td>
+                    <td>Status</td>
+                    <td>Decision</td>
                 </tr>
             </tbody>
         </table>

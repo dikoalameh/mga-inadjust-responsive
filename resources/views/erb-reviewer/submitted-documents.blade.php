@@ -1,5 +1,5 @@
 @section('title', 'Submitted Documents')
-<x-iacuc-layout>
+<x-erb-reviewer>
     <main class="xl:ml-[335px] max-xl:ml-auto p-4 max-md:p-2">
         <h2 class="max-xl:hidden text-left bg-[#f2f2f2] shadow-lg p-[35px] rounded-[30px] font-medium text-[28px]">
             SUBMITTED DOCUMENTS
@@ -12,7 +12,7 @@
         </div>
 
         <div class="mt-8">
-            <a href="{{ url('/erb/research-records') }}"
+            <a href="{{ url('/erb-reviewer/protocol-assign') }}"
                 class="bg-secondary hover:bg-primary text-lg max-xl:text-base text-primary hover:text-secondary uppercase tracking-widest px-4 py-2 rounded-md duration-200">
                 Back
             </a>
@@ -56,4 +56,4 @@
             }
         </script>
     </main>
-</x-iacuc-layout>
+</x-erb-reviewer>

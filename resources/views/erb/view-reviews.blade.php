@@ -1,9 +1,9 @@
-@section('title', 'Ongoing Reviews')
+@section('title', 'View Reviews')
 <x-erb-layout>
     <!-- Main Content -->
     <main class="xl:ml-[335px] max-xl:ml-auto p-4 max-md:p-2">
         <h2 class="max-xl:hidden text-left bg-[#f2f2f2] shadow-lg p-[35px] rounded-[30px] font-medium text-[28px]">
-            ONGOING REVIEWS
+            VIEW REVIEWS
         </h2>
         <br>
 
@@ -29,7 +29,13 @@
                         Alexander Feuer<label for="">,</label><br>
                         Rene Phillips
                     </td>
-                    <td><button type="button" class="border-2 p-[5px] hover:bg-gray">View</button></td>
+                    <td>
+                        <a href="{{ url('erb/viewing-file?user_id=1') }}">
+                            <button class="border-2 p-[5px] hover:bg-gray">
+                                View
+                            </button>
+                        </a>
+                    </td>
                     <td>4/15/2025<br>21:37:23</td>
                 </tr>
                 <tr>
@@ -40,7 +46,7 @@
                         Pascale Cartrain<label for="">,</label><br>
                         Miguel Angel Paolino
                     </td>
-                    <td><button type="button" class="border-2 p-[5px] hover:bg-gray">View</button></td>
+                    <td><button class="border-2 p-[5px] hover:bg-gray">View</button></td>
                     <td>4/15/2025<br>21:37:23</td>
                 </tr>
                 <tr>
@@ -51,7 +57,7 @@
                         Philip Cramer<label for="">,</label><br>
                         Patricia McKenna
                     </td>
-                    <td><button type="button" class="border-2 p-[5px] hover:bg-gray">View</button></td>
+                    <td><button class="border-2 p-[5px] hover:bg-gray">View</button></td>
                     <td>4/15/2025<br>21:37:23</td>
                 </tr>
                 <tr>
@@ -63,7 +69,7 @@
                         Philip Cramer<label for="">,</label><br>
                         Patricia McKenna
                     </td>
-                    <td><button type="button" class="border-2 p-[5px] hover:bg-gray">View</button></td>
+                    <td><button class="border-2 p-[5px] hover:bg-gray">View</button></td>
                     <td>4/15/2025<br>21:37:23</td>
                 </tr>
             </tbody>

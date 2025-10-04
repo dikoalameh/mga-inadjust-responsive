@@ -57,9 +57,9 @@ Route::middleware(['auth', 'access:ERB Admin'])->prefix('erb')->group(function (
     // Submitted Documents for a specific user
     Route::get('/submitted-documents/{userId}', [ResearchFileController::class, 'submittedDocuments'])
         ->name('erb.submitted-documents');
-    
+
     Route::get('/iro-approved-accounts', [FormAssignment::class, 'approvedAccounts'])
-    ->name('erb.iro-approved-accounts');
+        ->name('erb.iro-approved-accounts');
 
     Route::post('/assign-forms-ajax', [FormAssignment::class, 'assignFormsAjax'])
         ->name('assign.forms.ajax');
@@ -78,9 +78,9 @@ Route::middleware(['auth', 'access:ERB Admin'])->prefix('erb')->group(function (
         return view('erb.assign-reviewer');
     });
 
-    // Ongoing Reviews
-    Route::get('/ongoing-reviews', function () {
-        return view('erb.ongoing-reviews');
+    // View Reviews
+    Route::get('/view-reviews', function () {
+        return view('erb.view-reviews');
     });
 
     // Settings
@@ -123,25 +123,25 @@ Route::middleware(['auth', 'access:IACUC Admin'])->prefix('iacuc')->group(functi
         return view('iacuc.assign-reviewer');
     })->name('iacuc.assign-reviewer');
 
-    // Ongoing Reviews
-    Route::get('/ongoing-reviews', function () {
-        return view('iacuc.ongoing-reviews');
-    })->name('iacuc.ongoing-reviews');
+    // View Reviews
+    Route::get('/view-reviews', function () {
+        return view('iacuc.view-reviews');
+    })->name('iacuc.view-reviews');
 
     // Settings
     Route::get('/settings', function () {
         return view('iacuc.settings');
     })->name('iacuc.settings');
 
-    // Forms
-    Route::get('/forms/protocol-review', function () {
-        return view('iacuc.forms.protocol-review');
-    })->name('iacuc.forms.protocol-review');
+    // Viewing File
+    Route::get('/iacuc/viewing-file', function () {
+        return view('iacuc.viewing-file');
+    });
 
-    Route::get('/forms/protocol-review-checklist', function () {
-        return view('iacuc.forms.protocol-review-checklist');
-    })->name('iacuc.forms.protocol-review-checklist');
-
+    // Submitted Documents
+    Route::get('/iacuc/submitted-documents', function () {
+        return view('iacuc.submitted-documents');
+    })->name('iacuc.submitted-documents');
 });
 
 // superadmin
@@ -190,35 +190,43 @@ Route::middleware(['auth', 'access:Superadmin'])->prefix('superadmin')->group(fu
 });
 
 //erb reviewer
-Route::middleware(['auth','access:ERB Reviewer',CheckReviewerInformation::class])->prefix('erb-reviewer')->group(function () {
+Route::middleware(['auth', 'access:ERB Reviewer', CheckReviewerInformation::class])->prefix('erb-reviewer')->group(function () {
 
     // Dashboard
-   Route::get('/dashboard', function () {
-       return view('erb-reviewer.dashboard');
-   })->name('erb-reviewer.dashboard');
+    Route::get('/dashboard', function () {
+        return view('erb-reviewer.dashboard');
+    })->name('erb-reviewer.dashboard');
 
-   // Protocol assignment page
-   Route::get('/protocol-assign', function () {
-       return view('erb-reviewer.protocol-assign');
-     });
+    // Protocol assignment page
+    Route::get('/protocol-assign', function () {
+        return view('erb-reviewer.protocol-assign');
+    });
 
-     // Settings
-     Route::get('/settings', function () {
-         return view('erb-reviewer.settings');
-     });
-     // Forms
-     Route::get('/forms/form2e', function () {
-         return view('erb-reviewer.forms.form2e');
-     });
-     Route::get('/forms/form2j', function () {
-         return view('erb-reviewer.forms.form2j');
-     });
-     Route::get('/forms/form3e', function () {
-         return view('erb-reviewer.forms.form3e');
-     });
-     Route::get('/forms/form3b', function () {
-         return view('erb-reviewer.forms.form3b');
-   });
+    // Settings
+    Route::get('/settings', function () {
+        return view('erb-reviewer.settings');
+    });
+    // Forms
+    Route::get('/forms/form2e', function () {
+        return view('erb-reviewer.forms.form2e');
+    });
+    Route::get('/forms/form2j', function () {
+        return view('erb-reviewer.forms.form2j');
+    });
+    Route::get('/forms/form3e', function () {
+        return view('erb-reviewer.forms.form3e');
+    });
+    Route::get('/forms/form3b', function () {
+        return view('erb-reviewer.forms.form3b');
+    });
+
+    // Submission Tab
+    Route::get('/submitted-documents', function () {
+        return view('erb-reviewer.submitted-documents');
+    });
+    Route::get('/submit-documents', function () {
+        return view('erb-reviewer.submit-documents');
+    });
 });
 
 Route::middleware(['auth', 'access:ERB Reviewer'])
@@ -231,7 +239,7 @@ Route::middleware(['auth', 'access:ERB Reviewer'])
 
         Route::post('/college-dept', [ReviewerInformationController::class, 'erbStore'])
             ->name('erb-reviewer.college-dept.store');
-});
+    });
 
 //iacuc reviewer
 Route::get('/iacuc-reviewer/dashboard', function () {
@@ -246,27 +254,27 @@ Route::get('/iacuc-reviewer/settings', function () {
     return view('iacuc-reviewer.settings');
 });
 
-Route::get('/iacuc-reviewer/college-dept',function () {
+Route::get('/iacuc-reviewer/college-dept', function () {
     return view('iacuc-reviewer.college-dept');
 });
 
-Route::get('/iacuc-reviewer/forms/protocol-review',function () {
+Route::get('/iacuc-reviewer/forms/protocol-review', function () {
     return view('iacuc-reviewer.forms.protocol-review');
 });
 
-Route::get('/iacuc-reviewer/forms/protocol-review-checklist',function () {
+Route::get('/iacuc-reviewer/forms/protocol-review-checklist', function () {
     return view('iacuc-reviewer.forms.protocol-review-checklist');
 });
 
 // student
-Route::middleware(['auth','access:Principal Investigator'])->prefix('student')->group(function () {
+Route::middleware(['auth', 'access:Principal Investigator'])->prefix('student')->group(function () {
 
     Route::get('/dashboard', function () {
         return view('student.dashboard');
     })->name('student.dashboard');
 
     Route::get('/submit-forms', [FormAssignment::class, 'assignedSubmissionDisplay'])
-    ->name('student.submit-forms');
+        ->name('student.submit-forms');
 
     Route::get('/submit-form-layout/{form}', [ResearchFileController::class, 'showForm'])
         ->name('student.submit.form');
@@ -279,7 +287,7 @@ Route::middleware(['auth','access:Principal Investigator'])->prefix('student')->
     });
 
     Route::get('/download-forms', [FormAssignment::class, 'assignedFormsDisplay'])
-    ->name('student.download-forms');
+        ->name('student.download-forms');
 
     Route::get('/settings', function () {
         return view('student.settings');
@@ -406,4 +414,4 @@ Route::get('student/submit-form-layout', function () {
     return view('student.submit-form-layout');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
