@@ -6,9 +6,9 @@
         </h2>
 
         <div class="w-full mx-auto my-8 px-4 py-6 bg-white rounded-lg border-2 border-gray">
-            <h1 class="text-primary text-2xl font-semibold mb-4">Submission Details</h1>
-            <h2 class="text-primary text-xl font-medium">
-                User: <span class="text-blue-600">{{ $piFiles->user_Fname }}</span>
+            <h1 class="text-primary text-2xl max-md:text-base font-semibold mb-4">Submission Details</h1>
+            <h2 class="text-primary text-xl max-md:text-base font-medium">
+                User: <span>{{ $piFiles->user_Fname }}</span>
             </h2>
 
             <div class="max-sm:text-sm mt-6 space-y-4 h-64 overflow-y-auto">

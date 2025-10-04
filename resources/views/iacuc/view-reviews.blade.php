@@ -1,15 +1,15 @@
-@section('title', 'Ongoing Reviews')
-<x-erb-layout>
+@section('title','View Reviews')
+<x-iacuc-layout>
     <!-- Main Content -->
     <main class="xl:ml-[335px] max-xl:ml-auto p-4 max-md:p-2">
         <h2 class="max-xl:hidden text-left bg-[#f2f2f2] shadow-lg p-[35px] rounded-[30px] font-medium text-[28px]">
-            ONGOING REVIEWS
+            VIEW REVIEWS
         </h2>
         <br>
 
         <table id="myTable" class="display overflow-scroll border-collapse w-full">
             <!-- Table header -->
-            <thead class="bg-primary text-white text-lg/7 max-lg:text-base/7">
+            <thead class="bg-primary text-white text-lg/7 max-lg:text-base/6">
                 <tr class="header-table">
                     <th class="w-[16.66%]">Research Protocol</th>
                     <th class="w-[16.66%]">Research Title</th>
@@ -29,44 +29,62 @@
                         Alexander Feuer<label for="">,</label><br>
                         Rene Phillips
                     </td>
-                    <td><button type="button" class="border-2 p-[5px] hover:bg-gray">View</button></td>
+                    <td>
+                        <a href="{{ url('iacuc/viewing-file?user_id=1') }}">
+                            <button class="border-2 p-[5px] hover:bg-gray">
+                                View
+                            </button>
+                        </a>
+                    </td>
                     <td>4/15/2025<br>21:37:23</td>
                 </tr>
                 <tr>
-                    <td>2025-002</td>
+                    <td>ERB 2025-002</td>
                     <td>Investigating the Link Between Air Pollution and Respiratory Diseases</td>
                     <td>Paula Parente</td>
                     <td>
-                        Pascale Cartrain<label for="">,</label><br>
+                        Pascale Cartrain<br>
                         Miguel Angel Paolino
                     </td>
-                    <td><button type="button" class="border-2 p-[5px] hover:bg-gray">View</button></td>
+                    <td>
+                        <a href="">
+                            <button type="button" class="border-2 p-[5px] hover:bg-gray">View</button>
+                        </a>
+                    </td>
                     <td>4/15/2025<br>21:37:23</td>
                 </tr>
                 <tr>
-                    <td>2025-003</td>
+                    <td>ERB 2025-003</td>
                     <td>The Role of Artificial Intelligence in Enhancing Healthcare Delivery</td>
                     <td>Yvonne Moncada</td>
                     <td>
-                        Philip Cramer<label for="">,</label><br>
-                        Patricia McKenna
+                        Paolo Accorti<br>
+                        Peter Franken
                     </td>
-                    <td><button type="button" class="border-2 p-[5px] hover:bg-gray">View</button></td>
+                    <td>
+                        <a href="">
+                            <button type="button" class="border-2 p-[5px] hover:bg-gray">View</button>
+                        </a>
+                    </td>
                     <td>4/15/2025<br>21:37:23</td>
                 </tr>
                 <tr>
-                    <td>2025-004</td>
+                    <td>ERB 2025-004</td>
                     <td>Evaluating the Effectiveness of Mindfulness-Based Stress Reduction in Chronic Pain
                         Management</td>
                     <td>Catherine Dewey</td>
                     <td>
-                        Philip Cramer<label for="">,</label><br>
+                        Philip Cramer<br>
                         Patricia McKenna
                     </td>
-                    <td><button type="button" class="border-2 p-[5px] hover:bg-gray">View</button></td>
+                    <td>
+                        <a href="">
+                            <button type="button" class="border-2 p-[5px] hover:bg-gray">View</button>
+                        </a>
+                    </td>
                     <td>4/15/2025<br>21:37:23</td>
                 </tr>
             </tbody>
         </table>
     </main>
-</x-erb-layout>
+</x-iacuc-layout>

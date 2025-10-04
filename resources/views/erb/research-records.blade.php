@@ -26,7 +26,7 @@
             <!-- Table body -->
             <tbody class="text-base/7 max-lg:text-sm/6">
                 <!-- inalis ko muna ung File ID sa table -->
-                 @foreach($researchRecords as $research)
+                @foreach($researchRecords as $research)
                 <tr>
                     <td>{{ $research->research_title }}</td>
                     <td>
