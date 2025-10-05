@@ -10,17 +10,17 @@
             <!-- Table header -->
             <thead class="bg-primary text-white text-lg/7 max-lg:text-base/7">
                 <tr class="header-table">
-                    <th class="w-[11.11%]">Research Title</th>
-                    <th class="w-[11.11%]">P.I. Name</th>
-                    <th class="w-[11.11%]">Research Protocol</th>
-                    <th class="w-[11.11%]">Type of Review</th>
-                    <th class="w-[11.11%]">Form 2(E)</th>
-                    <th class="w-[11.11%]">Form 2(J)</th>
-                    <th class="w-[11.11%]">Form 3(E)</th>
-                    <th class="w-[11.11%]">Form 3(B)</th>
-                    <th class="w-[11.11%]">Submission Tab</th>
-                    <th class="w-[11.11%]">Form 2(E) Soft Copy Submission</th>
-                    <th class="w-[11.11%]">Form 2(J) Soft Copy Submission</th>
+                    <th class="w-[9.09%]">Research Title</th>
+                    <th class="w-[9.09%]">P.I. Name</th>
+                    <th class="w-[9.09%]">Research Protocol</th>
+                    <th class="w-[9.09%]">Type of Review</th>
+                    <th class="w-[9.09%]">Form 2(E)</th>
+                    <th class="w-[9.09%]">Form 2(J)</th>
+                    <th class="w-[9.09%]">Form 3(E)</th>
+                    <th class="w-[9.09%]">Form 3(B)</th>
+                    <th class="w-[9.09%]">Submission Tab</th>
+                    <th class="w-[9.09%]">Form 2(E) Soft Copy Submission</th>
+                    <th class="w-[9.09%]">Form 2(J) Soft Copy Submission</th>
                 </tr>
             </thead>
 

@@ -83,6 +83,11 @@ Route::middleware(['auth', 'access:ERB Admin'])->prefix('erb')->group(function (
         return view('erb.view-reviews');
     });
 
+    // Viewing Files
+    Route::get('/viewing-file', function () {
+        return view('erb.viewing-file');
+    });
+
     // Settings
     Route::get('/settings', function () {
         return view('erb.settings');
@@ -362,6 +367,8 @@ Route::get('/export-form2a', [PdfExportController::class, 'exportForm2A'])->name
 Route::get('/export-form3d', [PdfExportController::class, 'exportForm3D'])->name('export.form3d');
 Route::get('/export-form3c', [PdfExportController::class, 'exportForm3C'])->name('export.form3c');
 Route::get('/export-form3l', [PdfExportController::class, 'exportForm3L'])->name('export.form3l');
+Route::get('/export-form3e', [PdfExportController::class, 'exportForm3E'])->name('export.form3e');
+Route::get('/export-form3a', [PdfExportController::class, 'exportForm3A'])->name('export.form3a');
 
 //Storing Data for Form2B
 

@@ -142,10 +142,10 @@
             "/iacuc/iro-approved-accounts": "APPROVED ACCOUNTS",
             "/iacuc/pending-reviews": "PENDING REVIEWS",
             "/iacuc/research-records": "RESEARCH RECORDS",
-            "/iacuc/ongoing-reviews": "ONGOING REVIEWS",
-            "/iacuc/settings": "SETTINGS",
-            "/iacuc/forms/protocol-review": "PROTOCOL REVIEW FORM",
-            "/iacuc/forms/protocol-review-checklist": "PROTOCOL REVIEW CHECKLIST"
+            "/iacuc/view-reviews": "VIEW REVIEWS",
+            "/iacuc/submitted-documents": "SUBMITTED DOCUMENTS",
+            "/iacuc/viewing-file": "VIEWING FILE",
+            "/iacuc/settings": "SETTINGS"
         };
 
         const path = window.location.pathname;

@@ -102,7 +102,8 @@
             "/erb-reviewer/forms/form2e": "FORM 2(E)",
             "/erb-reviewer/forms/form2j": "FORM 2(J)",
             "/erb-reviewer/forms/form3e": "FORM 3(E)",
-            "/erb-reviewer/forms/form3b": "FORM 3(B)"
+            "/erb-reviewer/forms/form3b": "FORM 3(B)",
+            "/erb-reviewer/submit-documents": "SUBMIT DOCUMENTS"
         };
 
         const path = window.location.pathname;

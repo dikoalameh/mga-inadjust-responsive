@@ -120,8 +120,9 @@
             "/erb/iro-approved-accounts": "APPROVED ACCOUNTS",
             "/erb/pending-reviews": "PENDING REVIEWS",
             "/erb/research-records": "RESEARCH RECORDS",
-            "/erb/ongoing-reviews": "ONGOING REVIEWS",
+            "/erb/view-reviews": "VIEW REVIEWS",
             "/erb/submitted-documents": "SUBMITTED DOCUMENTS",
+            "/erb/viewing-file": "VIEWING FILE",
             "/erb/settings": "SETTINGS"
         };
 

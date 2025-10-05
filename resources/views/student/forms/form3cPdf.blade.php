@@ -34,7 +34,7 @@
             <div class="w-[29.00%] font-bold border-r py-1 mx-2">
                 MCUERB Code
             </div>
-            <div class="mx-2 py-1">
+            <div class="w-[60.00%] py-1">
                 {{-- mcuerb code --}}
             </div>
         </div>
@@ -42,9 +42,9 @@
         <!-- STUDY PROTOCOL TITLE -->
         <div class="flex items-stretch border-t">
             <div class="w-[29.00%] font-bold border-r py-1 mx-2">
-                STUDY Protocol Title:
+                Study Protocol Title:
             </div>
-            <div class="mx-2 py-1">
+            <div class="w-[60.00%] py-1">
                 {{-- study protocol title --}}
             </div>
         </div>
@@ -54,7 +54,7 @@
             <div class="w-[29.00%] font-bold border-r py-1 mx-2">
                 Prinicipal Investigator (PI)
             </div>
-            <div class="mx-2 py-1">
+            <div class="w-[60.00%] py-1">
                 {{-- principal investigator --}}
             </div>
         </div>
@@ -64,7 +64,7 @@
             <div class="w-[29.00%] font-bold border-r py-1 mx-2">
                 PI Contact Numbers
             </div>
-            <div class="mx-2 py-1">
+            <div class="w-[60.00%] py-1">
                 {{-- pi contact numbers --}}
             </div>
         </div>
@@ -74,7 +74,7 @@
             <div class="w-[29.00%] font-bold border-r py-1 mx-2">
                 PI Email Address
             </div>
-            <div class="mx-2 py-1">
+            <div class="w-[60.00%] py-1">
                 {{-- pi email address --}}
             </div>
         </div>
@@ -84,7 +84,7 @@
             <div class="w-[29.00%] font-bold border-r py-1 mx-2">
                 Study Protocol Submission Date
             </div>
-            <div class="mx-2 py-1">
+            <div class="w-[60.00%] py-1">
                 {{-- study protocol submission date --}}
             </div>
         </div>
@@ -94,13 +94,13 @@
             <div class="w-[29.00%] font-bold border-r py-1 mx-2">
                 Study Protocol Review Date
             </div>
-            <div class="mx-2 py-1">
+            <div class="w-[60.00%] py-1">
                 {{-- study protocol review date --}}
             </div>
         </div>
     </div>
-    <br>
-    <h1 class="text-sm font-bold text-center underline uppercase mb-4">Progress Report</h1>
+
+    <h1 class="text-sm font-bold text-center mt-4 underline uppercase mb-4">Progress Report</h1>
     <div class="mx-8 font-bold italic">
         Instructions to the Researcher: Please accomplish this form and ensure that you have included in your submission
         the relevant documents.
@@ -116,7 +116,7 @@
             <div class="w-[23.00%] font-bold border-r py-1 mx-2">
                 <p>Title of Study</p>
             </div>
-            <div class="mx-2 py-1">
+            <div class="w-[66.00%] py-1">
                 {{-- title of study --}}
             </div>
         </div>
@@ -127,12 +127,12 @@
             <div class="w-[23.00%] font-bold border-r flex items-center mx-2">
                 <p>MCUERB Code (To be provided by MCUERB)</p>
             </div>
-            <div class="w-[29.00%] border-r p-2">
+            <div class="w-[29.00%] border-r">
                 <p>{{-- mcuerb code --}}</p>
             </div>
 
             <!-- STUDY SITE -->
-            <div class="w-[17.00%] flex items-center font-bold border-r mx-2">
+            <div class="w-[14.00%] flex items-center font-bold border-r mx-2">
                 <p>Study Site</p>
             </div>
             <div class="flex-1 p-2">
@@ -151,20 +151,20 @@
             </div>
 
             <!-- CONTACT INFORMATION -->
-            <div class="w-[17.00%] flex items-center font-bold border-r ml-2 py-1">
+            <div class="w-[14.00%] flex items-center font-bold border-r ml-2 py-1">
                 <p>Contact Information</p>
             </div>
             <div class="flex-1">
                 <!-- MOBILE NUMBER -->
                 <div class="flex items-center">
-                    <p class="py-1 font-bold">Mobile No:</p>&nbsp;
-                    <p>{{-- mobile no. --}}</p>
+                    <p class="w-[30.00%] flex items-center border-r py-1 font-bold mx-1">Mobile No:</p>&nbsp;
+                    <p class="w-[59.00%]">{{-- mobile no. --}}</p>
                 </div>
 
                 <!-- EMAIL -->
                 <div class="flex items-center border-t">
-                    <p class="py-1 font-bold">Email:</p>&nbsp;
-                    <p class="break-all">{{-- email --}}</p>
+                    <p class="w-[30.00%] flex items-center border-r py-1 font-bold mx-1 h-12">Email:</p>&nbsp;
+                    <p class="w-[59.00%] break-all">{{-- email --}}</p>
                 </div>
             </div>
         </div>
@@ -174,7 +174,7 @@
             <div class="w-[23.00%] font-bold border-r py-1 mx-2">
                 <p>Institution</p>
             </div>
-            <div class="mx-2 py-1">
+            <div class="w-[66.00%] py-1">
                 <p>{{-- institution --}}</p>
             </div>
         </div>
@@ -184,7 +184,7 @@
             <div class="w-[23.00%] font-bold border-r py-1 mx-2">
                 <p>Address of Institution</p>
             </div>
-            <div class="mx-2 py-1">
+            <div class="w-[66.00%] py-1">
                 <p>{{-- address of institution --}}</p>
             </div>
         </div>
@@ -199,7 +199,7 @@
             <div class="w-[23.00%] font-bold border-r py-1 mx-2">
                 <p>College / Department / Unit</p>
             </div>
-            <div class="mx-2 py-1">
+            <div class="w-[66.00%] py-1">
                 <p>{{-- college / department / unit --}}</p>
             </div>
         </div>
@@ -209,7 +209,7 @@
             <div class="w-[23.00%] font-bold border-r py-1 mx-2">
                 <p>Ethical clearance effectivity period</p>
             </div>
-            <div class="mx-2 py-1">
+            <div class="w-[66.00%] py-1">
                 <p>{{-- ethical clearance effectivity period --}}</p>
             </div>
         </div>
@@ -226,7 +226,7 @@
             <div class="w-[50.00%] border-r py-1 mx-2">
                 <p>Start of study</p>
             </div>
-            <div class="mx-2 py-1">
+            <div class="w-[50.00%] py-1">
                 <p>{{-- start of study --}}</p>
             </div>
         </div>
@@ -236,7 +236,7 @@
             <div class="w-[50.00%] border-r py-1 mx-2">
                 <p>Expected end of study</p>
             </div>
-            <div class="mx-2 py-1">
+            <div class="w-[50.00%] py-1">
                 <p>{{-- expected end of study --}}</p>
             </div>
         </div>
@@ -246,7 +246,7 @@
             <div class="w-[50.00%] border-r py-1 mx-2">
                 <p>Number of enrolled participants</p>
             </div>
-            <div class="mx-2 py-1">
+            <div class="w-[50.00%] py-1">
                 <p>{{-- number of enrolled participants --}}</p>
             </div>
         </div>
@@ -256,7 +256,7 @@
             <div class="w-[50.00%] border-r py-1 mx-2">
                 <p>Number of required participants</p>
             </div>
-            <div class="mx-2 py-1">
+            <div class="w-[50.00%] py-1">
                 <p>{{-- number of required participants --}}</p>
             </div>
         </div>
@@ -266,7 +266,7 @@
             <div class="w-[50.00%] border-r py-1 mx-2">
                 <p>Number of participants who withdrew</p>
             </div>
-            <div class="mx-2 py-1">
+            <div class="w-[50.00%] py-1">
                 <p>{{-- number of participants who withdrew --}}</p>
             </div>
         </div>
@@ -276,7 +276,7 @@
             <div class="w-[50.00%] border-r py-1 mx-2">
                 <p>Deviations from the approved protocol</p>
             </div>
-            <div class="mx-2 py-1">
+            <div class="w-[50.00%] py-1">
                 <p>{{-- deviations from the approved protocol --}}</p>
             </div>
         </div>
@@ -287,7 +287,7 @@
                 <p>New information (literature or in the conduct of the study) that may significantly change the
                     risk-benefit ratio</p>
             </div>
-            <div class="mx-2 py-1">
+            <div class="w-[50.00%] py-1">
                 <p>{{-- new information --}}</p>
             </div>
         </div>
@@ -296,6 +296,9 @@
         <div class="flex items-stretch border-t">
             <div class="w-[50.00%] border-r py-1 mx-2">
                 <p>Issues/problems encountered</p>
+            </div>
+            <div class="w-[50.00%] py-1">
+                <p>{{-- issues/problems encountered --}}</p>
             </div>
         </div>
     </div>

@@ -17,7 +17,7 @@
 
     <x-formbanner>MCUERB FORM 3(D) Application for Review of Amendment</x-formbanner>
 
-    <h1 class="text-base font-bold text-center underline mb-4">Application for Review of Amendment</h1>
+    <h1 class="text-base font-bold text-center underline my-2">Application for Review of Amendment</h1>
 
     <div class="flex flex-col border">
         <div class="flex items-stretch">
@@ -25,7 +25,7 @@
             <div class="w-[30.00%] text-sm border-r flex items-center ml-2">
                 <p>Original MCUERB Code:</p>
             </div>
-            <div class="w-[30.00%] border-r p-2">
+            <div class="w-[30.00%] border-r p-1">
                 <p>{{-- original mcuerb code --}}</p>
             </div>
 
@@ -66,7 +66,7 @@
         </div>
         <div class="flex items-stretch border-t">
             <!-- INSTITUTION -->
-            <div class="w-[30.00%] text-sm border-r ml-2">
+            <div class="w-[30.00%] py-1 text-sm border-r ml-2">
                 <p>Institution:</p>
             </div>
             <div class="flex-1 p-2">
@@ -75,7 +75,7 @@
         </div>
         <div class="flex items-stretch border-t">
             <!-- EMAIL -->
-            <div class="w-[30.00%] text-sm border-r ml-2">
+            <div class="w-[30.00%] py-1 text-sm border-r ml-2">
                 <p>Email:</p>
             </div>
             <div class="flex-1 p-2">

@@ -17,7 +17,7 @@
 
     <x-formbanner>MCUERB FORM 3(L) Final Reports</x-formbanner>
 
-    <h1 class="text-base font-bold text-center underline mb-4">Final Reports</h1>
+    <h1 class="text-base font-bold text-center underline my-2">Final Reports</h1>
 
     <div class="mt-8 flex flex-col border">
         <div class="flex items-stretch bg-gray">
@@ -28,10 +28,10 @@
 
         <!-- TITLE OF STUDY -->
         <div class="flex items-stretch border-t">
-            <div class="w-[21.00%] border-r py-4 mx-2">
+            <div class="w-[21.00%] flex items-center border-r py-4 mx-2">
                 <p>Title of Study</p>
             </div>
-            <div class="mx-2 py-1">
+            <div class="w-[68.00%] py-1">
                 {{-- title of study --}}
             </div>
         </div>
@@ -41,7 +41,7 @@
             <div class="w-[21.00%] border-r py-1 mx-2">
                 Version number/date of the ERB approved protocol
             </div>
-            <div class="mx-2 py-1">
+            <div class="w-[68.00%] py-1">
                 {{-- version number --}}
             </div>
         </div>
@@ -49,18 +49,18 @@
         <!-- MCUERB CODE & STUDY SITE -->
         <div class="flex items-stretch border-t">
             <!-- MCUERB CODE -->
-            <div class="w-[21.00%] text-sm border-r mx-2">
+            <div class="w-[21.00%] text-sm border-r py-1 mx-2">
                 <p>MCUERB Code <i>(to be provided by MCUERB)</i></p>
             </div>
-            <div class="w-[30.00%] border-r p-2 ml-2">
+            <div class="w-[31.10%] border-r py-1">
                 <p>{{-- original mcuerb code --}}</p>
             </div>
 
             <!-- STUDY SITE -->
-            <div class="w-[13.00%] flex items-center text-sm border-r mx-2">
+            <div class="w-[13.00%] flex items-center text-sm border-r mx-1">
                 Study Site
             </div>
-            <div class="flex-1 p-2">
+            <div class="w-[31.10%] flex-1 p-2">
                 <p>{{-- study site --}}</p>
             </div>
         </div>
@@ -71,31 +71,31 @@
             <div class="w-[21.00%] flex items-center border-r mx-2 py-1">
                 <p>Name of Researcher/PI</p>
             </div>
-            <div class="w-[30.00%] border-r ml-2 p-2">
+            <div class="w-[31.10%] border-r py-1">
                 <p>{{-- name of researcher --}}</p>
             </div>
 
             <!-- CONTACT INFORMATION -->
-            <div class="w-[13.00%] flex items-center border-r ml-2 py-1">
+            <div class="w-[13.00%] flex items-center border-r ml-1 py-1">
                 <p>Contact Information</p>
             </div>
             <div class="flex-1">
                 <!-- TELEPHONE NUMBER -->
                 <div class="flex items-center">
-                    <p class="py-1">Tel. No:</p>&nbsp;
-                    <p>{{-- tel. no. --}}</p>
+                    <p class="w-[31.00%] h-8 ml-1 py-1 border-r">Tel. No:</p>&nbsp;
+                    <p class="w-[60.00%] break-all">{{-- tel. no. --}}</p>
                 </div>
 
                 <!-- MOBILE NUMBER -->
                 <div class="flex items-center border-t">
-                    <p class="py-1">Mobile No:</p>&nbsp;
-                    <p class="break-all">{{-- mobile no. --}}</p>
+                    <p class="w-[31.00%] h-8 ml-1 py-1 border-r">Mobile No:</p>&nbsp;
+                    <p class="w-[60.00%] break-all">{{-- mobile no. --}}</p>
                 </div>
 
                 <!-- EMAIL -->
                 <div class="flex items-center border-t">
-                    <p class="py-1">Email:</p>&nbsp;
-                    <p class="break-all">{{-- email --}}</p>
+                    <p class="w-[31.00%] flex items-center h-10 ml-1 py-1 border-r">Email:</p>&nbsp;
+                    <p class="w-[60.00%] break-all">{{-- email --}}</p>
                 </div>
             </div>
         </div>
@@ -105,7 +105,7 @@
             <div class="w-[21.00%] border-r py-1 mx-2">
                 <p>Co-Investigator/s (if any)</p>
             </div>
-            <div class="mx-2 py-1">
+            <div class="w-[68.00%] py-1">
                 <p>{{-- co-investigators --}}</p>
             </div>
         </div>
@@ -125,7 +125,7 @@
             <div class="w-[21.00%] border-r py-1 mx-2">
                 <p>Address of Institution</p>
             </div>
-            <div class="mx-2 py-1">
+            <div class="w-[68.00%] py-1">
                 <p>{{-- address of institution --}}</p>
             </div>
         </div>
@@ -139,7 +139,7 @@
                 <p>From:</p>
                 <p>{{-- from date --}}</p>
             </div>
-            <div class="mx-1">
+            <div class="w-[35.00%] mx-1">
                 <p>To:</p>
                 <p>{{-- to date --}}</p>
             </div>
@@ -266,7 +266,7 @@
             <p class="font-bold">Signature over Printed Name of Principal Investigator:</p>&nbsp;
             <p class="border border-t-0 border-l-0 border-r-0 border-b-2 h-5 w-48">{{-- signature of pi --}}</p>
         </div>
-        <div class="flex">
+        <div class="flex mt-4">
             <p class="font-bold">Date:</p>&nbsp;
             <p class="border border-t-0 border-l-0 border-r-0 border-b-2 h-5 w-48">{{-- date --}}</p>
         </div>
