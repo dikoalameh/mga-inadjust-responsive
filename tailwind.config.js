@@ -26,6 +26,7 @@ export default {
                 sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
                 times: ['"Times New Roman"', 'serif'],
                 arial: ['Arial', 'sans-serif'],
+                cambria: ['Cambria','sans-serif'],
             },
             borderWidth: {
                 '0.5': '0.5px', // <-- add this

@@ -369,6 +369,8 @@ Route::get('/export-form3c', [PdfExportController::class, 'exportForm3C'])->name
 Route::get('/export-form3l', [PdfExportController::class, 'exportForm3L'])->name('export.form3l');
 Route::get('/export-form3e', [PdfExportController::class, 'exportForm3E'])->name('export.form3e');
 Route::get('/export-form3a', [PdfExportController::class, 'exportForm3A'])->name('export.form3a');
+Route::get('/export-protocol-review-checklist', [PdfExportController::class, 'exportProtocolReviewChecklist'])->name('export.protocol-review-checklist');
+Route::get('/export-protocol-review-form', [PdfExportController::class, 'exportProtocolReview'])->name('export.protocol-review-form');
 
 //Storing Data for Form2B
 
