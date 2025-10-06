@@ -17,9 +17,9 @@
         </li>
         <!-- Dropdown -->
         <li class="px-3 py-4">
-            <button
-                class="dropdownToggle w-full flex justify-between items-center hover:text-secondary transition-all 
-                {{ Request::is('iacuc/view-reviews') ? 'text-secondary' : '' }} {{ Request::is('iacuc/assign-reviewer') ? 'text-secondary' : '' }}">
+            <button class="dropdownToggle w-full flex justify-between items-center hover:text-secondary transition-all 
+                {{ Request::is('iacuc/view-reviews') ? 'text-secondary' : '' }} {{ Request::is('iacuc/assign-reviewer')
+                || Request::is('iacuc/viewing-file') ? 'text-secondary' : '' }}">
                 <i class="bi bi-file-earmark-fill"></i>
                 <span class="mr-auto px-3">View Documents</span>
                 <svg class="dropdownArrow w-4 h-4 transition-transform" fill="none" stroke="currentColor"
@@ -30,8 +30,9 @@
             <ul class="dropdownMenu ml-1 mt-4 space-y-1 hidden">
                 <!-- View Reviews -->
                 <li>
-                    <a href="{{ url('iacuc/view-reviews') }}" class="block hover:text-secondary duration-200 px-2 py-2 flex
-                        {{ Request::is('iacuc/view-reviews') ? 'text-secondary' : '' }}">
+                    <a href="{{ url('iacuc/view-reviews') }}"
+                        class="block hover:text-secondary duration-200 px-2 py-2 flex
+                        {{ Request::is('iacuc/view-reviews') || Request::is('iacuc/viewing-file') ? 'text-secondary' : '' }}">
                         <i class="bi bi-clock"></i>
                         <span class="w-full flex justify-between items-center px-3">
                             View Reviews
@@ -106,7 +107,8 @@
                 <img src="" alt="" class="h-[45px] w-[45px] object-cover rounded-[50%] mr-[10px] border-2 border-white">
                 <div class="">
                     <div class="text-[16px] whitespace-nowrap">{{ Auth::user()->user_Fname }}
-                        {{ Auth::user()->user_MI }} {{ Auth::user()->user_Lname }}</div>
+                        {{ Auth::user()->user_MI }} {{ Auth::user()->user_Lname }}
+                    </div>
                     <div class="text-[14px] whitespace-nowrap">IACUC Admin</div>
                 </div>
             </div>
@@ -135,9 +137,9 @@
             </li>
             <!-- Dropdown -->
             <li class="px-3 py-4">
-                <button
-                    class="dropdownToggle w-full flex justify-between items-center hover:text-secondary transition-all 
-                    {{ Request::is('iacuc/view-reviews') ? 'text-secondary' : '' }} {{ Request::is('iacuc/assign-reviewer') ? 'text-secondary' : '' }}">
+                <button class="dropdownToggle w-full flex justify-between items-center hover:text-secondary transition-all 
+                {{ Request::is('iacuc/view-reviews') ? 'text-secondary' : '' }} {{ Request::is('iacuc/assign-reviewer')
+                || Request::is('iacuc/viewing-file') ? 'text-secondary' : '' }}">
                     <i class="bi bi-file-earmark-fill"></i>
                     <span class="mr-auto px-3">View Documents</span>
                     <svg class="dropdownArrow w-4 h-4 transition-transform" fill="none" stroke="currentColor"
@@ -148,8 +150,9 @@
                 <ul class="dropdownMenu ml-1 mt-4 space-y-1 hidden">
                     <!-- View Reviews -->
                     <li>
-                        <a href="{{ url('iacuc/view-reviews') }}" class="block hover:text-secondary duration-200 px-2 py-2 flex
-                        {{ Request::is('iacuc/view-reviews') ? 'text-secondary' : '' }}">
+                        <a href="{{ url('iacuc/view-reviews') }}"
+                            class="block hover:text-secondary duration-200 px-2 py-2 flex
+                        {{ Request::is('iacuc/view-reviews') || Request::is('iacuc/viewing-file') ? 'text-secondary' : '' }}">
                             <i class="bi bi-clock"></i>
                             <span class="w-full flex justify-between items-center px-3">
                                 View Reviews
@@ -225,7 +228,8 @@
                         class="h-[45px] w-[45px] object-cover rounded-[50%] mr-[10px] border-2 border-white">
                     <div class="">
                         <div class="text-[16px] whitespace-nowrap">{{ Auth::user()->user_Fname }}
-                            {{ Auth::user()->user_MI }} {{ Auth::user()->user_Lname }}</div>
+                            {{ Auth::user()->user_MI }} {{ Auth::user()->user_Lname }}
+                        </div>
                         <div class="text-[14px] whitespace-nowrap">IACUC Admin</div>
                     </div>
                 </div>
