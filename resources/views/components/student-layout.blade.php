@@ -72,7 +72,7 @@
                 });
             });
         });
-         document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function () {
             const checkboxes = document.querySelectorAll('.check');
 
             checkboxes.forEach(checkbox => {
@@ -104,8 +104,6 @@
             });
         });
 
-        
-
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('overlay');
@@ -115,74 +113,31 @@
             overlay.classList.toggle('hidden');
         }
 
-        function dropDownMenu() {
-            const toggles = document.querySelectorAll('.dropdownToggle');
+        // Set Page Title Based on URL Path
+        const titles = {
+            "/student/dashboard": "DASHBOARD",
+            "/student/submit-forms": "SUBMIT DOCUMENTS",
+            "/student/download-forms": "SUBMIT FORMS",
+            "/student/submit-tickets": "SUBMIT TICKETS",
+            "/student/submit-form-layout": "SUBMIT FORMS",
+            "/student/settings": "SETTINGS",
+            "/student/forms/form2a": "FORM 2(A)",
+            "/student/forms/form2b": "FORM 2(B)",
+            "/student/forms/form2c": "FORM 2(C)",
+            "/student/forms/form2d": "FORM 2(D)",
+            "/student/forms/form3a": "FORM 3(A)",
+            "/student/forms/form3b": "FORM 3(B)",
+            "/student/forms/form3c": "FORM 3(C)",
+            "/student/forms/form3d": "FORM 3(D)",
+            "/student/forms/form3l": "FORM 3(L)",
+            "/student/forms/form5e": "FORM 5(E)",
+        };
 
-            toggles.forEach(toggle => {
-                const menu = toggle.nextElementSibling;
-                const arrow = toggle.querySelector('.dropdownArrow');
+        const path = window.location.pathname;
+        const pageTitle = titles[path] || "Page";
 
-                toggle.addEventListener('click', (e) => {
-                    e.stopPropagation();
-
-                    const isHidden = menu.classList.contains('hidden');
-
-                    if (isHidden) {
-                        menu.classList.remove('hidden');
-                        setTimeout(() => {
-                            menu.classList.remove('opacity-0');
-                        }); // small delay to trigger transition
-                    } else {
-                        menu.classList.add('opacity-0');
-                        setTimeout(() => {
-                            menu.classList.add('hidden');
-                        }); // match the transition duration
-                    }
-
-                    arrow.classList.toggle('rotate-180');
-                });
-            });
-
-            document.addEventListener('click', () => {
-                toggles.forEach(toggle => {
-                    const menu = toggle.nextElementSibling;
-                    const arrow = toggle.querySelector('.dropdownArrow');
-
-                    menu.classList.add('opacity-0');
-                    setTimeout(() => {
-                        menu.classList.add('hidden');
-                    }, 300);
-                    arrow.classList.remove('rotate-180');
-                });
-            });
-
-            // Set Page Title Based on URL Path
-            const titles = {
-                "/student/dashboard": "DASHBOARD",
-                "/student/submit-forms": "SUBMIT FORMS",
-                "/student/download-forms": "DOWNLOAD FORMS",
-                "/student/submit-tickets": "SUBMIT TICKETS",
-                "/student/submit-form-layout": "SUBMIT FORMS",
-                "/student/settings": "SETTINGS",
-                "/student/forms/form2a": "FORM 2(A)",
-                "/student/forms/form2b": "FORM 2(B)",
-                "/student/forms/form2c": "FORM 2(C)",
-                "/student/forms/form2d": "FORM 2(D)",
-                "/student/forms/form3a": "FORM 3(A)",
-                "/student/forms/form3b": "FORM 3(B)",
-                "/student/forms/form3c": "FORM 3(C)",
-                "/student/forms/form3d": "FORM 3(D)",
-                "/student/forms/form3e": "FORM 3(E)",
-                "/student/forms/form3l": "FORM 3(L)",
-                "/student/forms/form5e": "FORM 5(E)"
-            };
-
-            const path = window.location.pathname;
-            const pageTitle = titles[path] || "Page";
-
-            // Update the text content of the header and the <title> tag
-            document.getElementById("page-title").textContent = pageTitle;
-        }
+        // Update the text content of the header and the <title> tag
+        document.getElementById("page-title").textContent = pageTitle;
     </script>
 </body>
 

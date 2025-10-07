@@ -139,7 +139,7 @@
             <path d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
     </button>
-    <!-- Page Title (centered) -->
+    <!-- Page Title (centered) --> <!-- Will display "Loading..." instead if the javascript has issues -->
     <h1 id="page-title" class="max-2xl:text-[23px] max-sm:text-[15px] font-normal mx-auto">Loading...</h1>
     <img src="" alt="a">
 </header>

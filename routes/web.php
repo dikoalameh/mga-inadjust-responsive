@@ -179,8 +179,8 @@ Route::middleware(['auth', 'access:Superadmin'])->prefix('superadmin')->group(fu
         return view('superadmin.research-records');
     });
 
-    Route::get('/ongoing-reviews', function () {
-        return view('superadmin.ongoing-reviews');
+    Route::get('/view-reviews', function () {
+        return view('superadmin.view-reviews');
     });
 
     Route::get('/monitoring', [MonitoringDashboard::class, 'index'])->name('monitoring');

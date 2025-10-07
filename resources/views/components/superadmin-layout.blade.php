@@ -106,7 +106,7 @@
 
             const titles = {
                 "/superadmin/dashboard": "DASHBOARD",
-                "/superadmin/ongoing-reviews": "ONGOING REVIEWS",
+                "/superadmin/view-reviews": "VIEW REVIEWS",
                 "/superadmin/assign-reviewer": "ASSIGN REVIEWER",
                 "/superadmin/accounts-classifications": "ACCOUNTS CLASSIFICATION",
                 "/superadmin/research-records": "RESEARCH RECORDS",

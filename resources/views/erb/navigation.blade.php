@@ -17,7 +17,7 @@
         <li class="px-3 py-4">
             <button class="dropdownToggle w-full flex justify-between items-center hover:text-secondary transition-all 
                 {{ Request::is('erb/view-reviews') ? 'text-secondary' : '' }} {{ Request::is('erb/assign-reviewer')
-    || Request::is('erb/viewing-file') ? 'text-secondary' : ''}}">
+                || Request::is('erb/viewing-file') ? 'text-secondary' : ''}}">
                 <i class="bi bi-file-earmark-fill"></i>
                 <span class="mr-auto px-3">View Documents</span>
                 <svg class="dropdownArrow w-4 h-4 transition-transform" fill="none" stroke="currentColor"
