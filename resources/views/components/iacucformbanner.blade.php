@@ -1,4 +1,4 @@
-<div class="flex items-center">
+<div class="flex items-center mt-2">
     <!-- Logo -->
     <img src="{{ asset('images/MCU-ERBLOGO.png') }}" 
          alt="MCUERB Logo" 

@@ -99,4 +99,32 @@ class PdfExportController extends Controller
             ->margins(15, 15, 15, 15)
             ->inline('FORM-3L.pdf');
     }
+
+    public function exportProtocolReviewCheckList()
+    {
+        //sample code
+        $protocol = (object)[
+            
+        ];
+
+        //dito din palitan mo nalang din
+        return Pdf::view('iacuc-reviewer.forms.protocol-review-checklistPdf', compact('protocol'))
+            ->format('Letter')
+            ->margins(15, 15, 15, 15)
+            ->inline('IACUC-Protocol-Review-Checklist.pdf');
+    }
+
+    public function exportProtocolReview()
+    {
+        //sample code
+        $protocol = (object)[
+            
+        ];
+
+        //dito din palitan mo nalang din
+        return Pdf::view('iacuc-reviewer.forms.protocol-reviewPdf', compact('protocol'))
+            ->format('Letter')
+            ->margins(15, 15, 15, 15)
+            ->inline('IACUC-Protocol-Review-Form.pdf');
+    }
 }
