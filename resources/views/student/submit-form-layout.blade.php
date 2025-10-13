@@ -7,7 +7,7 @@
         <br>
         <div class="p-6 max-md:p-0 space-y-10">
             <div class="duration-200 my-4 p-4 max-sm:p-0">
-                
+
                 {{-- Dynamic form name --}}
                 <h2 class="font-semibold text-2xl max-sm:text-[19px]">
                     {{ $form->form_name }}
@@ -33,26 +33,25 @@
                         </h3>
                         <div id="scrollbar" class="h-64 px-2 border-2 border-gray overflow-y-auto">
                             @foreach($form->researchFiles()->where('user_ID', auth()->user()->user_ID)->get() as $file)
-                                <div class="flex justify-between items-center my-2 px-3 py-1 shadow-md bg-lightgray border border-darkgray">
+                                <div
+                                    class="flex justify-between items-center my-2 px-3 py-1 shadow-md bg-lightgray border border-darkgray">
                                     <span class="break-all">{{ $file->file_name }}</span>
-                                    <a href="{{ asset('storage/'.$file->file_path) }}" 
-                                       target="_blank" 
-                                       class="text-primary underline">View</a>
+                                    <a href="{{ asset('storage/' . $file->file_path) }}" target="_blank"
+                                        class="text-primary underline">View</a>
                                 </div>
                             @endforeach
                         </div>
                     </div>
                 @else
                     {{-- ✅ Show upload form if not submitted --}}
-                    <form action="{{ route('student.submit.form.store', ['form' => $form->form_id]) }}" 
-                          method="POST" 
-                          enctype="multipart/form-data"
-                          onsubmit="return validateFiles();">
+                    <form action="{{ route('student.submit.form.store', ['form' => $form->form_id]) }}" method="POST"
+                        enctype="multipart/form-data" onsubmit="return validateFiles();">
 
                         @csrf
                         <div class="max-w-xs w-xs cursor-pointer">
                             <div>
-                                <input type="file" name="uploadForms[]" id="upload" accept=".doc,.docx,.pdf" multiple hidden>
+                                <input type="file" name="uploadForms[]" id="upload" accept=".doc,.docx,.pdf" multiple
+                                    hidden>
                                 <label for="upload"
                                     class="w-full text-md min-h-[50px] flex-col justify-center items-center rounded cursor-pointer">
                                     <i class="bi bi-cloud-arrow-up-fill text-primary"></i>
@@ -90,7 +89,7 @@
         const input = document.getElementById('upload');
         const filewrapper = document.getElementById('scrollbar');
 
-        if(input){
+        if (input) {
             input.addEventListener("change", (e) => {
                 const files = e.target.files;
                 for (let i = 0; i < files.length; i++) {
@@ -121,9 +120,9 @@
     });
 
     // Validation to block empty submission
-    function validateFiles(){
+    function validateFiles() {
         const input = document.getElementById('upload');
-        if(input && input.files.length === 0){
+        if (input && input.files.length === 0) {
             alert("Please select at least one file before submitting.");
             return false;
         }

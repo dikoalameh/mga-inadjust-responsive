@@ -22,11 +22,11 @@
                 </div>
             </div>
             <!-- User Account Cards -->
-             @php
+            @php
 
                 // Total users classified under ERB
                 $totalUsers = App\Models\User::where('user_Access', 'Principal Investigator')
-                    ->whereHas('classifications', function($query) {
+                    ->whereHas('classifications', function ($query) {
                         $query->where('reviewClassification', 'ERB');
                     })->count();
 
@@ -89,13 +89,15 @@
                 </div>
             </div>
         </div>
-       <div class="p-6 max-md:px-0 space-y-10">
+        <div class="p-6 max-md:px-0 space-y-10">
             <div class="flex max-md:block gap-10 w-full">
                 <!-- Main content -->
                 <main class="flex-1">
                     <div class="max-w-5xl mx-auto max-md:px-1 px-4 py-4 flex items-center justify-between">
-                        <h1 class="text-2xl max-md:text-xl max-sm:text-lg font-semibold text-gray-800">Notifications</h1>
-                        <button class="text-sm max-md:text-xs text-blue hover:text-darkblue duration-200">Mark all as read</button>
+                        <h1 class="text-2xl max-md:text-xl max-sm:text-lg font-semibold text-gray-800">Notifications
+                        </h1>
+                        <button
+                            class="text-sm max-md:text-xs text-blue hover:text-darkblue duration-200">Mark all as read</button>
                     </div>
                     <div class="max-w-5xl mx-auto max-md:px-0 px-4 py-6 max-md:py-2">
                         <div class="bg-white shadow-sm border-2 border-gray">
@@ -129,8 +131,7 @@
                     </div>
                 </main>
                 <div class="flex-1 space-y-10 overflow-auto">
-                    <table id="myTable"
-                        class="display overflow-scroll border-collapse w-full">
+                    <table id="myTable" class="display overflow-scroll border-collapse w-full">
                         <thead class="bg-primary text-white text-lg/7 max-lg:text-base/7">
                             <tr class="header-table">
                                 <th class="w-[25.00%]">Research Protocol</th>
@@ -160,3 +161,20 @@
         </div>
     </main>
 </x-erb-layout>
+<script>
+    $(document).ready(function () {
+        // Only initialize if not already initialized
+        if (!$.fn.dataTable.isDataTable('#myTable')) {
+            const table = new DataTable('#myTable', {
+                responsive: true,
+                paging: false,
+                scrollY: '300px',
+                order: [[0, 'asc']]
+            });
+
+            // ✅ Move the DataTables search bar into our custom search-wrapper
+            const dtSearch = $('div.dt-search');
+            $('.search-wrapper').append(dtSearch);
+        }
+    });
+</script>

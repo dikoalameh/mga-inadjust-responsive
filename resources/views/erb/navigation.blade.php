@@ -17,7 +17,7 @@
         <li class="px-3 py-4">
             <button class="dropdownToggle w-full flex justify-between items-center hover:text-secondary transition-all 
                 {{ Request::is('erb/view-reviews') ? 'text-secondary' : '' }} {{ Request::is('erb/assign-reviewer')
-                || Request::is('erb/viewing-file') ? 'text-secondary' : ''}}">
+                || Request::is('erb/erb/view-review-files/*') ? 'text-secondary' : ''}}">
                 <i class="bi bi-file-earmark-fill"></i>
                 <span class="mr-auto px-3">View Documents</span>
                 <svg class="dropdownArrow w-4 h-4 transition-transform" fill="none" stroke="currentColor"
@@ -30,7 +30,7 @@
                 <li>
                     <a href="{{ url('/erb/view-reviews') }}"
                         class="block hover:text-secondary duration-200 px-2 py-2 flex
-                        {{ Request::is('erb/view-reviews') || Request::is('erb/viewing-file') ? 'text-secondary' : '' }}">
+                        {{ Request::is('erb/view-reviews') || Request::is('erb/erb/view-review-files/*') ? 'text-secondary' : '' }}">
                         <i class="bi bi-clock"></i>
                         <span class="w-full flex justify-between items-center px-3">
                             View Reviews
@@ -63,7 +63,7 @@
         <li>
             <a href="{{ url('/erb/research-records') }}"
                 class="flex items-center justify-between px-3 py-4 transition-all flex duration-200 hover:text-secondary
-                {{ Request::is('erb/research-records') ? 'text-secondary' : '' }} {{ Request::is('erb/submitted-documents') ? 'text-secondary' : '' }}">
+                {{ Request::is('erb/research-records') || Request::is('erb/submitted-documents/*') ? 'text-secondary' : '' }}">
                 <i class="bi bi-database"></i>
                 <span class="w-full flex justify-between items-center px-3">
                     Research Records
@@ -90,9 +90,29 @@
                 </span>
             </a>
         </li>
+        <!-- Submitted Tickets -->
+        <li>
+            <a href="{{ url('/erb/submitted-tickets') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary 
+                {{ Request::is('erb/submitted-tickets') ? 'text-secondary' : ''}}">
+                <i class="bi bi-ticket-detailed"></i>
+                <span class="w-full flex justify-between items-center px-3">
+                    Submitted Tickets
+                </span>
+            </a>
+        </li>
+        <!-- Assigned Amendments -->
+        <li>
+            <a href="{{ url('/erb/assigned-amendments') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary
+            {{ Request::is('erb/assigned-amendments') ? 'text-secondary' : ''}}">
+                <i class="bi bi-pencil-square"></i>
+                <span class="w-full flex justify-between items-center px-3">
+                    Assigned Amendments
+                </span>
+            </a>
+        </li>
         <!-- Settings -->
         <li>
-            <a href="{{ url('/erb/settings') }}" class="flex items-center justify-between px-3 py-4 flex transition-all duration-200 hover:text-secondary
+            <a href="{{ url('/erb/settings') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary
                 {{ Request::is('erb/settings') ? 'text-secondary' : '' }}">
                 <i class="bi bi-gear-wide-connected"></i>
                 <span class="w-full flex justify-between items-center px-3">
@@ -128,17 +148,17 @@
         <ul class="text-white max-2xl:mt-[65px] max-sm:mt-[55px]">
             <!-- Dashboard -->
             <li>
-                <a href="{{ url('/erb/dashboard') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary
+                <a href="{{ url('/erb/dashboard') }}" class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary
                 {{ Request::is('erb/dashboard') ? 'text-secondary' : '' }}">
                     <i class="bi bi-file-earmark-bar-graph-fill"></i>
                     <span class="w-full flex justify-between items-center px-3">Dashboard</span>
                 </a>
             </li>
             <!-- Dropdown -->
-            <li class="px-3 py-4">
+            <li class="px-3 py-3">
                 <button class="dropdownToggle w-full flex justify-between items-center hover:text-secondary transition-all 
                     {{ Request::is('erb/view-reviews') ? 'text-secondary' : '' }} {{ Request::is('erb/assign-reviewer')
-                    || Request::is('erb/viewing-file') ? 'text-secondary' : ''}}">
+                    || Request::is('erb/erb/view-review-files/*') ? 'text-secondary' : ''}}">
                     <i class="bi bi-file-earmark-fill"></i>
                     <span class="mr-auto px-3">View Documents</span>
                     <svg class="dropdownArrow w-4 h-4 transition-transform" fill="none" stroke="currentColor"
@@ -151,7 +171,7 @@
                     <li>
                         <a href="{{ url('/erb/view-reviews') }}"
                             class="block hover:text-secondary duration-200 px-2 py-2 flex
-                            {{ Request::is('erb/view-reviews') || Request::is('erb/viewing-file') ? 'text-secondary' : '' }}">
+                            {{ Request::is('erb/view-reviews') || Request::is('erb/erb/view-review-files/*') ? 'text-secondary' : '' }}">
                             <i class="bi bi-clock"></i>
                             <span class="w-full flex justify-between items-center px-3">
                                 View Reviews
@@ -172,7 +192,7 @@
             </li>
             <!-- Pending Accounts -->
             <li>
-                <a href="{{ url('/erb/iro-approved-accounts') }}" class="flex items-center justify-between px-3 py-4 transition-all flex duration-200 hover:text-secondary
+                <a href="{{ url('/erb/iro-approved-accounts') }}" class="flex items-center justify-between px-3 py-3 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('erb/iro-approved-accounts') ? 'text-secondary' : '' }}">
                     <i class="bi bi-person-fill"></i>
                     <span class="w-full flex justify-between items-center px-3">
@@ -183,8 +203,8 @@
             <!-- Research Records -->
             <li>
                 <a href="{{ url('/erb/research-records') }}"
-                    class="flex items-center justify-between px-3 py-4 transition-all flex duration-200 hover:text-secondary
-                {{ Request::is('erb/research-records') ? 'text-secondary' : '' }} {{ Request::is('erb/submitted-documents') ? 'text-secondary' : '' }}">
+                    class="flex items-center justify-between px-3 py-3 transition-all flex duration-200 hover:text-secondary
+                    {{ Request::is('erb/research-records') || Request::is('erb/submitted-documents/*') ? 'text-secondary' : '' }}">
                     <i class="bi bi-database"></i>
                     <span class="w-full flex justify-between items-center px-3">
                         Research Records
@@ -193,7 +213,7 @@
             </li>
             <!-- Approved Accounts -->
             <li>
-                <a href="{{ url('/erb/approved-accounts') }}" class="flex items-center justify-between px-3 py-4 transition-all flex duration-200 hover:text-secondary
+                <a href="{{ url('/erb/approved-accounts') }}" class="flex items-center justify-between px-3 py-3 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('erb/approved-accounts') ? 'text-secondary' : '' }}">
                     <i class="bi bi-person-check-fill"></i>
                     <span class="w-full flex justify-between items-center px-3">
@@ -203,7 +223,7 @@
             </li>
             <!-- Pending Reviews -->
             <li>
-                <a href="{{ url('/erb/pending-reviews') }}" class="flex items-center justify-between px-3 py-4 transition-all flex duration-200 hover:text-secondary
+                <a href="{{ url('/erb/pending-reviews') }}" class="flex items-center justify-between px-3 py-3 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('erb/pending-reviews') ? 'text-secondary' : '' }}">
                     <i class="bi bi-clock-fill"></i>
                     <span class="w-full flex justify-between items-center px-3">
@@ -211,9 +231,28 @@
                     </span>
                 </a>
             </li>
+            <li>
+                <a href="{{ url('/erb/submitted-tickets') }}" class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary 
+                {{ Request::is('erb/submitted-tickets') ? 'text-secondary' : ''}}">
+                    <i class="bi bi-ticket-detailed"></i>
+                    <span class="w-full flex justify-between items-center px-3">
+                        Submitted Tickets
+                    </span>
+                </a>
+            </li>
+            <!-- Assigned Amendments -->
+            <li>
+                <a href="{{ url('/erb/assigned-amendments') }}" class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary
+            {{ Request::is('erb/assigned-amendments') ? 'text-secondary' : ''}}">
+                    <i class="bi bi-pencil-square"></i>
+                    <span class="w-full flex justify-between items-center px-3">
+                        Assigned Amendments
+                    </span>
+                </a>
+            </li>
             <!-- Settings -->
             <li>
-                <a href="{{ url('/erb/settings') }}" class="flex items-center justify-between px-3 py-4 flex transition-all duration-200 hover:text-secondary
+                <a href="{{ url('/erb/settings') }}" class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary
                 {{ Request::is('erb/settings') ? 'text-secondary' : '' }}">
                     <i class="bi bi-gear-wide-connected"></i>
                     <span class="w-full flex justify-between items-center px-3">

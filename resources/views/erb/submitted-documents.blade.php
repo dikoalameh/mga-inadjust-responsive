@@ -16,8 +16,8 @@
                     <div class="p-3 border border-darkgray bg-lightgray flex justify-between items-center rounded-lg">
                         <div>
                             <h3 class="font-medium text-lg">Form: {{ $file->form?->form_name ?? 'N/A' }}</h3>
-                            <p class="text-gray-700">Document: {{ $file->file_name }}</p>
-                            <p class="text-gray-500 text-sm">Submitted: {{ $file->submitted_at ?? 'N/A' }}</p>
+                            <p>Document: {{ $file->file_name }}</p>
+                            <p class="text-sm">Submitted: {{ $file->submitted_at ?? 'N/A' }}</p>
                         </div>
                         <div class="right">
                             <a href="{{ asset('storage/' . $file->file_path) }}" target="_blank">
@@ -30,6 +30,23 @@
                 @empty
                     <p class="text-gray-500">No submitted documents found.</p>
                 @endforelse
+
+                <!-- HARDCODED LAYOUT (NO BACKEND FOR REFERENCE) -->
+                <div class="p-3 border border-darkgray bg-lightgray flex justify-between items-center rounded-lg">
+                    <div>
+                        <a href="#">
+                            <h3 class="font-medium text-lg text-primary">Form: FORM3A</h3>
+                            <p class="text-gray-700">Document: FORM3A.pdf</p>
+                            <p class="text-gray-500 text-sm">Submitted: 10-21-25</p>
+                        </a>
+                    </div>
+                    <div class="right">
+                        <button type="button" onclick="deleteCard(this)"
+                            class="bg-red-500 hover:bg-red-600 text-white py-2 px-3 rounded duration-200">
+                            <i class="bi bi-trash3-fill text-xl max-sm:text-sm"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -41,3 +58,10 @@
         </div>
     </main>
 </x-erb-layout>
+<script>
+    function deleteCard(button) {
+        // Find the outermost container of the card
+        const card = button.closest('.p-3');
+        if (card) card.remove();
+    }
+</script>

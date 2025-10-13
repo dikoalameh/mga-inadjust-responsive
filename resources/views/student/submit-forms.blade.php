@@ -26,59 +26,124 @@
                 @empty
                     <p class="text-sm text-gray-600">No assigned forms to submit.</p>
                 @endforelse
+                <!-- SAMPLE CODE LANG TO -->
+                <div class="bg-red-200 hover:bg-red-300 my-3 p-4 rounded-lg duration-200">
+                    <div class="flex justify-between items-center">
+                        <div class="block items-center flex-wrap gap-[10px]">
+                            <h2 class="text-lg text-red-900 max-sm:text-base font-semibold">FORM 2(A)</h2>
+                            <p class="text-sm max-sm:text-xs text-red-900">Due at 08/10/2025</p>
+                            <label for="" class="mt-1 text-sm max-sm:text-xs text-red-900">STUDY PROTOCOL REVIEW
+                                CHECKLIST</label>
+                        </div>
+                        <div>
+                            <input type="file" name="uploadForms" id="upload" accept=".doc,.docx,.pdf" multiple hidden>
+                            <label for="upload"
+                                class="flex flex-col items-center justify-center p-2 rounded-lg transition cursor-pointer">
+                                <i class="bi bi-cloud-arrow-up-fill text-blue-600 text-3xl max-md:text-xl"></i>
+                            </label>
+                        </div>
+                    </div>
+                    <div id="toggleExpand" class="hidden mt-5 transition-all duration-300">
+                        <h3 class="text-lg font-semibold mb-2 text-gray-700">Uploaded Files</h3>
+                        <div id="scrollbar"
+                            class="bg-gray-50 h-64 px-3 border-2 border-blue-300 rounded-lg overflow-y-auto">
+                            <!-- Uploaded files go here -->
+                        </div>
+                        <div>
+                            <x-primary-button class="mt-4">
+                                Submit
+                            </x-primary-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SAMPLE CODE OF DIRECTING TO THE SUBMISSION TAB -->
+            <div class="my-4">
+                <h2 class="mb-4 font-semibold text-[20px]">Completed</h2>
+                <a href="#">
+                    <div
+                        class="bg-green-200 hover:bg-green-300 my-3 p-4 rounded-lg flex justify-between items-center duration-200">
+                        <div class="block items-center flex-wrap gap-[10px]">
+                            <h2 class="text-lg text-green-900 max-sm:text-base font-semibold">FORM 2(B)</h2>
+                            <p class="text-sm max-sm:text-xs text-green-900">Due at 08/10/2025</p>
+                            <label for="" class="mt-1 text-sm max-sm:text-xs text-green-900">APPLICATION FOR INITIAL
+                                REVIEW</label>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </main>
 </x-student-layout>
-<script>
-    // pede nyo icomment muna to, nasa sa inyo yan HAHAHAHA
-    window.addEventListener("load", () => {
-        const input = document.getElementById('upload');
-        const filewrapper = document.getElementById('fileWrapper');
+<script> // pede nyo icomment muna to, nasa sa inyo yan HAHAHAHA
+    const upload = document.getElementById("upload");
+    const toggleExpand = document.getElementById("toggleExpand");
+    const scrollbar = document.getElementById("scrollbar");
 
-        // uploading multiple files at the same time
-        input.addEventListener("change", (e) => {
-            const files = e.target.files;
-            for (let i = 0; i < files.length; i++) {
-                let filename = files[i].name;
-                let filetype = files[i].name.split(".").pop();
-                fileshow(filename, filetype);
-            }
+    const showFileBox = (filename) => {
+        const fileBox = document.createElement("div");
+        fileBox.classList.add(
+            "relative", "items-center", "px-3", "py-1", "rounded-md", "shadow-md", "bg-lightgray", "border", "border-darkgray", "shadow-sm", "my-2", "overflow-hidden", "hover:shadow-md", "transition"
+        );
+
+        const inner = document.createElement("div");
+        inner.classList.add("flex", "items-center", "justify-between");
+
+        // Left (icon + filename)
+        const left = document.createElement("div");
+        left.classList.add("flex", "items-center", "space-x-2");
+
+        const name = document.createElement("span");
+        name.textContent = filename;
+        name.classList.add("text-gray-700", "truncate", "max-w-[250px]");
+
+        left.append(name);
+
+        // Right (delete button)
+        const right = document.createElement("span");
+        right.innerHTML = "&times;";
+        right.classList.add("text-gray-400", "hover:text-red-500", "cursor-pointer", "text-xl");
+
+        right.addEventListener("click", () => {
+            fileBox.remove();
+            if (scrollbar.children.length === 0) toggleExpand.classList.add("hidden");
         });
 
-        const fileshow = (filename, filetype) => {
-            // file box
-            const showfileboxElem = document.createElement("div");
-            showfileboxElem.classList.add("flex", "justify-between", "items-center", "my-[10px]", "px-3", "py-1", "shadow-md", "bg-gray", "border", "border-darkgray");
+        inner.append(left, right);
+        fileBox.append(inner);
 
-            // left side
-            const leftElem = document.createElement("div");
-            leftElem.classList.add("flex", "items-center", "flex-wrap", "gap-[10px]")
+        // Smooth progress bar
+        const progressBar = document.createElement("div");
+        progressBar.classList.add(
+            "absolute", "bottom-0", "left-0", "h-[3px]", "bg-blue"
+        );
+        progressBar.style.width = "0%";
+        progressBar.style.transition = "width 3s linear"; // smooth animation
 
-            // file title
-            const filetitleElem = document.createElement("h3");
-            filetitleElem.classList.add("font-semibold", "m-0");
-            filetitleElem.innerHTML = filename;
+        fileBox.append(progressBar);
+        scrollbar.append(fileBox);
 
-            // right side(delete button)
-            const rightElem = document.createElement("div");
-            rightElem.classList.add("right");
-            const crossElem = document.createElement("span");
-            crossElem.classList.add("cursor-pointer", "text-primary", "text-[25px]");
-            crossElem.innerHTML = "&#215;";
+        // Animate smoothly to 100%
+        setTimeout(() => {
+            progressBar.style.width = "100%";
+        }, 100);
 
-            // adds the content to right side of the file box
-            rightElem.append(crossElem);
+        // Instantly stop transition & color change when done
+        setTimeout(() => {
+            progressBar.style.transition = "none"; // removes smooth easing at end
+            progressBar.classList.replace("bg-blue", "bg-white");
+        }, 3000); // same duration as transition
+    };
 
-            // adds the content to the left side of the file box
-            leftElem.append(filetitleElem);
+    upload.addEventListener("change", (e) => {
+        const files = e.target.files;
+        if (files.length > 0) toggleExpand.classList.remove("hidden");
 
-            // adds the right and left content of the file box
-            showfileboxElem.append(leftElem);
-            showfileboxElem.append(rightElem);
-
-            // adds the file box
-            filewrapper.append(showfileboxElem);
+        for (let i = 0; i < files.length; i++) {
+            showFileBox(files[i].name);
         }
+
+        e.target.value = "";
     });
 </script>

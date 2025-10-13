@@ -7,6 +7,18 @@
         </h2>
         <br>
 
+        <!-- CSS NG FILTER + SEARCH BAR -->
+        <div class="top-controls flex items-center max-md:flex-col">
+            <div class="filter-wrapper items-center gap-x-2 max-sm:justify-center max-sm:items-center">
+                <label for="officeFilter">Filter:</label>
+                <select id="officeFilter"
+                    class="w-32 max-md:text-sm h-[35px] leading-[15px] max-sm:h-[31px] max-sm:leading-[11px]">
+                    <option value="">All</option>
+                </select>
+            </div>
+            <div class="search-wrapper max-sm:mt-3 max-sm:justify-center max-sm:items-center"></div>
+        </div>
+
         <table id="myTable" class="display overflow-scroll border-collapse w-full">
             <!-- Table header -->
             <thead class="bg-primary text-white text-lg/7 max-lg:text-base/7">
@@ -24,50 +36,47 @@
             <!-- Table body -->
             <tbody class="text-base/7 max-lg:text-sm/6">
                 @forelse($evaluatedProtocols as $review)
-                <tr>
-                    <!-- Protocol ID with checkbox (moved to first column) -->
-                    <td>
-                        <input 
-                            type="checkbox" 
-                            class="protocol-checkbox w-[14px] h-[14px] mb-1" 
-                            value="{{ $review->protocol_ID }}" 
-                            data-title="{{ $review->research_title }}">
-                        <span>{{ $review->protocol_ID }}</span>
-                    </td>
+                    <tr>
+                        <!-- Protocol ID with checkbox (moved to first column) -->
+                        <td>
+                            <input type="checkbox" class="protocol-checkbox w-[14px] h-[14px] mb-1"
+                                value="{{ $review->protocol_ID }}" data-title="{{ $review->research_title }}">
+                            <span>{{ $review->protocol_ID }}</span>
+                        </td>
 
-                    <!-- Research Title -->
-                    <td>{{ $review->research_title }}</td>
+                        <!-- Research Title -->
+                        <td>{{ $review->research_title }}</td>
 
-                    <!-- Principal Investigator Name -->
-                    <td>{{ $review->user_Fname }}</td>
+                        <!-- Principal Investigator Name -->
+                        <td>{{ $review->user_Fname }}</td>
 
-                    <td>{{ $review->co_investigator }}</td>
+                        <td>{{ $review->co_investigator }}</td>
 
-                    <!-- Status -->
-                    <td>{{ $review->status ?? 'Pending' }}</td>
+                        <!-- Status -->
+                        <td>{{ $review->status ?? 'Pending' }}</td>
 
-                    <!-- Date Submitted -->
-                    <td>
-                        @if($review->date_submitted)
-                            {{ \Carbon\Carbon::parse($review->date_submitted)->format('m/d/Y H:i') }}
-                        @else
-                            N/A
-                        @endif
-                    </td>
+                        <!-- Date Submitted -->
+                        <td>
+                            @if($review->date_submitted)
+                                {{ \Carbon\Carbon::parse($review->date_submitted)->format('m/d/Y H:i') }}
+                            @else
+                                N/A
+                            @endif
+                        </td>
 
-                    <!-- Review Date -->
-                    <td>
-                        @if($review->review_date)
-                            {{ \Carbon\Carbon::parse($review->review_date)->format('m/d/Y H:i') }}
-                        @else
-                            N/A
-                        @endif
-                    </td>
-                </tr>
+                        <!-- Review Date -->
+                        <td>
+                            @if($review->review_date)
+                                {{ \Carbon\Carbon::parse($review->review_date)->format('m/d/Y H:i') }}
+                            @else
+                                N/A
+                            @endif
+                        </td>
+                    </tr>
                 @empty
-                <tr>
-                    <td colspan="6" class="text-center text-gray-500 py-4">No pending reviews available.</td>
-                </tr>
+                    <tr>
+                        <td colspan="6" class="text-center text-gray-500 py-4">No pending reviews available.</td>
+                    </tr>
                 @endforelse
             </tbody>
         </table>
@@ -78,7 +87,8 @@
             <div class="bg-lightgray p-4 shadow-md rounded-md">
                 <h3 class="font-semibold text-lg max-md:text-base mb-3">SELECTED PROTOCOL</h3>
                 <div class="h-16 overflow-y-auto">
-                    <ul id="selectedProtocols" class="list-disc pl-5 flex grid grid-cols-2 max-md:grid-cols-1 max-md:text-sm"></ul>
+                    <ul id="selectedProtocols"
+                        class="list-disc pl-5 flex grid grid-cols-2 max-md:grid-cols-1 max-md:text-sm"></ul>
                 </div>
             </div>
 
@@ -106,6 +116,33 @@
         </div>
     </main>
     <script>
+        $(document).ready(function () {
+            // Only initialize if not already initialized
+            if (!$.fn.dataTable.isDataTable('#myTable')) {
+                const table = new DataTable('#myTable', {
+                    responsive: true,
+                    paging: false,
+                    scrollY: '300px',
+                    order: [[0, 'asc']]
+                });
+
+                // ✅ Move the DataTables search bar into our custom search-wrapper
+                const dtSearch = $('div.dt-search');
+                $('.search-wrapper').append(dtSearch);
+
+                // ✅ Build dropdown filter dynamically
+                const offices = [...new Set(table.column(1).data().toArray())].sort();
+                const select = $('#officeFilter');
+                offices.forEach(o => select.append(`<option value="${o}">${o}</option>`));
+
+                // ✅ Apply filter to Office column
+                select.on('change', function () {
+                    const val = $.fn.dataTable.util.escapeRegex($(this).val());
+                    table.column(1).search(val ? '^' + val + '$' : '', true, false).draw();
+                });
+            }
+        });
+
         // ✅ Keep your checkbox logic (only one can be selected)
         const protocolCheckboxes = document.querySelectorAll(".protocol-checkbox");
         const selectedProtocolsList = document.getElementById("selectedProtocols");
@@ -157,22 +194,22 @@
                     decision: decision
                 }),
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert("✅ " + data.message);
-                    selectedProtocol.closest("tr").classList.add("bg-green-100");
-                    selectedProtocol.checked = false;
-                    document.querySelector('input[name="decision"]:checked').checked = false;
-                    selectedProtocolsList.innerHTML = '';
-                } else {
-                    alert("❌ " + (data.message || "An error occurred."));
-                }
-            })
-            .catch(error => {
-                console.error(error);
-                alert("❌ Unexpected error occurred.");
-            });
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("✅ " + data.message);
+                        selectedProtocol.closest("tr").classList.add("bg-green-100");
+                        selectedProtocol.checked = false;
+                        document.querySelector('input[name="decision"]:checked').checked = false;
+                        selectedProtocolsList.innerHTML = '';
+                    } else {
+                        alert("❌ " + (data.message || "An error occurred."));
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    alert("❌ Unexpected error occurred.");
+                });
         });
     </script>
 </x-erb-layout>

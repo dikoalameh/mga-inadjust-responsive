@@ -7,12 +7,29 @@
         <div class="w-full mx-auto my-8 px-4 py-6 bg-white rounded-lg border-2 border-gray">
             <h1 class="text-primary text-2xl max-md:text-lg font-semibold mb-4">Submission Details</h1>
             <h2 class="text-primary text-xl max-md:text-base font-medium">User: <span id="user-name"></span></h2>
-            <div id="documents-list" class="max-sm:text-sm mt-6 space-y-4 h-64 overflow-y-auto"></div>
-
+            <div id="documents-list" class="max-sm:text-sm mt-6 space-y-4 h-64 overflow-y-auto">
+                <!-- HARDCODED LAYOUT (NO BACKEND FOR REFERENCE) -->
+                <div class="p-3 border border-darkgray bg-lightgray flex justify-between items-center rounded-lg">
+                    <div>
+                        <a href="#">
+                            <h3 class="font-medium text-lg text-primary">Form: FORM3A</h3>
+                            <p class="text-gray-700">Document: FORM3A.pdf</p>
+                            <p class="text-gray-500 text-sm">Submitted: 10-21-25</p>
+                        </a>
+                    </div>
+                    <div class="right">
+                        <button type="button" onclick="deleteCard(this)"
+                            class="bg-red-500 hover:bg-red-600 text-white py-2 px-3 rounded duration-200">
+                            <i class="bi bi-trash3-fill text-xl max-sm:text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        
         </div>
 
         <div class="mt-8">
-            <a href="{{ url('/erb/research-records') }}"
+            <a href="{{ url('/iacuc/research-records') }}"
                 class="bg-secondary hover:bg-primary text-lg max-xl:text-base text-primary hover:text-secondary uppercase tracking-widest px-4 py-2 rounded-md duration-200">
                 Back
             </a>
@@ -26,8 +43,6 @@
             const users = {
                 1: {
                     name: "John Doe", documents: [
-                        { type: "Passport" },
-                        { type: "Visa" }
                     ]
                 }
             };

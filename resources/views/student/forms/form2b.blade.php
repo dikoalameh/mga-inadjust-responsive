@@ -73,31 +73,31 @@
                     <div class="grid 2xl:grid-cols-3 max-md:grid-cols-1 md:grid-cols-2 max-lg:grid-cols-2 gap-y-3">
                         <!-- UNDERGRADUATE STUDENTS -->
                         <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                            <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                            <input type="radio" class="mt-1 max-sm:w-[14px] max-sm:h-[14px]"
                                 name="investigator_type" value="MCU Undergraduate Student" {{ old('investigator_type', $form2b->investigator_type ?? '') == 'MCU Undergraduate Student' ? 'checked' : '' }}>
                             <span>5.1. MCU Undergraduate Student(s)</span>
                         </label>
                         <!-- GRADUATE STUDENTS -->
                         <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                            <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                            <input type="radio" class="mt-1 max-sm:w-[14px] max-sm:h-[14px]"
                                 name="investigator_type" value="MCU Graduate Student" {{ old('investigator_type', $form2b->investigator_type ?? '') == 'MCU Graduate Student' ? 'checked' : '' }}>
                             <span>5.2. MCU Graduate Student (MA, MS, PhD, Medical Student)</span>
                         </label>
                         <!-- FACULTIES -->
                         <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                            <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                            <input type="radio" class="mt-1 max-sm:w-[14px] max-sm:h-[14px]"
                                 name="investigator_type" value="MCU Faculty" {{ old('investigator_type', $form2b->investigator_type ?? '') == 'MCU Faculty' ? 'checked' : '' }}>
                             <span>5.3. MCU Faculty</span>
                         </label>
                         <!-- NON-TEACHING STAFF -->
                         <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                            <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                            <input type="radio" class="mt-1 max-sm:w-[14px] max-sm:h-[14px]"
                                 name="investigator_type" value="MCU Non-Teaching Staff" {{ old('investigator_type', $form2b->investigator_type ?? '') == 'MCU Non-Teaching Staff' ? 'checked' : '' }}>
                             <span>5.4. MCU Non-Teaching Staff</span>
                         </label>
                         <!-- ADMINISTRATIVE STAFF -->
                         <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                            <input type="radio" class="check mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                            <input type="radio" class="mt-1 max-sm:w-[14px] max-sm:h-[14px]"
                                 name="investigator_type" value="MCU Administrative Staff" {{ old('investigator_type', $form2b->investigator_type ?? '') == 'MCU Administrative Staff' ? 'checked' : '' }}>
                             <span>5.5. MCU Administrative Staff</span>
                         </label>
@@ -262,34 +262,33 @@
 
                         <!-- INSTITUTION-FUNDED -->
                         <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                            <input type="radio" name="funds" value="Institution-Funded"
+                            <input type="radio" name="funds" value="Institution-Funded" class="mt-1 max-sm:w-[14px] max-sm:h-[14px]"
                                 {{ old('funds', $form2b->funds ?? '') == 'Institution-Funded' ? 'checked' : '' }}>
                             <span>Institution-Funded</span>
                         </label>
 
                         <!-- Pharmaceutical -->
-                        <label class="flex items-center space-x-2">
-                            <input type="radio" name="funds" value="Pharmaceutical"
+                        <label class="flex items-start space-x-2 max-sm:text-sm/6">
+                            <input type="radio" name="funds" value="Pharmaceutical" class="mt-1 max-sm:w-[14px] max-sm:h-[14px]"
                                 {{ old('funds', optional($form2b)->funds) === 'Pharmaceutical' ? 'checked' : '' }}
                                 onclick="toggleTextbox('pharma', this)">
                             <span>Pharmaceutical</span>
-                        </label>
                         <input type="text" id="pharma" name="funds_pharma_details"
-                            class="border rounded w-full p-2 mt-1"
+                            class="text-sm h-[28px] rounded border border-darkgray"
                             placeholder="If pharmaceutical, specify details"
                             value="{{ old('funds_pharma_details', optional($form2b)->funds === 'Pharmaceutical' ? $form2b->funds_details : '') }}"
                             {{ old('funds', optional($form2b)->funds) === 'Pharmaceutical' ? '' : 'disabled' }}>
+                        </label>
 
 
                         <!-- Others -->
-                        <label class="flex items-center space-x-2 mt-3">
-                            <input type="radio" name="funds" value="Others"
+                        <label class="flex items-start space-x-2 max-sm:text-sm/6">
+                            <input type="radio" name="funds" value="Others" class="mt-1 max-sm:w-[14px] max-sm:h-[14px]"
                                 {{ old('funds', optional($form2b)->funds) === 'Others' ? 'checked' : '' }}
                                 onclick="toggleTextbox('others', this)">
                             <span>Others</span>
-                        </label>
                         <input type="text" id="others" name="funds_others_details"
-                            class="border rounded w-full p-2 mt-1"
+                            class="text-sm h-[28px] rounded border border-darkgray"
                             placeholder="If others, specify details"
                             value="{{ old('funds_others_details', optional($form2b)->funds === 'Others' ? $form2b->funds_details : '') }}"
                             {{ old('funds', optional($form2b)->funds) === 'Others' ? '' : 'disabled' }}>
@@ -324,7 +323,7 @@
 
                 <div class="p-3 space-y-2 text-base">
                     <h2 class="font-bold max-sm:text-sm">Has the Research been submitted to another ERB?</h2>
-                    <div class="grid grid-cols-1 gap-x-5">
+                    <div class="grid grid-cols-1 gap-x-5 gap-y-3 max-sm:gap-y-1">
                         {{-- YES --}}
                         <label class="max-sm:py-1 flex items-start space-x-2 max-sm:text-sm/6">
                             <input type="radio" 
@@ -477,75 +476,74 @@
                     <h2 class="font-bold max-sm:text-sm">Use of special population or vulnerable groups</h2>
                     <div class="grid 2xl:grid-cols-3 max-md:grid-cols-1 md:grid-cols-2 max-lg:grid-cols-2 gap-y-3">
                         <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                            <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="radio" name="special_population" value="Children"
-                                    {{ optional($form2b)->special_population === 'Children' ? 'checked' : '' }}>
-                                <span>11.1. Children (under 18)</span>
-                            </label>
+                            <input type="radio" name="special_population" value="Children" class="mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                {{ optional($form2b)->special_population === 'Children' ? 'checked' : '' }}>
+                            <span>11.1. Children (under 18)</span>
+                        </label>
 
-                            <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="radio" name="special_population" value="Indigenous people"
-                                    {{ optional($form2b)->special_population === 'Indigenous people' ? 'checked' : '' }}>
-                                <span>11.2. Indigenous people</span>
-                            </label>
+                        <label class="flex items-start space-x-2 max-sm:text-sm/6">
+                            <input type="radio" name="special_population" value="Indigenous people" class="mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                {{ optional($form2b)->special_population === 'Indigenous people' ? 'checked' : '' }}>
+                            <span>11.2. Indigenous people</span>
+                        </label>
 
-                            <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="radio" name="special_population" value="Elderly"
-                                    {{ optional($form2b)->special_population === 'Elderly' ? 'checked' : '' }}>
-                                <span>11.3. Elderly</span>
-                            </label>
+                        <label class="flex items-start space-x-2 max-sm:text-sm/6">
+                            <input type="radio" name="special_population" value="Elderly" class="mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                {{ optional($form2b)->special_population === 'Elderly' ? 'checked' : '' }}>
+                            <span>11.3. Elderly</span>
+                        </label>
 
-                            <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="radio" name="special_population" value="People on welfare/social assistance"
-                                    {{ optional($form2b)->special_population === 'People on welfare/social assistance' ? 'checked' : '' }}>
-                                <span>11.4. People on welfare/social assistance</span>
-                            </label>
+                        <label class="flex items-start space-x-2 max-sm:text-sm/6">
+                            <input type="radio" name="special_population" value="People on welfare/social assistance" class="mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                {{ optional($form2b)->special_population === 'People on welfare/social assistance' ? 'checked' : '' }}>
+                            <span>11.4. People on welfare/social assistance</span>
+                        </label>
 
-                            <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="radio" name="special_population" value="Poor and unemployed"
-                                    {{ optional($form2b)->special_population === 'Poor and unemployed' ? 'checked' : '' }}>
-                                <span>11.5. Poor and unemployed</span>
-                            </label>
+                        <label class="flex items-start space-x-2 max-sm:text-sm/6">
+                            <input type="radio" name="special_population" value="Poor and unemployed" class="mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                {{ optional($form2b)->special_population === 'Poor and unemployed' ? 'checked' : '' }}>
+                            <span>11.5. Poor and unemployed</span>
+                        </label>
 
-                            <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="radio" name="special_population" value="Patients in emergency care"
-                                    {{ optional($form2b)->special_population === 'Patients in emergency care' ? 'checked' : '' }}>
-                                <span>11.6. Patients in emergency care</span>
-                            </label>
+                        <label class="flex items-start space-x-2 max-sm:text-sm/6">
+                            <input type="radio" name="special_population" value="Patients in emergency care" class="mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                {{ optional($form2b)->special_population === 'Patients in emergency care' ? 'checked' : '' }}>
+                            <span>11.6. Patients in emergency care</span>
+                        </label>
 
-                            <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="radio" name="special_population" value="Homeless persons"
-                                    {{ optional($form2b)->special_population === 'Homeless persons' ? 'checked' : '' }}>
-                                <span>11.7. Homeless persons</span>
-                            </label>
+                        <label class="flex items-start space-x-2 max-sm:text-sm/6">
+                            <input type="radio" name="special_population" value="Homeless persons" class="mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                {{ optional($form2b)->special_population === 'Homeless persons' ? 'checked' : '' }}>
+                            <span>11.7. Homeless persons</span>
+                        </label>
 
-                            <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="radio" name="special_population" value="Refugees or displaced persons"
-                                    {{ optional($form2b)->special_population === 'Refugees or displaced persons' ? 'checked' : '' }}>
-                                <span>11.8. Refugees or displaced persons</span>
-                            </label>
+                        <label class="flex items-start space-x-2 max-sm:text-sm/6">
+                            <input type="radio" name="special_population" value="Refugees or displaced persons" class="mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                {{ optional($form2b)->special_population === 'Refugees or displaced persons' ? 'checked' : '' }}>
+                            <span>11.8. Refugees or displaced persons</span>
+                        </label>
 
-                            <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="radio" name="special_population" value="Patients with incurable diseases"
-                                    {{ optional($form2b)->special_population === 'Patients with incurable diseases' ? 'checked' : '' }}>
-                                <span>11.9. Patients with incurable diseases</span>
-                            </label>
+                        <label class="flex items-start space-x-2 max-sm:text-sm/6">
+                            <input type="radio" name="special_population" value="Patients with incurable diseases" class="mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                {{ optional($form2b)->special_population === 'Patients with incurable diseases' ? 'checked' : '' }}>
+                            <span>11.9. Patients with incurable diseases</span>
+                        </label>
 
-                            <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="radio" name="special_population" value="Others"
-                                    {{ optional($form2b)->special_population === 'Others' ? 'checked' : '' }}>
-                                <span>11.10. Others</span>
-                                <input type="text" id="others3" name="special_population_others"
-                                    value="{{ optional($form2b)->special_population_others }}"
-                                    placeholder="Indicate"
-                                    {{ optional($form2b)->special_population === 'Others' ? '' : 'disabled' }}>
-                            </label>
+                        <label class="flex items-start space-x-2 max-sm:text-sm/6">
+                            <input type="radio" name="special_population" value="Others" class="mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                {{ optional($form2b)->special_population === 'Others' ? 'checked' : '' }} data-textbox="others3">
+                            <span>11.10. Others</span>
+                            <input type="text" id="others3" name="special_population_others" class="text-sm h-[28px] rounded border border-darkgray"
+                                value="{{ optional($form2b)->special_population_others }}"
+                                placeholder="Indicate"
+                                {{ optional($form2b)->special_population === 'Others' ? '' : 'disabled' }}>
+                        </label>
 
-                            <label class="flex items-start space-x-2 max-sm:text-sm/6">
-                                <input type="radio" name="special_population" value="N/A"
-                                    {{ optional($form2b)->special_population === 'N/A' ? 'checked' : '' }}>
-                                <span>11.11. Not applicable</span>
-                            </label>
+                        <label class="flex items-start space-x-2 max-sm:text-sm/6">
+                            <input type="radio" name="special_population" value="N/A" class="mt-1 max-sm:w-[14px] max-sm:h-[14px]"
+                                {{ optional($form2b)->special_population === 'N/A' ? 'checked' : '' }}>
+                            <span>11.11. Not applicable</span>
+                        </label>
                     </div>
                 </div>
             </div>
@@ -568,60 +566,99 @@
             </div>
         </form>
     </main>
-
+</x-student-layout>
 <script>
-function toggleOthersInput(forceEnable = false) {
-    const othersRadio = document.querySelector('input[name="study_type"][value="Others"]');
-    const othersInput = document.getElementById('others_input');
+    function toggleOthers(forceEnable = false) {
+        const othersRadio = document.querySelector('input[name="funds"][value="Others"]');
+        const pharmaRadio = document.querySelector('input[name="funds"][value="Pharmaceutical"]')
+        const othersInput = document.getElementById('others');
+        const pharmaInput = document.getElementById('pharma')
 
-    if (othersRadio.checked || forceEnable) {
-        othersInput.removeAttribute('disabled');
-        othersInput.focus();
-    } else {
-        othersInput.setAttribute('disabled', true);
-        othersInput.value = '';
+        if (othersRadio.checked || forceEnable) {
+            othersInput.removeAttribute('disabled');
+            pharmaInput.setAttribute('disabled', true);
+            othersInput.focus();
+            pharmaInput.value = '';
+        } else if (pharmaRadio.checked || forceEnable) {
+            pharmaInput.removeAttribute('disabled');
+            othersInput.setAttribute('disabled', true);
+            pharmaInput.focus();
+            othersInput.value = '';
+        } else {
+            othersInput.setAttribute('disabled', true);
+            pharmaInput.setAttribute('disabled', true);
+            othersInput.value = '';
+            pharmaInput.value = '';
+        }
     }
-}
 
-// Attach listener for radio change
-document.querySelectorAll('input[name="study_type"]').forEach(radio => {
-    radio.addEventListener('change', () => {
-        toggleOthersInput();
-    });
-});
+    function toggleOthersInput(forceEnable = false) {
+        const othersRadio = document.querySelector('input[name="study_type"][value="Others"]');
+        const othersInput = document.getElementById('others_input');
 
-
-// Run once on page load in case "Others" is pre-selected
-document.addEventListener("DOMContentLoaded", () => {
-    toggleOthersInput();
-});
-
-
-function toggleTextbox(id, radio) {
-    // Disable all fund textboxes
-    document.getElementById('pharma').disabled = true;
-    document.getElementById('others').disabled = true;
-
-    // Enable only the one chosen
-    const textbox = document.getElementById(id);
-    if (textbox) {
-        textbox.disabled = false;
-        textbox.focus();
+        if (othersRadio.checked || forceEnable) {
+            othersInput.removeAttribute('disabled');
+            othersInput.focus();
+        } else {
+            othersInput.setAttribute('disabled', true);
+            othersInput.value = '';
+        }
     }
-}
 
-document.querySelectorAll('input[name="special_population"]').forEach(radio => {
-        radio.addEventListener('change', function() {
-            const othersInput = document.getElementById('others3');
-            if (this.value === 'Others') {
-                othersInput.removeAttribute('disabled');
-                othersInput.focus();
-            } else {
-                othersInput.setAttribute('disabled', true);
-                othersInput.value = '';
-            }
+    function toggleOthersGroup(forceEnable = false) {
+        const othersRadio = document.querySelector('input[name="special_population"][value="Others"]');
+        const othersInput = document.getElementById('others3');
+
+        if (othersRadio.checked || forceEnable) {
+            othersInput.removeAttribute('disabled');
+            othersInput.focus();
+        } else {
+            othersInput.setAttribute('disabled', true);
+            othersInput.value = '';
+        }
+    }
+
+    // Attach listener for radio change
+    document.querySelectorAll('input[name="funds"]').forEach(radio => {
+        radio.addEventListener('change', () => {
+            toggleOthers();
         });
     });
 
+    document.querySelectorAll('input[name="study_type"]').forEach(radio => {
+        radio.addEventListener('change', () => {
+            toggleOthersInput();
+        });
+    });
+
+    document.querySelectorAll('input[name="special_population"]').forEach(radio => {
+        radio.addEventListener('change', () => {
+            toggleOthersGroup();
+        });
+    });
+
+    // Run once on page load in case "Others" is pre-selected
+    document.addEventListener("DOMContentLoaded", () => {
+        toggleOthers();
+        toggleOthersInput();
+        toggleOthersGroup();
+    });
+
+    function toggleTextbox(id, radio) {
+        // Disable all fund textboxes
+        document.getElementById('pharma').disabled = true;
+        document.getElementById('others').disabled = true;
+
+        // Enable only the one chosen
+        const textbox = document.getElementById(id);
+        if (textbox) {
+            textbox.disabled = false;
+            textbox.focus();
+        }
+
+        else {
+            textbox.disabled = true;
+            textbox.value = '';
+        }
+    }
 </script>
-</x-student-layout>

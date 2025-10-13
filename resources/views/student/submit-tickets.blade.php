@@ -32,7 +32,7 @@
 
                 <!-- Description -->
                 <div class="mt-1">
-                    <label for="description" class="block font-medium">Description</label>
+                    <label for="description" class="block font-medium">Reason</label>
                     <textarea name="Ticket_Description" id="description" rows="10"
                         class="w-full mt-1 p-2 border border-gray rounded resize-none" required></textarea>
                 </div>

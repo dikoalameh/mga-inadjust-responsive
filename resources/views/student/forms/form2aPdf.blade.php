@@ -182,7 +182,7 @@
             </div>
             <span class = "text-sm ml-2">Gantt chart</span>
         </div>
-        <div class ="flex items-center">
+        <div class ="flex items-center border-t">
             <div class = "px-2 w-1/3 border-r">
                 <p class = "text-sm font-bold text-l mb-2">Reviewed and Approved by Thesis Adviser</p>
             </div>

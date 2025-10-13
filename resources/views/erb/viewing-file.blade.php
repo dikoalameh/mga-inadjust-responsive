@@ -22,7 +22,7 @@
                             <h3 class="font-medium">
                                 {{ $file->form->form_name ?? 'No Form Name' }}
                             </h3>
-                            <p class="text-sm text-gray-600">
+                            <p class="text-sm">
                                 {{ $file->file_name }}
                             </p>
                         </div>
@@ -38,6 +38,21 @@
                 @empty
                     <p class="text-gray-500 italic">No uploaded files found for this reviewer.</p>
                 @endforelse
+                <!-- HARDCODED LAYOUT (NO BACKEND FOR REFERENCE) -->
+                <div class="p-3 border border-darkgray bg-lightgray flex justify-between items-center rounded-lg">
+                    <div>
+                        <a href="#">
+                            <h3 class="font-medium text-primary">Form: FORM3A</h3>
+                            <p class="text-sm">Form-3A.pdf</p>
+                        </a>
+                    </div>
+                    <div class="right">
+                        <button type="button" onclick="deleteCard(this)"
+                            class="bg-red-500 hover:bg-red-600 text-white py-2 px-3 rounded duration-200">
+                            <i class="bi bi-trash3-fill max-sm:text-sm"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -49,3 +64,10 @@
         </div>
     </main>
 </x-erb-layout>
+<script>
+    function deleteCard(button) {
+        // Find the outermost container of the card
+        const card = button.closest('.p-3');
+        if (card) card.remove();
+    }
+</script>

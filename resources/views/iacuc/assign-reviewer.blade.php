@@ -69,6 +69,18 @@
         </h2>
         <br>
 
+        <!-- CSS NG FILTER + SEARCH BAR -->
+        <div class="top-controls flex items-center max-md:flex-col">
+            <div class="filter-wrapper items-center gap-x-2 max-sm:justify-center max-sm:items-center">
+                <label for="officeFilter">Filter:</label>
+                <select id="officeFilter"
+                    class="w-32 max-md:text-sm h-[35px] leading-[15px] max-sm:h-[31px] max-sm:leading-[11px]">
+                    <option value="">All</option>
+                </select>
+            </div>
+            <div class="search-wrapper max-sm:mt-3 max-sm:justify-center max-sm:items-center"></div>
+        </div>
+
         <table id="myTable" class="display overflow-scroll border-collapse w-full">
             <!-- Table header -->
             <thead class="bg-primary text-white text-lg/7 max-lg:text-base/7">
@@ -101,21 +113,24 @@
         <div class="grid grid-cols-4 max-sm:block gap-x-5">
             <div class="mt-2 max-sm:max-w-full">
                 <label for="reviewtype" class="block max-sm:text-sm">Type of Review</label>
-                <select name="reviewtype" id="reviewtype" class="w-full max-sm:text-sm border border-darkgray rounded-md h-[35px] leading-[18px] max-md:leading-[15px]">
+                <select name="reviewtype" id="reviewtype"
+                    class="w-full max-sm:text-sm border border-darkgray rounded-md h-[35px] leading-[18px] max-md:leading-[15px]">
                     <option disabled selected>Choose type</option>
                     <option value="exempted">Exempted</option>
                     <option value="expedite">Expedite</option>
                     <option value="fullboard">Full Board</option>
                 </select>
                 <label for="reviewer1" class="mt-3 block max-sm:text-sm">Reviewer 1</label>
-                <select name="reviewer1" id="reviewer1" class="w-full max-sm:text-sm border border-darkgray rounded-md h-[35px] leading-[18px] max-md:leading-[15px]">
+                <select name="reviewer1" id="reviewer1"
+                    class="w-full max-sm:text-sm border border-darkgray rounded-md h-[35px] leading-[18px] max-md:leading-[15px]">
                     <option disabled selected>Choose Reviewer</option>
                     <option value="no1">no.1</option>
                     <option value="no2">no.2</option>
                     <option value="no3">no.3</option>
                 </select>
                 <label for="reviewer2" class="mt-3 block max-sm:text-sm">Reviewer 2</label>
-                <select name="reviewer2" id="reviewer2" class="w-full max-md:text-sm border border-darkgray rounded-md h-[35px] leading-[18px] max-md:leading-[15px]">
+                <select name="reviewer2" id="reviewer2"
+                    class="w-full max-md:text-sm border border-darkgray rounded-md h-[35px] leading-[18px] max-md:leading-[15px]">
                     <option disabled selected>Choose Reviewer</option>
                     <option value="no1">no.1</option>
                     <option value="no2">no.2</option>
@@ -125,10 +140,12 @@
                 <div class="max-md:mt-3 bg-lightgray p-3 font-semibold max-sm:text-sm shadow-md rounded-md">
                     <h3 class="text-lg font-semibold max-md:text-base mb-3">Assignment of Forms</h3>
                     <div class="gap-x-3 gap-y-3 grid grid-cols-2">
-                        <div class="room cursor-pointer bg-gray hover:bg-darkgray px-3 py-2 rounded-md" data-room="Form 2E">
+                        <div class="room cursor-pointer bg-gray hover:bg-darkgray px-3 py-2 rounded-md"
+                            data-room="Form 2E">
                             Form 2E
                         </div>
-                        <div class="room cursor-pointer bg-gray hover:bg-darkgray px-3 py-2 rounded-md" data-room="Form 2J">
+                        <div class="room cursor-pointer bg-gray hover:bg-darkgray px-3 py-2 rounded-md"
+                            data-room="Form 2J">
                             Form 2J
                         </div>
                     </div>
@@ -175,6 +192,32 @@
     </main>
 </x-iacuc-layout>
 <script>
+    $(document).ready(function () {
+        // Only initialize if not already initialized
+        if (!$.fn.dataTable.isDataTable('#myTable')) {
+            const table = new DataTable('#myTable', {
+                responsive: true,
+                paging: false,
+                scrollY: '300px',
+                order: [[0, 'asc']]
+            });
+
+            // ✅ Move the DataTables search bar into our custom search-wrapper
+            const dtSearch = $('div.dt-search');
+            $('.search-wrapper').append(dtSearch);
+
+            // ✅ Build dropdown filter dynamically
+            const offices = [...new Set(table.column(1).data().toArray())].sort();
+            const select = $('#officeFilter');
+            offices.forEach(o => select.append(`<option value="${o}">${o}</option>`));
+
+            // ✅ Apply filter to Office column
+            select.on('change', function () {
+                const val = $.fn.dataTable.util.escapeRegex($(this).val());
+                table.column(1).search(val ? '^' + val + '$' : '', true, false).draw();
+            });
+        }
+    });
     const rooms = document.querySelectorAll(".room");
     const assignedList = document.getElementById("assignedList");
     const submitBtn = document.getElementById("submitBtn");

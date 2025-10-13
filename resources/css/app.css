@@ -5,35 +5,30 @@ table td, table th {
     text-align: left !important;
     position: relative;
 }
-
-@media (max-width: 380px){
-    label {
-        font-size: 14px;
-    }
-
-    .dt-input {
-        height: 27px;
-        font-size: 14px;
-    }
-
-    .dt-info {
-        font-size: 14px;
-    }
+.dt-search input[type="search"] {
+    margin-left: 4px;
+    font-size: 14px;
+    height: 30px;
+    border-radius: 4px;
 }
 
-@media (max-width: 500px){
-    label {
-        font-size: 14px;
-    }
+/* Make search bar move into its own wrapper */
+.search-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+}
 
-    .dt-input {
-        height: 27px;
-        font-size: 14px;
-    }
+/* Make filter move */
+.filter-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    flex: 4.7;
+}
 
-    .dt-info {
-        font-size: 14px;
-    }
+select {
+    padding: 4px 6px;
+    border-radius: 4px;
 }
 
 :root {

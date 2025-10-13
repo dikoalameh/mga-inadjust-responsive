@@ -58,6 +58,13 @@
                             <span>Proof of enrollment (1 photocopied and e-copy of registration form) - <i>for MCU
                                     Students</i></span>
                         </label>
+                        <!-- ETO UNG KULANG NA DINAGDAG KO BASE SA PDF FORM -->
+                        <label class="flex items-start space-x-2 max-sm:text-sm/6">
+                            <input type="checkbox" class="mt-1 max-sm:w-[14px] max-sm:h-[14px]" name="employment_proof"
+                            {{ old('employment_proof')}}>
+                            <span>Proof of Employment (letter of endorsement from direct supervisor) - <i>for teaching, non-teaching, 
+                                    and administrative staff</i></span>
+                        </label>
                         <label class="flex items-start space-x-2 max-sm:text-sm/6">
                             <input type="checkbox" class="mt-1 max-sm:w-[14px] max-sm:h-[14px]" name="letter"
                             {{ old('letter', $form2a->letter ?? false) ? 'checked' : '' }}>

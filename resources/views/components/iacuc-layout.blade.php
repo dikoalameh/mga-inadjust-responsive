@@ -43,45 +43,16 @@
         </main>
     </div>
     <script>
-        new DataTable('#myTable', {
-            paging: false,
-            responsive: true,
-            scrollY: '300px'
-        });
+        document.addEventListener('click', function (e) {
+            // Only stop propagation if the checkbox or button is inside a specific table
+            const isInsideTable = e.target.closest('#myTable'); // or use a more specific class
+            const isCheckboxOrButton = e.target.closest('input[type="checkbox"], button');
+
+            if (isInsideTable && isCheckboxOrButton) {
+                e.stopPropagation(); // Prevent row expand or other unwanted behavior
+            }
+        }, true);
         
-        document.addEventListener("DOMContentLoaded", () => {
-            const radios = document.querySelectorAll("input[type=radio]");
-
-            radios.forEach(radio => {
-                radio.addEventListener("change", () => {
-                    const groupName = radio.name;
-
-                    // Disable all textboxes/textarea in this group
-                    document.querySelectorAll(`[data-group='${groupName}']`).forEach(el => {
-                        el.disabled = true;
-                        el.value = ""; // optional reset (mawawala ung iniinput mo pag clinick mo ung ibang choices hehez)
-                    });
-
-                    // Enable the target linked to this radio (if any)
-                    if (radio.dataset.textbox) {
-                        const target = document.getElementById(radio.dataset.textbox);
-                        if (target) {
-                            target.disabled = false;
-                            target.focus();
-                        }
-                    }
-                });
-            });
-
-            // Auto-check radio when user types in a linked input/textarea
-            document.querySelectorAll("input[type=text][id], textarea[id]").forEach(el => {
-                el.addEventListener("input", () => {
-                    const linkedRadio = document.querySelector(`input[type=radio][data-textbox='${el.id}']`);
-                    if (linkedRadio) linkedRadio.checked = true;
-                });
-            });
-        });
-
         dropDownMenu();
 
         function toggleSidebar() {

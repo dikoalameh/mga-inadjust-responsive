@@ -7,6 +7,18 @@
         </h2>
         <br>
 
+        <!-- CSS NG FILTER + SEARCH BAR -->
+        <div class="top-controls flex items-center max-md:flex-col">
+            <div class="filter-wrapper items-center gap-x-2 max-sm:justify-center max-sm:items-center">
+                <label for="officeFilter">Filter:</label>
+                <select id="officeFilter"
+                    class="w-32 max-md:text-sm h-[35px] leading-[15px] max-sm:h-[31px] max-sm:leading-[11px]">
+                    <option value="">All</option>
+                </select>
+            </div>
+            <div class="search-wrapper max-sm:mt-3 max-sm:justify-center max-sm:items-center"></div>
+        </div>
+
         <table id="myTable" class="display overflow-scroll border-collapse w-full">
             <!-- Table header -->
             <thead class="bg-primary text-white text-lg/7 max-lg:text-base/7">
@@ -51,33 +63,61 @@
             <div class="bg-lightgray p-4 shadow-md rounded-md">
                 <h3 class="text-lg font-semibold mb-3">Assignment of Forms</h3>
                 <div class="gap-x-2 gap-y-2 flex grid max-sm:grid-cols-2 md:grid-cols-4 font-medium">
-                    <div class="room cursor-pointer bg-gray hover:bg-darkgray px-3 py-2 rounded-md"
-                        data-room="Form 2A">Form 2A</div>
-                    <div class="room cursor-pointer bg-gray hover:bg-darkgray px-3 py-2 rounded-md"
-                        data-room="Form 2B">Form 2B</div>
-                    <div class="room cursor-pointer bg-gray hover:bg-darkgray px-3 py-2 rounded-md"
-                        data-room="Form 2C">Form 2C</div>
-                    <div class="room cursor-pointer bg-gray hover:bg-darkgray px-3 py-2 rounded-md"
-                        data-room="Form 2D">Form 2D</div>
+                    <div class="room cursor-pointer bg-gray hover:bg-darkgray px-3 py-2 rounded-md" data-room="Form 2A">
+                        Form 2A</div>
+                    <div class="room cursor-pointer bg-gray hover:bg-darkgray px-3 py-2 rounded-md" data-room="Form 2B">
+                        Form 2B</div>
+                    <div class="room cursor-pointer bg-gray hover:bg-darkgray px-3 py-2 rounded-md" data-room="Form 2C">
+                        Form 2C</div>
+                    <div class="room cursor-pointer bg-gray hover:bg-darkgray px-3 py-2 rounded-md" data-room="Form 2D">
+                        Form 2D</div>
                 </div>
             </div>
 
             <!-- Right Display -->
             <div class="bg-lightgray p-4 shadow-md rounded-md">
                 <h3 class="text-lg font-semibold mb-3">Assigned Rooms</h3>
-                <ul id="assignedList" class="list-disc mx-2 pl-6 pt-2 flex grid grid-cols-3 max-sm:grid-cols-2 gap-x-2 gap-y-3"></ul>
+                <ul id="assignedList"
+                    class="list-disc mx-2 pl-6 pt-2 flex grid grid-cols-3 max-sm:grid-cols-2 gap-x-2 gap-y-3"></ul>
             </div>
         </div>
 
         <!-- Button Outside, Right-Aligned -->
         <div class="flex justify-end mt-4 mx-4">
-            <button id="submitBtn" class="bg-secondary hover:bg-primary text-primary hover:text-secondary px-4 py-3 rounded-md uppercase tracking-widest duration-200">
+            <button id="submitBtn"
+                class="bg-secondary hover:bg-primary text-primary hover:text-secondary px-4 py-3 rounded-md uppercase tracking-widest duration-200">
                 Submit
             </button>
         </div>
     </main>
 </x-iacuc-layout>
 <script>
+    $(document).ready(function () {
+        // Only initialize if not already initialized
+        if (!$.fn.dataTable.isDataTable('#myTable')) {
+            const table = new DataTable('#myTable', {
+                responsive: true,
+                paging: false,
+                scrollY: '300px',
+                order: [[0, 'asc']]
+            });
+
+            // ✅ Move the DataTables search bar into our custom search-wrapper
+            const dtSearch = $('div.dt-search');
+            $('.search-wrapper').append(dtSearch);
+
+            // ✅ Build dropdown filter dynamically
+            const offices = [...new Set(table.column(1).data().toArray())].sort();
+            const select = $('#officeFilter');
+            offices.forEach(o => select.append(`<option value="${o}">${o}</option>`));
+
+            // ✅ Apply filter to Office column
+            select.on('change', function () {
+                const val = $.fn.dataTable.util.escapeRegex($(this).val());
+                table.column(1).search(val ? '^' + val + '$' : '', true, false).draw();
+            });
+        }
+    });
     const rooms = document.querySelectorAll(".room");
     const assignedList = document.getElementById("assignedList");
     const submitBtn = document.getElementById("submitBtn");

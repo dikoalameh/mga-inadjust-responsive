@@ -15,18 +15,18 @@
         </li>
         <!-- Submit Forms -->
         <li>
-            <a href="{{ url('student/submit-forms') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary 
-                {{ Request::is('student/submit-forms') ? 'text-secondary' : '' }}">
-                <i class="bi bi-file-earmark-fill"></i>
-                <span class="w-full flex justify-between items-center px-3">Submit Documents</span>
-            </a>
-        </li>
-        <!-- Download Forms -->
-        <li>
             <a href="{{ url('student/download-forms') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary 
                 {{ Request::is('student/download-forms') || Request::is('student/forms/*') ? 'text-secondary' : '' }}">
                 <i class="bi bi-file-earmark-fill"></i>
                 <span class="w-full flex justify-between items-center px-3">Submit Forms</span>
+            </a>
+        </li>
+        <!-- Submit Documents -->
+        <li>
+            <a href="{{ url('student/submit-forms') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary 
+                {{ Request::is('student/submit-forms') ? 'text-secondary' : '' }}">
+                <i class="bi bi-file-earmark-fill"></i>
+                <span class="w-full flex justify-between items-center px-3">Submit Documents</span>
             </a>
         </li>
         <!-- Submit Tickets -->
@@ -78,18 +78,18 @@
             </li>
             <!-- Submit Forms -->
             <li>
-                <a href="{{ url('student/submit-forms') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary 
-                {{ Request::is('student/submit-forms') ? 'text-secondary' : '' }}">
-                    <i class="bi bi-file-earmark-fill"></i>
-                    <span class="w-full flex justify-between items-center px-3">Submit Documents</span>
-                </a>
-            </li>
-            <!-- Download Forms -->
-            <li>
                 <a href="{{ url('student/download-forms') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary 
                 {{ Request::is('student/download-forms') || Request::is('student/forms/*') ? 'text-secondary' : '' }}">
                     <i class="bi bi-file-earmark-fill"></i>
                     <span class="w-full flex justify-between items-center px-3">Submit Forms</span>
+                </a>
+            </li>
+            <!-- Submit Documents -->
+            <li>
+                <a href="{{ url('student/submit-forms') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary 
+                {{ Request::is('student/submit-forms') ? 'text-secondary' : '' }}">
+                    <i class="bi bi-file-earmark-fill"></i>
+                    <span class="w-full flex justify-between items-center px-3">Submit Documents</span>
                 </a>
             </li>
             <!-- Submit Tickets -->

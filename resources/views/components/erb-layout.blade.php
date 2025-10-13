@@ -43,13 +43,6 @@
         </main>
     </div>
     <script>
-        const table = new DataTable('#myTable', {
-            paging: false,
-            scrollY: '300px',
-            responsive: true,
-            order: [[0, 'asc']]
-        });
-
         document.addEventListener('click', function (e) {
             // Only stop propagation if the checkbox or button is inside a specific table
             const isInsideTable = e.target.closest('#myTable'); // or use a more specific class

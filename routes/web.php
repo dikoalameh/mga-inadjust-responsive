@@ -94,6 +94,16 @@ Route::middleware(['auth', 'access:ERB Admin'])->prefix('erb')->group(function (
 
     Route::get('/erb/view-review-files/{protocolId}/{reviewerId}', [ERBViewReviews::class, 'showFiles'])
     ->name('erb.view-review-files');
+    
+    // Submitted Tickets
+    Route::get('/submitted-tickets', function() {
+        return view('erb.submitted-tickets');
+    });
+    
+    // Assigned Amendments
+    Route::get('/assigned-amendments', function() {
+        return view('erb.assigned-amendments');
+    });
 
     // Settings
     Route::get('/settings', function () {
@@ -149,11 +159,20 @@ Route::middleware(['auth', 'access:IACUC Admin'])->prefix('iacuc')->group(functi
     Route::get('/iacuc/viewing-file', function () {
         return view('iacuc.viewing-file');
     });
+    
+    // Submitted Tickets
+    Route::get('/submitted-tickets', function() {
+        return view('iacuc.submitted-tickets');
+    });
+    
+    // Assigned Amendments
+    Route::get('/assigned-amendments', function() {
+        return view('iacuc.assigned-amendments');
+    });
 
-    // Submitted Documents
-    Route::get('/iacuc/submitted-documents', function () {
+    Route::get('/submitted-documents', function() {
         return view('iacuc.submitted-documents');
-    })->name('iacuc.submitted-documents');
+    });
 });
 
 // superadmin
