@@ -101,8 +101,13 @@ Route::middleware(['auth', 'access:ERB Admin'])->prefix('erb')->group(function (
     });
     
     // Assigned Amendments
-    Route::get('/assigned-amendments', function() {
-        return view('erb.assigned-amendments');
+    Route::get('/assign-amendments', function() {
+        return view('erb.assign-amendments');
+    });
+
+    // Tickets
+    Route::get('/tickets', function() {
+        return view('erb.tickets');
     });
 
     // Settings
@@ -166,12 +171,16 @@ Route::middleware(['auth', 'access:IACUC Admin'])->prefix('iacuc')->group(functi
     });
     
     // Assigned Amendments
-    Route::get('/assigned-amendments', function() {
-        return view('iacuc.assigned-amendments');
+    Route::get('/assign-amendments', function() {
+        return view('iacuc.assign-amendments');
     });
 
     Route::get('/submitted-documents', function() {
         return view('iacuc.submitted-documents');
+    });
+
+    Route::get('/tickets', function() {
+        return view('iacuc.tickets');
     });
 });
 

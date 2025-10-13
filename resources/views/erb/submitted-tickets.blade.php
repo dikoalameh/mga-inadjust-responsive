@@ -17,16 +17,27 @@
                 <tr class="header-table">
                     <th>P.I. Name</th>
                     <th>Research Title</th>
+                    <th>Subject</th>
                     <th>Date Submitted</th>
                     <th>View</th>
                 </tr>
             </thead>
             <tbody class="text-base/7 max-lg:text-sm/6">
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>John Doe</td>
+                    <td>MCU-RRS</td>
+                    <td>Applying for Amendments</td>
+                    <td>
+                        10/25/25<br>
+                        22:30:20
+                    </td>
+                    <td>
+                        <a href="{{ url('erb/tickets') }}">
+                            <button type="button" class="border-2 p-[5px] hover:bg-gray">
+                                View
+                            </button>
+                        </a>
+                    </td>
                 </tr>
             </tbody>
         </table>

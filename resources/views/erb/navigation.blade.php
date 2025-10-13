@@ -100,13 +100,13 @@
                 </span>
             </a>
         </li>
-        <!-- Assigned Amendments -->
+        <!-- Assign Amendments -->
         <li>
-            <a href="{{ url('/erb/assigned-amendments') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary
-            {{ Request::is('erb/assigned-amendments') ? 'text-secondary' : ''}}">
+            <a href="{{ url('/erb/assign-amendments') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary
+            {{ Request::is('erb/assign-amendments') ? 'text-secondary' : ''}}">
                 <i class="bi bi-pencil-square"></i>
                 <span class="w-full flex justify-between items-center px-3">
-                    Assigned Amendments
+                    Assign Amendments
                 </span>
             </a>
         </li>
@@ -240,13 +240,13 @@
                     </span>
                 </a>
             </li>
-            <!-- Assigned Amendments -->
+            <!-- Assign Amendments -->
             <li>
-                <a href="{{ url('/erb/assigned-amendments') }}" class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary
-            {{ Request::is('erb/assigned-amendments') ? 'text-secondary' : ''}}">
+                <a href="{{ url('/erb/assign-amendments') }}" class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary
+            {{ Request::is('erb/assign-amendments') ? 'text-secondary' : ''}}">
                     <i class="bi bi-pencil-square"></i>
                     <span class="w-full flex justify-between items-center px-3">
-                        Assigned Amendments
+                        Assign Amendments
                     </span>
                 </a>
             </li>

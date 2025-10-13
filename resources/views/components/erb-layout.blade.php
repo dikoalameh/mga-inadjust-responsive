@@ -123,6 +123,31 @@
 
         // Update the text content of the header and the <title> tag
         document.getElementById("page-title").textContent = pageTitle;
+
+        // ✅ Modal element references
+        const modal = document.getElementById("modal");
+        const piName = document.getElementById("piName");
+        const researchTitle = document.getElementById("researchTitle");
+        const subjectField = document.getElementById("subjectField");
+
+        // ✅ Modal functions
+        function openModal(name, title, subject) {
+            piName.value = name;
+            researchTitle.value = title;
+            subjectField.textContent = subject;
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+        }
+
+        function closeModal() {
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+        }
+
+        // Close modal when clicking outside content
+        window.onclick = (e) => {
+            if (e.target === modal) closeModal();
+        };
     </script>
 </body>
 

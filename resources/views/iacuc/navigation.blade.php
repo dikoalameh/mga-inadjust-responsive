@@ -94,20 +94,20 @@
         <!-- Submitted Tickets -->
         <li>
             <a href="{{ url('/iacuc/submitted-tickets') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary 
-                {{ Request::is('iacuc/submitted-tickets') ? 'text-secondary' : ''}}">
+                {{ Request::is('iacuc/submitted-tickets') || Request::is('iacuc/tickets') || Request::is('iacuc/tickets/*') ? 'text-secondary' : ''}}">
                 <i class="bi bi-ticket-detailed"></i>
                 <span class="w-full flex justify-between items-center px-3">
                     Submitted Tickets
                 </span>
             </a>
         </li>
-        <!-- Assigned Amendments -->
+        <!-- Assign Amendments -->
         <li>
-            <a href="{{ url('/iacuc/assigned-amendments') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary
-            {{ Request::is('iacuc/assigned-amendments') ? 'text-secondary' : ''}}">
+            <a href="{{ url('/iacuc/assign-amendments') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary
+            {{ Request::is('iacuc/assign-amendments') ? 'text-secondary' : ''}}">
                 <i class="bi bi-pencil-square"></i>
                 <span class="w-full flex justify-between items-center px-3">
-                    Assigned Amendments
+                    Assign Amendments
                 </span>
             </a>
         </li>
@@ -149,14 +149,14 @@
         <ul class="text-white max-2xl:mt-[65px] max-sm:mt-[55px]">
             <!-- Dashboard -->
             <li>
-                <a href="{{ url('iacuc/dashboard') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary
+                <a href="{{ url('iacuc/dashboard') }}" class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary
                 {{ Request::is('iacuc/dashboard') ? 'text-secondary' : '' }}">
                     <i class="bi bi-file-earmark-bar-graph-fill"></i>
                     <span class="w-full flex justify-between items-center px-3">Dashboard</span>
                 </a>
             </li>
             <!-- Dropdown -->
-            <li class="px-3 py-4">
+            <li class="px-3 py-3">
                 <button class="dropdownToggle w-full flex justify-between items-center hover:text-secondary transition-all 
                 {{ Request::is('iacuc/view-reviews') ? 'text-secondary' : '' }} {{ Request::is('iacuc/assign-reviewer')
                 || Request::is('iacuc/viewing-file') ? 'text-secondary' : '' }}">
@@ -193,7 +193,7 @@
             </li>
             <!-- Pending Accounts -->
             <li>
-                <a href="{{ url('iacuc/iro-approved-accounts') }}" class="flex items-center justify-between px-3 py-4 transition-all flex duration-200 hover:text-secondary
+                <a href="{{ url('iacuc/iro-approved-accounts') }}" class="flex items-center justify-between px-3 py-3 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('iacuc/iro-approved-accounts') ? 'text-secondary' : '' }}">
                     <i class="bi bi-person-fill"></i>
                     <span class="w-full flex justify-between items-center px-3">
@@ -203,7 +203,7 @@
             </li>
             <!-- Research Records -->
             <li>
-                <a href="{{ url('iacuc/research-records') }}" class="flex items-center justify-between px-3 py-4 transition-all flex duration-200 hover:text-secondary
+                <a href="{{ url('iacuc/research-records') }}" class="flex items-center justify-between px-3 py-3 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('iacuc/research-records') ? 'text-secondary' : '' }}">
                     <i class="bi bi-database"></i>
                     <span class="w-full flex justify-between items-center px-3">
@@ -213,7 +213,7 @@
             </li>
             <!-- Approved Accounts -->
             <li>
-                <a href="{{ url('iacuc/approved-accounts') }}" class="flex items-center justify-between px-3 py-4 transition-all flex duration-200 hover:text-secondary
+                <a href="{{ url('iacuc/approved-accounts') }}" class="flex items-center justify-between px-3 py-3 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('iacuc/approved-accounts') ? 'text-secondary' : '' }}">
                     <i class="bi bi-person-check-fill"></i>
                     <span class="w-full flex justify-between items-center px-3">
@@ -223,7 +223,7 @@
             </li>
             <!-- Pending Reviews -->
             <li>
-                <a href="{{ url('iacuc/pending-reviews') }}" class="flex items-center justify-between px-3 py-4 transition-all flex duration-200 hover:text-secondary
+                <a href="{{ url('iacuc/pending-reviews') }}" class="flex items-center justify-between px-3 py-3 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('iacuc/pending-reviews') ? 'text-secondary' : '' }}">
                     <i class="bi bi-clock-fill"></i>
                     <span class="w-full flex justify-between items-center px-3">
@@ -234,26 +234,26 @@
             <!-- Submitted Documents -->
             <li>
                 <a href="{{ url('/iacuc/submitted-tickets') }}" class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary 
-                {{ Request::is('iacuc/submitted-tickets') ? 'text-secondary' : ''}}">
+                {{ Request::is('iacuc/submitted-tickets') || Request::is('iacuc/tickets') || Request::is('iacuc/tickets/*') ? 'text-secondary' : ''}}">
                     <i class="bi bi-ticket-detailed"></i>
                     <span class="w-full flex justify-between items-center px-3">
                         Submitted Tickets
                     </span>
                 </a>
             </li>
-            <!-- Assigned Amendments -->
+            <!-- Assign Amendments -->
             <li>
-                <a href="{{ url('/iacuc/assigned-amendments') }}" class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary
-            {{ Request::is('iacuc/assigned-amendments') ? 'text-secondary' : ''}}">
+                <a href="{{ url('/iacuc/assign-amendments') }}" class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary
+            {{ Request::is('iacuc/assign-amendments') ? 'text-secondary' : ''}}">
                     <i class="bi bi-pencil-square"></i>
                     <span class="w-full flex justify-between items-center px-3">
-                        Assigned Amendments
+                        Assign Amendments
                     </span>
                 </a>
             </li>
             <!-- Settings -->
             <li>
-                <a href="{{ url('iacuc/settings') }}" class="flex items-center justify-between px-3 py-4 flex transition-all duration-200 hover:text-secondary
+                <a href="{{ url('iacuc/settings') }}" class="flex items-center justify-between px-3 py-3 flex transition-all duration-200 hover:text-secondary
                 {{ Request::is('iacuc/settings') ? 'text-secondary' : '' }}">
                     <i class="bi bi-gear-wide-connected"></i>
                     <span class="w-full flex justify-between items-center px-3">
