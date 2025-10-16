@@ -1,0 +1,108 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\ResearchInformation;
+use Illuminate\Http\Request;
+use App\Models\FormsTable;
+use App\Models\ResearchFiles;
+use App\Models\User;
+use Illuminate\Support\Facades\Storage;
+
+class ResearchFileController extends Controller
+{
+    public function showForm($formId)
+    {
+        $student = auth()->user();
+
+        // find the form assigned to this student
+        $form = $student->forms()
+            ->where('tbl_forms.form_type', 'Submission')
+            ->where('tbl_forms.form_id', $formId)
+            ->firstOrFail();
+
+        // check if the current student already submitted
+        $submitted = ResearchFiles::where('user_ID', $student->user_ID)
+            ->where('form_id', $formId)
+            ->exists();
+
+        return view('student.submit-form-layout', compact('form', 'submitted'));
+    }
+
+    public function storeSubmission(Request $request, $formId)
+    {
+        $request->validate([
+            'uploadForms.*' => 'required|mimes:doc,docx,pdf|max:2048',
+        ]);
+
+        $user = auth()->user();
+        $folderPath = "researchFolder/{$user->user_ID}";
+
+        if ($request->hasFile('uploadForms')) {
+            foreach ($request->file('uploadForms') as $file) {
+                $filename = time() . '_' . $file->getClientOriginalName();
+
+                // Save file into storage/app/public/researchFolder/{user_ID}
+                $filePath = $file->storeAs($folderPath, $filename, 'public');
+
+                // Insert record
+                ResearchFiles::create([
+                    'user_ID'      => $user->user_ID,
+                    'form_id'      => $formId,
+                    'file_name'    => $filename,
+                    'file_path'    => $filePath,
+                    'submitted_at' => now(),
+                ]);
+            }
+        }
+
+        return redirect()->back()->with('success', 'Files submitted successfully!');
+    }
+
+    public function submittedDocuments($userId)
+    {
+        $piFiles = User::with(['researchFiles' => function($query) {
+            $query->where('status', 'active'); // Only show active files
+        }])->findOrFail($userId);
+
+        return view('erb.submitted-documents', compact('piFiles'));
+    }
+
+    // Add this method to handle soft deletion
+    public function softDeleteResearchFile($fileId)
+    {
+        try {
+            $researchFile = ResearchFiles::findOrFail($fileId);
+            $researchFile->update(['status' => 'inactive']);
+            
+            return redirect()->back()->with('success', 'Document deleted successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error deleting document');
+        }
+    }
+
+    public function researchRecords()
+    {
+        $researchRecords = ResearchInformation::with([
+            // Load the P.I. user and their related data
+            'user' => function ($query) {
+                $query->with([
+                    // Load all submitted files
+                    'researchFiles',
+                    // Load all initial reviews and reviewers
+                    'initialReviews' => function ($q) {
+                        $q->with([
+                            'protocol',        // Load protocol info
+                            'reviewer1',       // Load reviewer 1 details
+                            'reviewer2',       // Load reviewer 2 details
+                        ]);
+                    },
+                    // Load approved decisions
+                    'approved'
+                ]);
+            },
+        ])->get();
+
+        return view('erb.research-records', compact('researchRecords'));
+    }
+}
