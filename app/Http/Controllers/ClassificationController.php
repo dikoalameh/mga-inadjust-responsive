@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Classification;
 use App\Mail\UserCredentialMail;
 use App\Models\User;
+use App\Notifications\UserClassified;
 use Illuminate\Support\Facades\Mail;
 
 class ClassificationController extends Controller
@@ -31,6 +32,9 @@ class ClassificationController extends Controller
         $userIds = $request->user_ids;
         $classificationType = $request->reviewClassification;
 
+        // Get ERB admins to notify
+        $erbAdmins = User::where('user_Access', 'ERB Admin')->get();
+
         foreach ($userIds as $id) {
             // Find or create classification for each user
             $classification = Classification::firstOrCreate(
@@ -49,6 +53,11 @@ class ClassificationController extends Controller
             $user = User::find($id);
             if ($user) {
                 Mail::to($user->user_Email)->queue(new UserCredentialMail($user, $classificationType));
+                
+                // Send notification to all ERB admins
+                foreach ($erbAdmins as $admin) {
+                    $admin->notify(new UserClassified($user, $classificationType));
+                }
             }
         }
 
@@ -58,32 +67,3 @@ class ClassificationController extends Controller
         ]);
     }
 }
-
-// Update classification
-    /*public function update(Request $request, $id) {
-    {
-        $request->validate([
-            'reviewClassification' => 'required|string|max:255',
-        ]);
-
-        // Find or create the classification for this user
-        $classification = Classification::firstOrCreate(
-            ['user_ID' => $id],
-            ['classificationStatus' => 'Pending']
-        );
-
-        // Update classification and mark as approved
-        $classification->update([
-            'reviewClassification' => $request->reviewClassification,
-            'classificationStatus' => 'Approved',
-            'classificationDate' => now()
-        ]);
-
-        // Send email to user
-        $user = User::findOrFail($id);
-        Mail::to($user->user_Email)
-            ->send(new UserCredentialMail($user, $request->reviewClassification));
-
-        return redirect()->back()->with('success', 'User classified and credentials sent successfully!');
-    }
-    }*/

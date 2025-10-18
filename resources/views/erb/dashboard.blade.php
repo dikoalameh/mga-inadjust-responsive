@@ -23,7 +23,6 @@
             </div>
             <!-- User Account Cards -->
             @php
-
                 // Total users classified under ERB
                 $totalUsers = App\Models\User::where('user_Access', 'Principal Investigator')
                     ->whereHas('classifications', function ($query) {
@@ -39,6 +38,9 @@
                 $approvedUsers = App\Models\User::where('user_Access', 'Principal Investigator')
                     ->has('forms')
                     ->count();
+
+                // Get notifications for the current ERB admin
+                $notifications = auth()->user()->unreadNotifications ?? collect();
             @endphp
             <div>
                 <h2 class="text-[20px] max-sm:text-[17px] font-semibold mb-4">USERS ACCOUNT</h2>
@@ -96,36 +98,42 @@
                     <div class="max-w-5xl mx-auto max-md:px-1 px-4 py-4 flex items-center justify-between">
                         <h1 class="text-2xl max-md:text-xl max-sm:text-lg font-semibold text-gray-800">Notifications
                         </h1>
-                        <button
-                            class="text-sm max-md:text-xs text-blue hover:text-darkblue duration-200">Mark all as read</button>
+                        <button onclick="markAllAsRead()" class="text-sm max-md:text-xs text-blue hover:text-darkblue duration-200">Mark all as read</button>
                     </div>
                     <div class="max-w-5xl mx-auto max-md:px-0 px-4 py-6 max-md:py-2">
                         <div class="bg-white shadow-sm border-2 border-gray">
                             <!-- Scroll area -->
                             <ul class="h-[32rem] overflow-y-auto scrollbar divide-y divide-gray">
-                                <!-- Notification item -->
-                                <li class="p-4 flex gap-4 hover:bg-gray duration-200">
-                                    <div
-                                        class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
-                                        <!-- Any icons -->
-                                        <svg class="w-5 h-5 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm-1-4h2v2H9v-2zm0-8h2v6H9V6z" />
-                                        </svg>
+                                @forelse($notifications as $notification)
+                                <li class="p-4 flex gap-4 hover:bg-gray duration-200 cursor-pointer">
+                                    <form method="POST" action="{{ route('erb.notification.markRead', $notification->id) }}" class="hidden" id="form-{{ $notification->id }}">
+                                        @csrf
+                                    </form>
+                                    <div onclick="document.getElementById('form-{{ $notification->id }}').submit()" class="flex gap-4 w-full">
+                                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
+                                                <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm-1-4h2v2H9v-2zm0-8h2v6H9V6z" />
+                                            </svg>
+                                        </div>
+                                        <div class="flex-1">
+                                            <p class="text-sm text-gray-800">
+                                                <span class="font-medium">{{ $notification->data['name'] ?? 'User' }}</span> 
+                                                {{ $notification->data['message'] ?? 'has been classified' }}
+                                            </p>
+                                            <p class="text-xs text-gray-500 mt-1">
+                                                {{ $notification->created_at->diffForHumans() }}
+                                            </p>
+                                        </div>
+                                        @if($notification->unread())
+                                        <span class="inline-flex w-3 h-3 rounded-full bg-blue self-center"></span>
+                                        @endif
                                     </div>
-                                    <div class="flex-1">
-                                        <p class="text-sm text-gray-800">
-                                            <span class="font-medium">Your name</span> commented on your post
-                                        </p>
-                                        <p class="text-xs text-gray-500 mt-1">5 minutes ago</p>
-                                    </div>
-                                    <span class="inline-flex w-3 h-3 rounded-full bg-blue self-center"></span>
                                 </li>
-
-                                <!-- Duplicate <li> blocks to simulate many notifications -->
-                                <template id="notification-template">
-                                    <!-- Same markup as above -->
-                                </template>
-
+                                @empty
+                                <li class="p-4 text-center text-gray-500">
+                                    No new notifications
+                                </li>
+                                @endforelse
                             </ul>
                         </div>
                     </div>
@@ -161,6 +169,7 @@
         </div>
     </main>
 </x-erb-layout>
+
 <script>
     $(document).ready(function () {
         // Only initialize if not already initialized
@@ -176,5 +185,42 @@
             const dtSearch = $('div.dt-search');
             $('.search-wrapper').append(dtSearch);
         }
+
+        // Mark notification as read when clicked
+        $('.notification-item').click(function() {
+            const notificationId = $(this).data('id');
+            markAsRead(notificationId);
+        });
     });
+
+    function markAsRead(notificationId) {
+        fetch(`/notifications/${notificationId}/read`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        }).then(response => {
+            if (response.ok) {
+                // Remove the blue dot
+                $(`.notification-item[data-id="${notificationId}"]`).find('.bg-blue').remove();
+            }
+        });
+    }
+
+    function markAllAsRead() {
+        // Create a form and submit it
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '{{ route("erb.notification.markAllRead") }}';
+        
+        const csrfToken = document.createElement('input');
+        csrfToken.type = 'hidden';
+        csrfToken.name = '_token';
+        csrfToken.value = '{{ csrf_token() }}';
+        
+        form.appendChild(csrfToken);
+        document.body.appendChild(form);
+        form.submit();
+    }
 </script>
