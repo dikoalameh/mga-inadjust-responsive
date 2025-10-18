@@ -9,6 +9,8 @@ use App\Models\InitialReview;
 use App\Models\FormsTable;
 use App\Models\EvaluatedReviews;
 use Illuminate\Validation\Rule;
+use App\Notifications\NewProtocolAssigned;
+use App\Notifications\ResearchUnderReview;
 
 class assignReviewer extends Controller
 {
@@ -41,7 +43,7 @@ class assignReviewer extends Controller
             'reviewer1_ID' => 'required|string',
             'reviewer2_ID' => 'required|string',
             'assigned_forms' => [
-            'array',
+                'array',
                 Rule::requiredIf(function () use ($request) {
                     return $request->reviewer1_ID !== 'N/A' || $request->reviewer2_ID !== 'N/A';
                 }),
@@ -49,7 +51,6 @@ class assignReviewer extends Controller
         ]);
 
         foreach ($request->pis as $piID) {
-
             // 🔹 Generate Incremental Protocol Code
             $year = date('Y');
             $latestProtocol = Protocol::where('protocol_ID', 'like', "ERB-$year-%")
@@ -68,6 +69,10 @@ class assignReviewer extends Controller
                 'user_ID' => $piID,
                 'review_type' => $request->review_type,
             ]);
+
+            // 🔹 Get PI (Student) details for notification
+            $piUser = User::find($piID);
+            $piName = $piUser ? $piUser->user_Fname . ' ' . $piUser->user_Lname : 'Unknown';
 
             // 🔹 Determine valid reviewers
             $reviewers = [
@@ -97,6 +102,12 @@ class assignReviewer extends Controller
                         'status' => 'Pending',
                         'completed_at' => now(),
                     ]);
+
+                    // 🔹 Notify Reviewer
+                    $reviewer = User::find($reviewerID);
+                    if ($reviewer) {
+                        $reviewer->notify(new NewProtocolAssigned($protocolCode, $piName, $request->review_type));
+                    }
                 }
             }
 
@@ -104,10 +115,15 @@ class assignReviewer extends Controller
             if (!$reviewers['reviewer1'] && !$reviewers['reviewer2']) {
                 EvaluatedReviews::create([
                     'protocol_ID' => $protocol->protocol_ID,
-                    'reviewer_ID' => null, // ✅ works because reviewer_ID is nullable
+                    'reviewer_ID' => null,
                     'status' => 'Completed',
                     'completed_at' => now(),
                 ]);
+            }
+
+            // 🔹 Notify Student (PI) that their research is under review
+            if ($piUser) {
+                $piUser->notify(new ResearchUnderReview($protocolCode, $request->review_type));
             }
         }
 

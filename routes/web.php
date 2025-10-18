@@ -277,6 +277,18 @@ Route::middleware(['auth', 'access:ERB Reviewer', 'check.reviewer.info', 'no-cac
     Route::get('/protocol-assign', [ERBReviewer::class, 'index'])
     ->name('erb-reviewer.protocol-assign');
 
+    Route::post('/notifications/{id}/mark-read', function ($id) {
+        $notification = auth()->user()->notifications()->find($id);
+        if ($notification) {
+            $notification->markAsRead();
+        }
+        return back()->with('success', 'Notification marked as read.');
+    })->name('erb-reviewer.notification.markRead');
+
+    Route::post('/notifications/mark-all-read', function () {
+        auth()->user()->unreadNotifications->markAsRead();
+        return back()->with('success', 'All notifications marked as read.');
+    })->name('erb-reviewer.notification.markAllRead');
     // Settings
     Route::get('/settings', function () {
         return view('erb-reviewer.settings');

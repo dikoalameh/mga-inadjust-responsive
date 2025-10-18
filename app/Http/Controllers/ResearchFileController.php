@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\FormsTable;
 use App\Models\ResearchFiles;
 use App\Models\User;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\FileUploaded;
 use Illuminate\Support\Facades\Storage;
 
 class ResearchFileController extends Controller
@@ -53,6 +55,13 @@ class ResearchFileController extends Controller
                     'file_path'    => $filePath,
                     'submitted_at' => now(),
                 ]);
+
+                // Send notification to all ERB Admins
+                $adminUsers = User::where('user_Access', 'ERB Admin')->get();
+                
+                if ($adminUsers->isNotEmpty()) {
+                    Notification::send($adminUsers, new FileUploaded($user, $formId, $filename));
+                }
             }
         }
 
