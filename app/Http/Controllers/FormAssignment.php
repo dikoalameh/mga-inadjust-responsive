@@ -6,6 +6,8 @@ use App\Models\FormsTable;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\ResearchFiles;
+use App\Notifications\FormsAssigned;
+use Illuminate\Support\Facades\Notification;
 
 class FormAssignment extends Controller
 {
@@ -52,8 +54,8 @@ class FormAssignment extends Controller
     public function assignFormsAjax(Request $request)
     {
         $request->validate([
-        'user_ids' => 'required|array',
-        'form_ids' => 'required|array',
+            'user_ids' => 'required|array',
+            'form_ids' => 'required|array',
         ]);
 
         foreach ($request->user_ids as $userId) {
@@ -62,6 +64,9 @@ class FormAssignment extends Controller
             if ($user) {
                 // Save to tbl_forms_user (pivot)
                 $user->forms()->syncWithoutDetaching($request->form_ids);
+                
+                // Send notification ONLY to this specific user
+                $user->notify(new FormsAssigned($request->form_ids));
             }
         }
 

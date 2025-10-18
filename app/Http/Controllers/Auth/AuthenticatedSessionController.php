@@ -16,13 +16,10 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View|RedirectResponse
     {
-        // More immediate redirect for authenticated users
+        // Server-side only check - no AJAX needed
         if (Auth::check()) {
-            // Clear any cached version
+            // Add headers to prevent caching
             header("Cache-Control: no-cache, no-store, must-revalidate");
-            header("Pragma: no-cache");
-            header("Expires: 0");
-            
             return $this->redirectToDashboard(Auth::user());
         }
 

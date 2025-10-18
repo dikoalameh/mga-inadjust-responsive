@@ -41,7 +41,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/check-session', function () {
+Route::middleware('throttle:10,1')->get('/check-session', function () {
     if (Auth::check()) {
         $user = Auth::user();
         $redirectUrl = match($user->user_Access) {
@@ -59,7 +59,6 @@ Route::get('/check-session', function () {
             'redirectUrl' => $redirectUrl
         ]);
     }
-    
     return response()->json(['loggedIn' => false]);
 })->name('check-session');
 
@@ -371,7 +370,21 @@ Route::middleware(['auth', 'access:Principal Investigator', 'no-cache', 'prevent
     Route::get('/settings', function () {
         return view('student.settings');
     });
-    Route::post('/tickets/store', [TicketController::class, 'store'])->name('student.tickets.store');
+    Route::post('/tickets/store', [TicketController::class, 'store'])
+    ->name('student.tickets.store');
+
+    Route::post('/notifications/{id}/mark-read', function ($id) {
+    $notification = auth()->user()->notifications()->find($id);
+    if ($notification) {
+        $notification->markAsRead();
+    }
+    return back()->with('success', 'Notification marked as read.');
+    })->name('student.notification.markRead');
+
+    Route::post('/notifications/mark-all-read', function () {
+        auth()->user()->unreadNotifications->markAsRead();
+        return back()->with('success', 'All notifications marked as read.');
+    })->name('student.notification.markAllRead');
     
     // sample form layout
     Route::prefix('forms')->group(function () {
