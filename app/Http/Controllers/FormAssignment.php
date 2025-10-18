@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\FormsTable;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\ResearchFiles;
 
 class FormAssignment extends Controller
 {
@@ -77,14 +78,34 @@ class FormAssignment extends Controller
     }
 
     public function assignedSubmissionDisplay(){
-        $student = auth()->user();
+    $student = auth()->user();
 
-        $submissionForms = $student->forms()
-            ->where('form_type', 'Submission')
-            ->get();
-        
-        return view('student.submit-forms', compact('submissionForms'));
-    }
+    $submissionForms = $student->forms()
+        ->where('form_type', 'Submission')
+        ->get()
+        ->map(function($form) use ($student) {
+            // Check if this form has been submitted by the student with ACTIVE status
+            $submission = ResearchFiles::where('user_ID', $student->user_ID)
+                ->where('form_id', $form->form_id)
+                ->where('status', 'active')
+                ->latest()
+                ->first();
+            
+            // Add the submission status to the form object
+            $form->is_submitted = !is_null($submission);
+            
+            // Get the submission date if exists (only from active submissions)
+            if ($form->is_submitted) {
+                $form->submitted_at = $submission->submitted_at;
+            } else {
+                $form->submitted_at = null;
+            }
+            
+            return $form;
+        });
+    
+    return view('student.submit-forms', compact('submissionForms'));
+}
 
     public function assignedFormsLogs()
     {
