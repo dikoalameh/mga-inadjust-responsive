@@ -7,6 +7,7 @@ use App\Http\Controllers\FormAssignment;
 use App\Http\Controllers\MonitoringDashboard;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\PdfExportController;
@@ -40,6 +41,28 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/check-session', function () {
+    if (Auth::check()) {
+        $user = Auth::user();
+        $redirectUrl = match($user->user_Access) {
+            'Superadmin' => route('superadmin.dashboard'),
+            'ERB Admin' => route('erb.dashboard'),
+            'IACUC Admin' => route('iacuc.dashboard'),
+            'ERB Reviewer' => route('erb-reviewer.dashboard'),
+            'IACUC Reviewer' => route('iacuc-reviewer.dashboard'),
+            'Principal Investigator' => route('student.dashboard'),
+            default => null,
+        };
+        
+        return response()->json([
+            'loggedIn' => true,
+            'redirectUrl' => $redirectUrl
+        ]);
+    }
+    
+    return response()->json(['loggedIn' => false]);
+})->name('check-session');
+
 Route::get('/send-otp', function () {
     return view('auth.send-otp');
 })->name('send.otp');
@@ -52,8 +75,8 @@ Route::get('/register-co-inv', function () {
     return view('auth.register-co-inv');
 });
 
-// erb
-Route::middleware(['auth', 'access:ERB Admin'])->prefix('erb')->group(function () {
+// erb - ADDED no-cache MIDDLEWARE
+Route::middleware(['auth', 'access:ERB Admin', 'no-cache','prevent-back'])->prefix('erb')->group(function () {
     Route::get('/dashboard', function () {
         return view('erb.dashboard');
     })->name('erb.dashboard');
@@ -136,8 +159,8 @@ Route::middleware(['auth', 'access:ERB Admin'])->prefix('erb')->group(function (
     })->name('erb.notification.markAllRead');
 });
 
-// iacuc
-Route::middleware(['auth', 'access:IACUC Admin'])->prefix('iacuc')->group(function () {
+// iacuc - ADDED no-cache MIDDLEWARE
+Route::middleware(['auth', 'access:IACUC Admin', 'no-cache','prevent-back'])->prefix('iacuc')->group(function () {
 
     // Dashboard
     Route::get('/dashboard', function () {
@@ -203,8 +226,8 @@ Route::middleware(['auth', 'access:IACUC Admin'])->prefix('iacuc')->group(functi
     });
 });
 
-// superadmin
-Route::middleware(['auth', 'access:Superadmin'])->prefix('superadmin')->group(function () {
+// superadmin - ADDED no-cache MIDDLEWARE
+Route::middleware(['auth', 'access:Superadmin', 'no-cache', 'prevent-back'])->prefix('superadmin')->group(function () {
 
     // Dashboard
     Route::get('/dashboard', [MonitoringDashboard::class,'dashboard'])->name('superadmin.dashboard');
@@ -243,8 +266,8 @@ Route::middleware(['auth', 'access:Superadmin'])->prefix('superadmin')->group(fu
     })->name('superadmin.notifications.markAllRead');
 });
 
-//erb reviewer
-Route::middleware(['auth', 'access:ERB Reviewer', CheckReviewerInformation::class])->prefix('erb-reviewer')->group(function () {
+//erb reviewer - ADDED no-cache MIDDLEWARE
+Route::middleware(['auth', 'access:ERB Reviewer', 'check.reviewer.info', 'no-cache'])->prefix('erb-reviewer')->group(function () {
 
     // Dashboard
     Route::get('/dashboard', function () {
@@ -283,7 +306,7 @@ Route::middleware(['auth', 'access:ERB Reviewer', CheckReviewerInformation::clas
         ->name('erb-reviewer.submit-documents.store');
 });
 
-Route::middleware(['auth', 'access:ERB Reviewer'])
+Route::middleware(['auth', 'access:ERB Reviewer', 'no-cache', 'prevent-back'])
     ->prefix('erb-reviewer')
     ->group(function () {
 
@@ -295,33 +318,35 @@ Route::middleware(['auth', 'access:ERB Reviewer'])
             ->name('erb-reviewer.college-dept.store');
     });
     
-//iacuc reviewer
-Route::get('/iacuc-reviewer/dashboard', function () {
-    return view('iacuc-reviewer.dashboard');
-})->name('iacuc-reviewer.dashboard');
+//iacuc reviewer - ADDED no-cache MIDDLEWARE
+Route::middleware(['auth', 'access:IACUC Reviewer', 'no-cache', 'prevent-back'])->prefix('iacuc-reviewer')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('iacuc-reviewer.dashboard');
+    })->name('iacuc-reviewer.dashboard');
 
-Route::get('/iacuc-reviewer/protocol-assign', function () {
-    return view('iacuc-reviewer.protocol-assign');
+    Route::get('/protocol-assign', function () {
+        return view('iacuc-reviewer.protocol-assign');
+    });
+
+    Route::get('/settings', function () {
+        return view('iacuc-reviewer.settings');
+    });
+
+    Route::get('/college-dept', function () {
+        return view('iacuc-reviewer.college-dept');
+    });
+
+    Route::get('/forms/protocol-review', function () {
+        return view('iacuc-reviewer.forms.protocol-review');
+    });
+
+    Route::get('/forms/protocol-review-checklist', function () {
+        return view('iacuc-reviewer.forms.protocol-review-checklist');
+    });
 });
 
-Route::get('/iacuc-reviewer/settings', function () {
-    return view('iacuc-reviewer.settings');
-});
-
-Route::get('/iacuc-reviewer/college-dept', function () {
-    return view('iacuc-reviewer.college-dept');
-});
-
-Route::get('/iacuc-reviewer/forms/protocol-review', function () {
-    return view('iacuc-reviewer.forms.protocol-review');
-});
-
-Route::get('/iacuc-reviewer/forms/protocol-review-checklist', function () {
-    return view('iacuc-reviewer.forms.protocol-review-checklist');
-});
-
-// student
-Route::middleware(['auth', 'access:Principal Investigator'])->prefix('student')->group(function () {
+// student - ADDED no-cache MIDDLEWARE
+Route::middleware(['auth', 'access:Principal Investigator', 'no-cache', 'prevent-back'])->prefix('student')->group(function () {
 
     Route::get('/dashboard', function () {
         return view('student.dashboard');
@@ -409,7 +434,8 @@ Route::post('/student/store', [Form2AController::class, 'store'])->name('form2a.
 Route::get('/export-protocol-review-checklist', [PdfExportController::class, 'exportProtocolReviewChecklist'])->name('export.protocol-review-checklist');
 Route::get('/export-protocol-review-form', [PdfExportController::class, 'exportProtocolReview'])->name('export.protocol-review-form');
 
-Route::middleware('auth')->group(function () {
+// Profile routes - ADDED no-cache MIDDLEWARE
+Route::middleware(['auth', 'no-cache'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

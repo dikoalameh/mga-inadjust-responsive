@@ -15,6 +15,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'access' => UserAccessMiddleware::class,
             'check.reviewer.info' => CheckReviewerInformation::class,
+            'no-cache' => \App\Http\Middleware\NoCacheMiddleware::class,
+            'prevent-back' => \App\Http\Middleware\PreventBackHistory::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

@@ -14,8 +14,18 @@ class AuthenticatedSessionController extends Controller
     /**
      * Display the login view.
      */
-    public function create(): View
+    public function create(): View|RedirectResponse
     {
+        // More immediate redirect for authenticated users
+        if (Auth::check()) {
+            // Clear any cached version
+            header("Cache-Control: no-cache, no-store, must-revalidate");
+            header("Pragma: no-cache");
+            header("Expires: 0");
+            
+            return $this->redirectToDashboard(Auth::user());
+        }
+
         return view('auth.login');
     }
 
@@ -30,22 +40,7 @@ class AuthenticatedSessionController extends Controller
 
         $user = Auth::user();
 
-        switch ($user->user_Access) {
-            case 'Superadmin':
-                return redirect()->route('superadmin.dashboard');
-            case 'ERB Admin':
-                return redirect()->route('erb.dashboard');
-            case 'IACUC Admin':
-                return redirect()->route('iacuc.dashboard');
-            case 'ERB Reviewer':
-                return redirect()->route('erb-reviewer.dashboard');
-            case 'IACUC Reviewer':
-                return redirect()->route('iacuc-reviewer.dashboard');
-            case 'Principal Investigator':
-                return redirect()->route('student.dashboard');
-            default:
-                return redirect()->route('login');// fallback
-        }
+        return $this->redirectToDashboard($user);
     }
 
     /**
@@ -60,5 +55,31 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    /**
+     * Redirect user to appropriate dashboard based on access level
+     */
+    private function redirectToDashboard($user): RedirectResponse
+    {
+        switch ($user->user_Access) {
+            case 'Superadmin':
+                return redirect()->route('superadmin.dashboard');
+            case 'ERB Admin':
+                return redirect()->route('erb.dashboard');
+            case 'IACUC Admin':
+                return redirect()->route('iacuc.dashboard');
+            case 'ERB Reviewer':
+                return redirect()->route('erb-reviewer.dashboard');
+            case 'IACUC Reviewer':
+                return redirect()->route('iacuc-reviewer.dashboard');
+            case 'Principal Investigator':
+                return redirect()->route('student.dashboard');
+            default:
+                // Logout and redirect to login with error for invalid access level
+                Auth::logout();
+                return redirect()->route('login')
+                    ->withErrors(['user_Access' => 'Invalid user access level. Please contact administrator.']);
+        }
     }
 }
