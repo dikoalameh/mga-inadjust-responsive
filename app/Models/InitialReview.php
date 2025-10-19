@@ -38,4 +38,13 @@ class InitialReview extends Model
     {
         return $this->belongsTo(FormsTable::class, 'form_ID', 'form_id');
     }
+    public function reviewer1Info()
+    {
+        return $this->belongsTo(User::class, 'reviewer1_ID', 'user_ID');
+    }
+
+    public function reviewer2Info()
+    {
+        return $this->belongsTo(User::class, 'reviewer2_ID', 'user_ID');
+    }
 }

@@ -43,7 +43,7 @@ class ProtocolDecision extends Notification
     {
         if ($this->decision === 'Approved') {
             $message = "Your research protocol {$this->protocolId} has been approved by the ERB. Please accomplished the necessary forms for final completion.";
-            $action_url = '/student/download-forms'; // Where they can access Form 3L
+            $action_url = '/student/download-forms'; // Where they can access Form 3L and Form 3C
         } else {
             $message = "Your research protocol {$this->protocolId} requires resubmission. Please check the assigned forms for details.";
             $action_url = '/student/download-forms'; // Where they can access Form 3A and 3B

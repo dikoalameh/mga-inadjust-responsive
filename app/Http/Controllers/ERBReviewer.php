@@ -65,9 +65,14 @@ class ERBReviewer extends Controller
             ->whereIn('form_id', $assignedFormIds)
             ->firstOrFail();
 
-        return view('erb-reviewer.submit-documents', compact('form'));
-    }
+        // Get submitted files for this form by this reviewer
+        $submittedFiles = ReviewerFile::where('form_id', $formId)
+            ->where('reviewer_ID', $reviewerId)
+            ->orderBy('created_at', 'desc')
+            ->get();
 
+        return view('erb-reviewer.submit-documents', compact('form', 'submittedFiles'));
+    }
 
     public function submitForm(Request $request, $formId)
     {
@@ -96,6 +101,15 @@ class ERBReviewer extends Controller
         $form = FormsTable::where('form_id', $formId)
             ->where('form_type', 'Submission')
             ->firstOrFail();
+
+        // Check if reviewer has already submitted for this form
+        $existingSubmission = ReviewerFile::where('form_id', $formId)
+            ->where('reviewer_ID', $reviewerId)
+            ->exists();
+
+        if ($existingSubmission) {
+            return redirect()->back()->with('error', 'You have already submitted documents for this form.');
+        }
 
         // Save uploaded files under reviewer_files/{protocol_ID}/
         foreach ($request->file('uploadForms') as $file) {

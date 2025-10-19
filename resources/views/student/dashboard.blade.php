@@ -17,7 +17,15 @@
                 <!-- Body -->
                 <div class="p-6 text-sm leading-relaxed">
                     <p class="mb-4 max-sm:text-xs">
-                        sample text
+                        @if($reviewStatus === 'Under Review')
+                            Your protocol is currently under review. Please wait for the evaluation results.
+                        @elseif($reviewStatus === 'Evaluated')
+                            Your protocol has been evaluated. Check your notifications for results.
+                        @elseif($reviewStatus === 'Submitted')
+                            Your protocol has been submitted and is awaiting review.
+                        @else
+                            Welcome! Please submit your research protocol for review.
+                        @endif
                     </p>
                 </div>
             </div>
@@ -25,31 +33,44 @@
             <!-- Cards -->
             <div>
                 <div class="grid 2xl:grid-cols-4 max-md:grid-cols-1 md:grid-cols-2 max-lg:grid-cols-2 gap-4">
-                    <div class="card bg-lightgray p-4 rounded-lg border border-gray shadow">
-                        <h2 class="text-[25px] max-2xl:text-[22px] max-sm:text-[14px] font-medium text-center">UNDER
-                            REVIEW</h2>
-                        <p class="mt-2 text-center max-sm:text-[13px]">STATUS OF REVIEW</p>
-                    </div>
+                    <!-- Status of Review Card -->
                     <div class="card bg-lightgray p-4 rounded-lg border border-gray shadow">
                         <h2 class="text-[25px] max-2xl:text-[22px] max-sm:text-[14px] font-medium text-center">
-                            2025/08/05</h2>
+                            {{ strtoupper($reviewStatus) }}
+                        </h2>
+                        <p class="mt-2 text-center max-sm:text-[13px]">STATUS OF REVIEW</p>
+                    </div>
+                    
+                    <!-- Deadline Card -->
+                    <div class="card bg-lightgray p-4 rounded-lg border border-gray shadow">
+                        <h2 class="text-[25px] max-2xl:text-[22px] max-sm:text-[14px] font-medium text-center">
+                            {{ $deadline }}
+                        </h2>
                         <p class="mt-2 text-center max-sm:text-[13px]">DEADLINE OF SUBMISSION</p>
                     </div>
+                    
+                    <!-- Submitted Documents Card -->
                     <div data-modal="modal1"
                         class="card cursor-pointer bg-lightgray hover:bg-gray duration-200 p-4 rounded-lg border border-gray shadow">
                         <h3 class="text-[25px] max-2xl:text-[22px] max-sm:text-[14px]/5 font-medium text-center">
-                            Submitted Documents</h3>
-                        <p class="mt-2 text-center max-sm:text-[13px]">Click here to view</p>
+                            {{ $submittedDocumentsCount }}
+                        </h3>
+                        <p class="mt-2 text-center max-sm:text-[13px]">Submitted Documents</p>
                     </div>
+                    
+                    <!-- Pending Documents Card -->
                     <div data-modal="modal2"
                         class="card cursor-pointer bg-lightgray hover:bg-gray duration-200 p-4 rounded-lg border border-gray shadow">
-                        <h2 class="text-[25px] max-2xl:text-[22px] max-sm:text-[14px]/5 font-medium text-center">Pending
-                            Documents</h2>
-                        <p class="mt-2 text-center max-sm:text-[13px]">Click here to view</p>
+                        <h2 class="text-[25px] max-2xl:text-[22px] max-sm:text-[14px]/5 font-medium text-center">
+                            {{ $pendingDocumentsCount }}
+                        </h2>
+                        <p class="mt-2 text-center max-sm:text-[13px]">Pending Documents</p>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Rest of your existing code for notifications remains the same -->
         <div class="p-6 max-md:px-0 space-y-10">
             <div class="flex max-md:block gap-10 w-full">
                 <!-- Notification Tab -->
@@ -103,22 +124,14 @@
         <div class="bg-white max-sm:mx-2 rounded-lg shadow-lg p-6 max-w-md w-full">
             <h2 class="text-[23px] max-sm:text-[18px] font-bold mb-4">Submitted Documents</h2>
             <div id="scrollbar" class="overflow-y-auto h-64 max-sm:h-60 px-2 border-2 border-gray">
-                <x-submitted-document label="Form 2(A) - STUDY PROTOCOL REVIEW CHECKLIST" />
-                <x-submitted-document label="Form 2(B) - APPLICATION FOR INITIAL REVIEW" />
-                <x-submitted-document label="Form 2(C) - INFORMED CONSENT FORM" />
-                <x-submitted-document label="Form 2(D) - INFORMED CONSENT FORM FOR P.I." />
-                <x-submitted-document label="Form 5(E) - DOCUMENT HISTORY" />
-                <x-submitted-document label="Form 2(I) - CERTIFICATE OF EXEMPTION FROM REVIEW" />
-                <x-submitted-document label="Form 2(E) - PROTOCOL EVALUATION CHECKLIST" />
-                <x-submitted-document label="Form 2(J) - INFORMED CONSENT EVALUATION CHECKLIST" />
-                <x-submitted-document label="Form 3(A) - RESUBMISSION" />
-                <x-submitted-document label="Form 3(B) - REVIEW OF SUBMITTED STUDY PROTOCOL" />
-                <x-submitted-document label="Form 3(D) - APPLICATION FOR REVIEW OF AMENDMENT" />
-                <x-submitted-document label="Form 3(E) - AMENDMENTS" />
-                <x-submitted-document label="Form 3(J) - APPROVAL LETTER" />
-                <x-submitted-document label="Form 3(O) - ETHICAL CLEARANCE FORM" />
-                <x-submitted-document label="Form 3(C) - PROGRESS REPORTS" />
-                <x-submitted-document label="Form 3(L) - FINAL REPORTS" />
+                @forelse($submittedDocuments as $document)
+                    <div class="py-2 border-b border-gray-200">
+                        <p class="font-medium text-sm">{{ $document->form_name }}</p>
+                        <p class="text-xs text-gray-500">Submitted: {{ $document->submitted_at ? \Carbon\Carbon::parse($document->submitted_at)->format('M d, Y') : 'N/A' }}</p>
+                    </div>
+                @empty
+                    <p class="text-center text-gray-500 py-4">No documents submitted yet</p>
+                @endforelse
             </div>
             <button type="button"
                 class="closeModal text-[17px] max-sm:text-[15px] mt-6 px-4 py-2 rounded text-primary tracking-widest bg-secondary text-primary hover:bg-primary hover:text-secondary duration-200">
@@ -126,12 +139,20 @@
             </button>
         </div>
     </div>
+    
     <!-- Pending Documents -->
     <div id="modal2" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-[9999]">
         <div class="bg-white max-sm:mx-2 rounded-lg shadow-lg p-6 max-w-md w-full">
             <h2 class="text-[23px] max-sm:text-[18px] font-bold mb-4">Pending Requirements</h2>
             <div id="scrollbar" class="overflow-y-auto h-64 max-sm:h-60 px-2 border-2 border-gray">
-                <p class="max-sm:text-[14px]">All requirements has been passed</p>
+                @forelse($pendingDocuments as $document)
+                    <div class="py-2 border-b border-gray-200">
+                        <p class="font-medium text-sm">{{ $document->form_name }}</p>
+                        <p class="text-xs text-gray-500">Status: Pending</p>
+                    </div>
+                @empty
+                    <p class="max-sm:text-[14px] text-center py-4">All requirements have been submitted</p>
+                @endforelse
             </div>
             <button type="button"
                 class="closeModal text-[17px] max-sm:text-[15px] mt-6 px-4 py-2 rounded text-primary bg-secondary tracking-widest text-primary hover:bg-primary hover:text-secondary duration-200">
@@ -140,6 +161,8 @@
         </div>
     </div>
 </x-student-layout>
+
+<!-- Your existing JavaScript remains exactly the same -->
 <script>
     // Attach click event to all cards
     document.querySelectorAll('[data-modal]').forEach(card => {

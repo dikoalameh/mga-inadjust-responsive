@@ -8,13 +8,12 @@ use App\Http\Controllers\MonitoringDashboard;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\StudentDashboard;
 use App\Http\Controllers\PdfExportController;
 use App\Http\Controllers\ClassificationController;
 use App\Http\Controllers\ResearchFileController;
 use App\Http\Controllers\ReviewerInformationController;
-use App\Http\Middleware\CheckReviewerInformation;
+use App\Http\Controllers\ERBDashboard;
 use App\Http\Controllers\ERBReviewer;
 use App\Http\Controllers\ERBViewReviews;
 use App\Http\Controllers\ERBDecisionController;
@@ -76,9 +75,8 @@ Route::get('/register-co-inv', function () {
 
 // erb - ADDED no-cache MIDDLEWARE
 Route::middleware(['auth', 'access:ERB Admin', 'no-cache','prevent-back'])->prefix('erb')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('erb.dashboard');
-    })->name('erb.dashboard');
+    Route::get('/dashboard', [ERBDashboard::class, 'dashboard'])
+    ->name('erb.dashboard');
 
     // Research Records
     Route::get('/research-records', [ResearchFileController::class, 'researchRecords'])
@@ -359,9 +357,7 @@ Route::middleware(['auth', 'access:IACUC Reviewer', 'no-cache', 'prevent-back'])
 // student - ADDED no-cache MIDDLEWARE
 Route::middleware(['auth', 'access:Principal Investigator', 'no-cache', 'prevent-back'])->prefix('student')->group(function () {
 
-    Route::get('/dashboard', function () {
-        return view('student.dashboard');
-    })->name('student.dashboard');
+    Route::get('/dashboard', [StudentDashboard::class, 'index'])->name('student.dashboard');
 
     Route::get('/submit-forms', [FormAssignment::class, 'assignedSubmissionDisplay'])
         ->name('student.submit-forms');

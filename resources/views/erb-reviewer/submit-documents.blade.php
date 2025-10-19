@@ -26,44 +26,64 @@
                     </p>
                     <br>
 
-                    <p class="max-md:text-[15px]">Attach the files here</p>
-
-                    {{-- Upload form --}}
-                    <form action="{{ route('erb-reviewer.submit-documents.store', $form->form_id) }}" 
-                          method="POST" 
-                          enctype="multipart/form-data"
-                          onsubmit="return validateFiles();">
-                        @csrf
-
-                        <div class="max-w-xs w-xs cursor-pointer">
-                            <div>
-                                <input type="file" name="uploadForms[]" id="upload" accept=".doc,.docx,.pdf" multiple hidden>
-                                <label for="upload"
-                                       class="w-full text-md min-h-[50px] flex-col justify-center items-center rounded cursor-pointer">
-                                    <i class="bi bi-cloud-arrow-up-fill text-primary"></i>
-                                    <span class="text-primary mx-1 max-md:text-[15px]">
-                                        Click to upload file/s
-                                    </span>
-                                </label>
-                            </div>
-                        </div>
-
+                    {{-- Check if reviewer has already submitted documents for this form --}}
+                    @if($submittedFiles && $submittedFiles->count() > 0)
+                        {{-- ✅ Show submitted files only --}}
                         <div id="fileWrapper">
                             <h3 class="my-[30px] max-md:mb-3 text-[20px] max-md:text-[17px] font-bold">
-                                Uploaded Documents
-                                <label class="text-[16px] max-md:text-[13px]">
-                                    (.docx, .doc, or .pdf)
-                                </label>
+                                Your Submitted Documents
                             </h3>
-                            <div id="scrollbar" class="h-64 px-2 border-2 border-gray"></div>
+                            <div id="scrollbar" class="h-64 px-2 border-2 border-gray overflow-y-auto">
+                                @foreach($submittedFiles as $file)
+                                    <div class="flex justify-between items-center my-2 px-3 py-1 shadow-md bg-lightgray border border-darkgray">
+                                        <span class="break-all">{{ $file->file_name }}</span>
+                                        <a href="{{ asset('storage/' . $file->file_path) }}" target="_blank"
+                                            class="text-primary underline">View</a>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
+                    @else
+                        {{-- Upload form --}}
+                        <p class="max-md:text-[15px]">Attach the files here</p>
 
-                        <div>
-                            <x-primary-button class="mt-4">
-                                SUBMIT
-                            </x-primary-button>
-                        </div>
-                    </form>
+                        <form action="{{ route('erb-reviewer.submit-documents.store', $form->form_id) }}" 
+                              method="POST" 
+                              enctype="multipart/form-data"
+                              onsubmit="return validateFiles();">
+                            @csrf
+
+                            <div class="max-w-xs w-xs cursor-pointer">
+                                <div>
+                                    <input type="file" name="uploadForms[]" id="upload" accept=".doc,.docx,.pdf" multiple hidden>
+                                    <label for="upload"
+                                           class="w-full text-md min-h-[50px] flex-col justify-center items-center rounded cursor-pointer">
+                                        <i class="bi bi-cloud-arrow-up-fill text-primary"></i>
+                                        <span class="text-primary mx-1 max-md:text-[15px]">
+                                            Click to upload file/s
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div id="fileWrapper">
+                                <h3 class="my-[30px] max-md:mb-3 text-[20px] max-md:text-[17px] font-bold">
+                                    Uploaded Documents
+                                    <label class="text-[16px] max-md:text-[13px]">
+                                        (.docx, .doc, or .pdf)
+                                    </label>
+                                </h3>
+                                <div id="scrollbar" class="h-64 px-2 border-2 border-gray overflow-y-auto"></div>
+                            </div>
+
+                            <div>
+                                <x-primary-button class="mt-4">
+                                    SUBMIT
+                                </x-primary-button>
+                            </div>
+                        </form>
+                    @endif
+
                 </div>
             @endif
 
@@ -87,7 +107,7 @@ window.addEventListener("load", () => {
 
     const fileshow = (filename) => {
         const showfileboxElem = document.createElement("div");
-        showfileboxElem.classList.add("flex", "justify-between", "items-center", "my-2", "px-3", "py-1", "shadow-md", "bg-lightgray", "border");
+        showfileboxElem.classList.add("flex", "justify-between", "items-center", "my-2", "px-3", "py-1", "shadow-md", "bg-lightgray", "border", "border-darkgray");
 
         const leftElem = document.createElement("span");
         leftElem.classList.add("break-all");

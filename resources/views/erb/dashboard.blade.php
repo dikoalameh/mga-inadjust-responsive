@@ -22,26 +22,6 @@
                 </div>
             </div>
             <!-- User Account Cards -->
-            @php
-                // Total users classified under ERB
-                $totalUsers = App\Models\User::where('user_Access', 'Principal Investigator')
-                    ->whereHas('classifications', function ($query) {
-                        $query->where('reviewClassification', 'ERB');
-                    })->count();
-
-                // Pending users: PIs without assigned forms
-                $pendingUsers = App\Models\User::where('user_Access', 'Principal Investigator')
-                    ->doesntHave('forms')
-                    ->count();
-
-                // Approved users: PIs with assigned forms
-                $approvedUsers = App\Models\User::where('user_Access', 'Principal Investigator')
-                    ->has('forms')
-                    ->count();
-
-                // Get notifications for the current ERB admin
-                $notifications = auth()->user()->unreadNotifications ?? collect();
-            @endphp
             <div>
                 <h2 class="text-[20px] max-sm:text-[17px] font-semibold mb-4">USERS ACCOUNT</h2>
                 <div class="grid max-md:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -67,17 +47,17 @@
             <!-- Research Protocol -->
             <div>
                 <h2 class="text-[20px] max-sm:text-[17px] font-semibold mb-4">RESEARCH PROTOCOL</h2>
-                <div class="grid max-md:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="grid max-md:grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
                     <div class="card bg-lightgray p-4 rounded-lg border border-gray shadow">
-                        <h3 class="text-2xl max-md:text-[22px] max-sm:text-xl font-semibold">5</h3>
+                        <h3 class="text-2xl max-md:text-[22px] max-sm:text-xl font-semibold">{{ $evaluatedProtocols }}</h3>
                         <p class="max-xl:text-sm">EVALUATED</p>
                     </div>
                     <div class="card bg-lightgray p-4 rounded-lg border border-gray shadow">
-                        <h3 class="text-2xl max-md:text-[22px] max-sm:text-xl font-semibold">10</h3>
+                        <h3 class="text-2xl max-md:text-[22px] max-sm:text-xl font-semibold">{{ $pendingReviews }}</h3>
                         <p class="max-xl:text-sm">PENDING REVIEWS</p>
                     </div>
                     <div class="card bg-lightgray p-4 rounded-lg border border-gray shadow">
-                        <h3 class="text-2xl max-md:text-[22px] max-sm:text-xl font-semibold">12</h3>
+                        <h3 class="text-2xl max-md:text-[22px] max-sm:text-xl font-semibold">{{ $ongoingReviews }}</h3>
                         <p class="max-xl:text-sm">ONGOING REVIEWS</p>
                     </div>
                     <div class="card bg-lightgray p-4 rounded-lg border border-gray shadow">
@@ -85,7 +65,7 @@
                         <p class="max-xl:text-sm">TERMINATED</p>
                     </div>
                     <div class="card bg-lightgray p-4 rounded-lg border border-gray shadow">
-                        <h3 class="text-2xl max-md:text-[22px] max-sm:text-xl font-semibold">10</h3>
+                        <h3 class="text-2xl max-md:text-[22px] max-sm:text-xl font-semibold">{{ $approvedProtocols }}</h3>
                         <p class="max-xl:text-sm">APPROVED</p>
                     </div>
                 </div>
@@ -104,7 +84,7 @@
                         <div class="bg-white shadow-sm border-2 border-gray">
                             <!-- Scroll area -->
                             <ul class="h-[32rem] overflow-y-auto scrollbar divide-y divide-gray">
-                                @forelse($notifications as $notification)
+                                @forelse(auth()->user()->unreadNotifications ?? [] as $notification)
                                 <li class="p-4 flex gap-4 hover:bg-gray duration-200 cursor-pointer">
                                     <form method="POST" action="{{ route('erb.notification.markRead', $notification->id) }}" class="hidden" id="form-{{ $notification->id }}">
                                         @csrf
@@ -149,19 +129,14 @@
                             </tr>
                         </thead>
                         <tbody class="text-base/7 max-lg:text-sm/6">
+                            @foreach($recentProtocols as $protocol)
                             <tr>
-                                <td>2025-001</td>
-                                <td>Exploring the Relationship Between Exercise and Cognitive Function in Older Adults
-                                </td>
-                                <td>Roland Mendel</td>
-                                <td>Not reviewed</td>
+                                <td>{{ $protocol['protocol_id'] }}</td>
+                                <td>{{ $protocol['research_title'] }}</td>
+                                <td>{{ $protocol['reviewer'] }}</td>
+                                <td>{{ $protocol['status'] }}</td>
                             </tr>
-                            <tr>
-                                <td>2025-001</td>
-                                <td>The Impact of Social Media on Adolescent Mental Health: A Systematic Review</td>
-                                <td>Janine Labrune</td>
-                                <td>Ongoing Review</td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

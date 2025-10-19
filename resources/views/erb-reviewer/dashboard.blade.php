@@ -1,5 +1,31 @@
 @section('title', 'Dashboard')
 <x-erb-reviewer>
+    @php
+        // Get the current authenticated reviewer
+        $reviewer = auth()->user();
+        $reviewerId = $reviewer->user_ID;
+        
+        // Count pending protocols - protocols assigned to this reviewer but not yet evaluated
+        $pendingProtocolsCount = DB::table('tbl_initial_review')
+            ->where(function($query) use ($reviewerId) {
+                $query->where('reviewer1_ID', $reviewerId)
+                      ->orWhere('reviewer2_ID', $reviewerId);
+            })
+            ->whereNotIn('protocol_ID', function($subquery) use ($reviewerId) {
+                $subquery->select('protocol_ID')
+                         ->from('tbl_evaluated_reviews')
+                         ->where('reviewer_ID', $reviewerId)
+                         ->where('status', 'Completed');
+            })
+            ->count();
+            
+        // Count evaluated protocols - protocols this reviewer has completed
+        $evaluatedProtocolsCount = DB::table('tbl_evaluated_reviews')
+            ->where('reviewer_ID', $reviewerId)
+            ->where('status', 'Completed')
+            ->count();
+    @endphp
+
     <!-- Main Content -->
     <main class="xl:ml-[335px] max-xl:ml-auto p-4 max-xl:p-2">
         <h2 class="max-xl:hidden text-left bg-[#f2f2f2] shadow-lg p-[35px] rounded-[30px] font-medium text-[28px]">
@@ -16,19 +42,19 @@
                 <!-- Body -->
                 <div class="p-6 text-sm leading-relaxed">
                     <p class="mb-4">
-                        sample text
+                        You have {{ $pendingProtocolsCount }} protocol(s) pending review. Please complete your evaluations promptly.
                     </p>
                 </div>
             </div>
             <div>
                 <div class="grid max-md:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
                     <div class="card bg-lightgray p-4 rounded-lg border border-gray shadow">
-                        <h3 class="text-[25px] max-md:text-[22px] font-semibold">5</h3>
-                        <p class="max-md:text-[13px]">APPROVAL OF ACCOUNTS</p>
+                        <h3 class="text-[25px] max-md:text-[22px] font-semibold">{{ $pendingProtocolsCount }}</h3>
+                        <p class="max-md:text-[13px]">PENDING PROTOCOLS</p>
                     </div>
                     <div class="card bg-lightgray p-4 rounded-lg border border-gray shadow">
-                        <h3 class="text-[25px] max-md:text-[22px] font-semibold">2</h3>
-                        <p class="max-md:text-[13px]">RESEARCH PROTOCOL</p>
+                        <h3 class="text-[25px] max-md:text-[22px] font-semibold">{{ $evaluatedProtocolsCount }}</h3>
+                        <p class="max-md:text-[13px]">EVALUATED PROTOCOLS</p>
                     </div>
                 </div>
             </div>
@@ -79,6 +105,9 @@
                         </div>
                     </div>
                 </main>
+            </div>
+        </div>
+    </main>
 </x-erb-reviewer>
 
 <script>
@@ -91,7 +120,7 @@
             const csrfToken = document.createElement('input');
             csrfToken.type = 'hidden';
             csrfToken.name = '_token';
-            csrfToken.value = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            csrfToken.value = '{{ csrf_token() }}';
             
             form.appendChild(csrfToken);
             document.body.appendChild(form);
