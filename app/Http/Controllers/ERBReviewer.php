@@ -8,6 +8,9 @@ use App\Models\InitialReview;
 use App\Models\User;
 use App\Models\ResearchFiles;
 use App\Models\FormsTable;
+use App\Models\Protocol;
+use App\Notifications\ReviewerProgress;
+use App\Notifications\ReviewCompleted;
 use App\Models\EvaluatedReviews;
 use App\Models\ReviewerFile;
 
@@ -150,6 +153,58 @@ class ERBReviewer extends Controller
             ]
         );
 
+        // 🔹 NOTIFY ERB ADMINS ABOUT REVIEWER PROGRESS
+        $adminUsers = User::where('user_Access', 'ERB Admin')->get();
+        
+        if ($adminUsers->isNotEmpty()) {
+            foreach ($adminUsers as $admin) {
+                $admin->notify(new ReviewerProgress($protocolId, $reviewerId, $status, $formId));
+            }
+        }
+
+        // 🔹 CHECK IF ALL REVIEWERS HAVE COMPLETED THEIR EVALUATIONS
+        if ($status === 'Completed') {
+            $this->checkAllReviewsCompleted($protocolId);
+        }
+
         return redirect()->back()->with('success', 'Form submitted successfully!');
+    }
+
+    /**
+     * Check if all reviewers have completed their evaluations for a protocol
+     */
+    private function checkAllReviewsCompleted($protocolId)
+    {
+        // Get all reviewers assigned to this protocol
+        $assignedReviewers = InitialReview::where('protocol_ID', $protocolId)
+            ->where(function ($q) {
+                $q->whereNotNull('reviewer1_ID')
+                ->orWhereNotNull('reviewer2_ID');
+            })
+            ->get();
+
+        $reviewer1Ids = $assignedReviewers->pluck('reviewer1_ID')->filter()->unique();
+        $reviewer2Ids = $assignedReviewers->pluck('reviewer2_ID')->filter()->unique();
+        $allReviewerIds = $reviewer1Ids->merge($reviewer2Ids)->unique();
+
+        // Check if all reviewers have completed their evaluations
+        $completedReviews = EvaluatedReviews::where('protocol_ID', $protocolId)
+            ->whereIn('reviewer_ID', $allReviewerIds)
+            ->where('status', 'Completed')
+            ->count();
+
+        // If all reviewers have completed, notify the student
+        if ($allReviewerIds->count() > 0 && $completedReviews === $allReviewerIds->count()) {
+            $protocol = Protocol::where('protocol_ID', $protocolId)->first();
+            
+            if ($protocol) {
+                $student = User::find($protocol->user_ID);
+                $reviewType = $protocol->review_type;
+                
+                if ($student) {
+                    $student->notify(new ReviewCompleted($protocolId, $reviewType));
+                }
+            }
+        }
     }
 }

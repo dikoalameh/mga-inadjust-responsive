@@ -266,7 +266,7 @@ Route::middleware(['auth', 'access:Superadmin', 'no-cache', 'prevent-back'])->pr
 });
 
 //erb reviewer - ADDED no-cache MIDDLEWARE
-Route::middleware(['auth', 'access:ERB Reviewer', 'check.reviewer.info', 'no-cache'])->prefix('erb-reviewer')->group(function () {
+Route::middleware(['auth', 'access:ERB Reviewer', 'check.reviewer.info', 'no-cache', 'prevent-back'])->prefix('erb-reviewer')->group(function () {
 
     // Dashboard
     Route::get('/dashboard', function () {
@@ -447,10 +447,6 @@ Route::middleware(['auth', 'access:Principal Investigator', 'no-cache', 'prevent
 
 //Verification for login
 
-Route::get('/reviewer/dashboard', function () {
-    return view('reviewer.dashboard');
-})->name('reviewer.dashboard');
-
 //Storing Data for Form2A
 //Route::get('/student/download-forms', [Form2AController::class, 'index'])->name('download-forms');
 Route::post('/student/store', [Form2AController::class, 'store'])->name('form2a.store');
@@ -464,11 +460,6 @@ Route::middleware(['auth', 'no-cache'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-// submit forms layout na mala ms teams
-Route::get('student/submit-form-layout', function () {
-    return view('student.submit-form-layout');
 });
 
 require __DIR__ . '/auth.php';

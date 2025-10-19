@@ -8,6 +8,8 @@ use App\Models\Approved;
 use App\Models\FormUser;
 use App\Models\FormsTable;
 use App\Models\Protocol;
+use App\Notifications\ProtocolDecision;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 class ERBDecisionController extends Controller
 {
@@ -54,7 +56,7 @@ class ERBDecisionController extends Controller
 
         try {
             $protocolId = $request->protocol_id;
-            $decision = $request->decision; // now lowercase to match request input
+            $decision = $request->decision;
 
             // ✅ Get the Principal Investigator (PI) linked to this protocol
             $protocol = Protocol::with('researchInformation')
@@ -68,7 +70,7 @@ class ERBDecisionController extends Controller
                 ]);
             }
 
-            $piUserId = $protocol->researchInformation->user_ID; // P.I.'s user_ID
+            $piUserId = $protocol->researchInformation->user_ID;
 
             // ✅ Insert or update the decision in tbl_approved
             Approved::updateOrCreate(
@@ -77,13 +79,14 @@ class ERBDecisionController extends Controller
                     'user_ID' => $piUserId,
                 ],
                 [
-                    'Decision' => $decision, // matches DB column name
+                    'Decision' => $decision,
                 ]
             );
 
-            // ✅ Assign Form 3L only if Approved
+            // ✅ Assign Forms if Approved
             if ($decision === 'Approved') {
                 $form3L = FormsTable::where('form_code', 'FORM 3(L)')->first();
+                $form3C = FormsTable::where('form_code', 'FORM 3(C)')->first();
 
                 if ($form3L) {
                     FormUser::updateOrCreate(
@@ -98,17 +101,29 @@ class ERBDecisionController extends Controller
                         'message' => 'Form 3L not found in tbl_forms.',
                     ]);
                 }
-            }elseif ($decision === 'Resubmission') {
-            // --- Assign Form 3A and 3B to the student ---
-                $studentUserId = $protocol->researchInformation->user_ID; // Assuming the PI is the student, adjust if different
 
+                if ($form3C) {
+                    FormUser::updateOrCreate(
+                        [
+                            'user_ID' => $piUserId,
+                            'form_id' => $form3C->form_id,
+                        ]
+                    );
+                } else {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Form 3C not found in tbl_forms.',
+                    ]);
+                }
+            } elseif ($decision === 'Resubmission') {
+                // ✅ Assign Form 3A and 3B to the student for Resubmission
                 $form3A = FormsTable::where('form_code', 'FORM 3(A)')->first();
                 $form3B = FormsTable::where('form_code', 'FORM 3(B)')->first();
 
                 if ($form3A) {
                     FormUser::updateOrCreate(
                         [
-                            'user_ID' => $studentUserId,
+                            'user_ID' => $piUserId,
                             'form_id' => $form3A->form_id,
                         ]
                     );
@@ -117,18 +132,35 @@ class ERBDecisionController extends Controller
                 if ($form3B) {
                     FormUser::updateOrCreate(
                         [
-                            'user_ID' => $studentUserId,
+                            'user_ID' => $piUserId,
                             'form_id' => $form3B->form_id,
                         ]
                     );
                 }
             }
+
+            // 🔹 NOTIFY THE STUDENT ABOUT THE DECISION
+            $student = User::find($piUserId);
+            if ($student) {
+                $assignedForms = [];
+
+                if ($decision === 'Approved') {
+                    $assignedForms[] = 'FORM 3(L) - FINAL REPORTS';
+                    $assignedForms[] = 'FORM 3(C) - PROGRESS REPORTS';
+                } elseif ($decision === 'Resubmission') {
+                    $assignedForms[] = 'FORM 3(A) - RESUBMISSION';
+                    $assignedForms[] = 'FORM 3(B) - REVIEW OF SUBMITTED STUDY PROTOCOL';
+                }
+
+                $student->notify(new ProtocolDecision($protocolId, $decision, $assignedForms));
+            }
+
             // ✅ Return success response
             return response()->json([
                 'success' => true,
                 'message' => $decision === 'Approved'
-                    ? 'Protocol approved and Form 3L assigned to the Principal Investigator.'
-                    : 'Resubmission recorded successfully for the Principal Investigator.',
+                    ? 'Protocol approved and Forms 3L and 3C assigned to the Principal Investigator.'
+                    : 'Resubmission recorded and Forms 3A and 3B assigned to the Principal Investigator.',
             ]);
 
         } catch (\Exception $e) {
@@ -138,5 +170,4 @@ class ERBDecisionController extends Controller
             ], 500);
         }
     }
-
 }
