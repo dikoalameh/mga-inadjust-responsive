@@ -15,20 +15,28 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <style>
+        body {
+            background: url('/images/mcu-background-image.jpg');
+            backdrop-filter: brightness(70%);
+        }
+    </style>
 </head>
 
-<body class="text-gray-900 antialiased">
+<body class="antialiased">
     <!-- body layout -->
     <div
         class="min-h-screen flex sm:flex flex-col justify-center items-center sm:justify-center sm:items-center pt-6 sm:pt-0 max-sm:mx-2 max-sm:mt-auto">
-        <div>
-            <!-- DTO UNG LOGO KAYA HNDI NAKA CENTERALIZED BY Y-AXIS -->
-            <x-application-logo class="w-8 text-gray-500" />
-        </div>
-
         <!-- Log in/register/forgot password form layout -->
         <div
-            class="w-full max-w-[450px] mt-2 px-6 py-4 shadow-lg border-4 border-gray text-black overflow-hidden max-sm:max-h-[80vh] max-sm:overflow-y-auto max-sm:relative rounded-lg max-sm:rounded-lg">
+            class="bg-white w-full max-w-[520px] mt-2 px-6 py-4 shadow-lg border-4 border-gray text-black overflow-hidden max-sm:max-h-[100vh] max-sm:overflow-y-auto max-sm:relative rounded-lg max-sm:rounded-lg">
+            <div class="flex items-center justify-center">
+                <!-- DTO UNG LOGO KAYA HNDI NAKA CENTERALIZED BY Y-AXIS -->
+                <x-application-logo class="w-8 text-gray-500" />
+            </div>
+            <div class="flex items-center justify-center font-bold text-2xl max-sm:text-xl mt-4 text-primary">
+                MCURRS
+            </div>
             {{ $slot }}
         </div>
     </div>

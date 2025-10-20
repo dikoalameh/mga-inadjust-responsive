@@ -5,14 +5,14 @@
 
     <!-- Auto-redirect with history management -->
     <script>
-        (function() {
+        (function () {
             'use strict';
-            
+
             let redirectAttempted = false;
-            
+
             function checkAndRedirect() {
                 if (redirectAttempted) return;
-                
+
                 fetch('{{ route("check-session") }}', {
                     method: 'GET',
                     headers: {
@@ -21,49 +21,49 @@
                     credentials: 'same-origin',
                     cache: 'no-store'
                 })
-                .then(response => {
-                    if (!response.ok) throw new Error('Network error');
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.loggedIn && data.redirectUrl && !redirectAttempted) {
-                        redirectAttempted = true;
-                        
-                        // Replace current history entry completely
-                        if (window.history.replaceState) {
-                            window.history.replaceState(null, '', data.redirectUrl);
+                    .then(response => {
+                        if (!response.ok) throw new Error('Network error');
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.loggedIn && data.redirectUrl && !redirectAttempted) {
+                            redirectAttempted = true;
+
+                            // Replace current history entry completely
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, '', data.redirectUrl);
+                            }
+
+                            // Use replace to remove login from history
+                            window.location.replace(data.redirectUrl);
                         }
-                        
-                        // Use replace to remove login from history
-                        window.location.replace(data.redirectUrl);
-                    }
-                })
-                .catch(() => {
-                    // Silent failure
-                });
+                    })
+                    .catch(() => {
+                        // Silent failure
+                    });
             }
-            
+
             // Check immediately
             checkAndRedirect();
-            
+
             // Check again after a short delay
             setTimeout(checkAndRedirect, 100);
-            
+
             // Additional check when page becomes visible
-            document.addEventListener('visibilitychange', function() {
+            document.addEventListener('visibilitychange', function () {
                 if (!document.hidden) {
                     setTimeout(checkAndRedirect, 50);
                 }
             });
-            
+
             // Prevent any form submission if redirect is pending
-            document.addEventListener('submit', function(e) {
+            document.addEventListener('submit', function (e) {
                 if (redirectAttempted) {
                     e.preventDefault();
                     e.stopImmediatePropagation();
                 }
             }, true);
-            
+
         })();
     </script>
 
@@ -73,35 +73,29 @@
         <!-- Username -->
         <div>
             <x-input-label for="user_ID" :value="__('Username')" />
-            <x-text-input id="user_ID" class="block mt-1 w-full text-[14px] max-sm:text-[13px] h-[35px]" 
-                type="text" 
-                name="user_ID" 
-                :value="old('user_ID')"
-                required 
-                autofocus 
-                autocomplete="username" />
+            <x-text-input id="user_ID" class="block mt-1 w-full text-[14px] max-sm:text-[13px] h-[35px]" type="text"
+                name="user_ID" :value="old('user_ID')" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('user_ID')" class="mt-2" />
         </div>
 
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="user_Password" :value="__('Password')" />
-            <x-text-input id="user_Password" class="block mt-1 w-full text-[14px] max-sm:text-[13px] h-[35px]" 
-                type="password" 
-                name="user_Password" 
-                required
-                autocomplete="current-password" />
+            <x-text-input id="user_Password" class="block mt-1 w-full text-[14px] max-sm:text-[13px] h-[35px]"
+                type="password" name="user_Password" required autocomplete="current-password" />
             <x-input-error :messages="$errors->get('user_Password')" class="mt-2" />
         </div>
 
         <!-- Remember Me & Forgot Password -->
         <div class="mt-4">
-            <div class="flex items-center justify-between text-sm text-gray-500">
-                <label for="remember_me" class="flex items-center space-x-2">
-                    <input id="remember_me" type="checkbox" class="rounded max-sm:w-[14px] max-sm:h-[14px]" name="remember" />
-                    <span class="text-sm text-primary max-sm:text-[13px]">Remember me</span>
+            <div class="flex items-center justify-between text-gray-500">
+                <label for="remember_me" class="flex items-center space-x-1">
+                    <input id="remember_me" type="checkbox" class="rounded max-sm:w-[14px] max-sm:h-[14px]"
+                        name="remember" />
+                    <span class="max-md:text-sm text-primary">Remember me</span>
                 </label>
-                <a href="{{ route('password.request') }}" class="text-sm text-primary hover:text-secondary max-sm:text-[12px] duration-200">
+                <a href="{{ route('password.request') }}"
+                    class="max-md:text-sm text-primary hover:text-secondary duration-200">
                     Forgot password?
                 </a>
             </div>
@@ -109,16 +103,16 @@
 
         <!-- Login Button -->
         <div class="flex mt-4">
-            <x-primary-button class="justify-center items-center max-sm:text-[13px] w-full">
+            <x-primary-button class="justify-center items-center max-md:text-sm w-full">
                 {{ __('Login') }}
             </x-primary-button>
         </div>
 
         <!-- Sign Up Link -->
         <div class="flex justify-center items-center mt-4">
-            <p class="text-sm text-primary max-sm:text-[12px]">Don't have an account?</p>
-            <a href="{{ route('register') }}" class="ml-2 text-sm text-primary hover:text-secondary max-sm:text-[12px] duration-200">
-                Sign up
+            <a href="{{ route('register') }}" class="max-md:text-sm flex gap-x-1 text-primary hover:text-secondary duration-200">
+                <p>Don't have an account?</p>
+                <p>Sign up</p>
             </a>
         </div>
     </form>

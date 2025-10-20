@@ -99,33 +99,6 @@
     </main>
 </x-erb-layout>
 <script>
-    $(document).ready(function () {
-        // Only initialize if not already initialized
-        if (!$.fn.dataTable.isDataTable('#myTable')) {
-            const table = new DataTable('#myTable', {
-                responsive: true,
-                paging: false,
-                scrollY: '300px',
-                order: [[0, 'asc']]
-            });
-
-            // ✅ Move the DataTables search bar into our custom search-wrapper
-            const dtSearch = $('div.dt-search');
-            $('.search-wrapper').append(dtSearch);
-
-            // ✅ Build dropdown filter dynamically
-            const offices = [...new Set(table.column(1).data().toArray())].sort();
-            const select = $('#officeFilter');
-            offices.forEach(o => select.append(`<option value="${o}">${o}</option>`));
-
-            // ✅ Apply filter to Office column
-            select.on('change', function () {
-                const val = $.fn.dataTable.util.escapeRegex($(this).val());
-                table.column(1).search(val ? '^' + val + '$' : '', true, false).draw();
-            });
-        }
-    });
-
     const rooms = document.querySelectorAll(".room");
     const assignedList = document.getElementById("assignedList");
     const submitBtn = document.getElementById("submitBtn");

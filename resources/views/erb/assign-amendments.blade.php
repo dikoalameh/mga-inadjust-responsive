@@ -22,29 +22,28 @@
             </thead>
             <tbody class="text-base/7 max-lg:text-sm/6">
                 @forelse($approvedProtocols as $approved)
-                <tr>
-                    <td>
-                        <input type="checkbox" class="user-checkbox w-[14px] h-[14px] mb-1" 
-                            value="{{ $approved->user_ID }}"
-                            data-protocol-id="{{ $approved->Protocol_ID }}">
-                        <span>
-                            {{ $approved->user->user_Fname ?? '' }}
-                            {{ $approved->user->user_MI ?? '' }}
-                            {{ $approved->user->user_Lname ?? '' }}
-                        </span>
-                    </td>
-                    <td>
-                        {{ $approved->protocol->researchInformation->research_title ?? 'N/A' }}
-                    </td>
-                    <td>
-                        {{ $approved->created_at->format('m/d/Y') }}<br>
-                        {{ $approved->created_at->format('H:i:s') }}
-                    </td>
-                </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" class="user-checkbox w-[14px] h-[14px] mb-1"
+                                value="{{ $approved->user_ID }}" data-protocol-id="{{ $approved->Protocol_ID }}">
+                            <span>
+                                {{ $approved->user->user_Fname ?? '' }}
+                                {{ $approved->user->user_MI ?? '' }}
+                                {{ $approved->user->user_Lname ?? '' }}
+                            </span>
+                        </td>
+                        <td>
+                            {{ $approved->protocol->researchInformation->research_title ?? 'N/A' }}
+                        </td>
+                        <td>
+                            {{ $approved->created_at->format('m/d/Y') }}<br>
+                            {{ $approved->created_at->format('H:i:s') }}
+                        </td>
+                    </tr>
                 @empty
-                <tr>
-                    <td colspan="3" class="text-center py-4">No approved protocols found.</td>
-                </tr>
+                    <tr>
+                        <td colspan="3" class="text-center py-4">No approved protocols found.</td>
+                    </tr>
                 @endforelse
             </tbody>
         </table>
@@ -71,23 +70,20 @@
 </x-erb-layout>
 <script>
     $(document).ready(function () {
-    // Initialize DataTable with simpler column configuration
-    const dataTable = $('#myTable').DataTable({
-        responsive: true,
-        paging: false,
-        scrollY: '300px',
-        order: [[0, 'asc']],
-        language: {
-            emptyTable: 'No approved protocols found.'
-        },
-        // Tell DataTables not to auto-detect data sources
-        autoWidth: false,
-        deferRender: true,
-        // Use the existing HTML as-is
-        columnDefs: [
-            { targets: '_all', defaultContent: '' }
-        ]
-    });
+        // Initialize DataTable with simpler column configuration
+        const dataTable = $('#myTable').DataTable({
+            order: [[0, 'asc']]
+            language: {
+                emptyTable: 'No approved protocols found.'
+            },
+            // Tell DataTables not to auto-detect data sources
+            autoWidth: false,
+            deferRender: true,
+            // Use the existing HTML as-is
+            columnDefs: [
+                { targets: '_all', defaultContent: '' }
+            ]
+        });
 
         // Modal controls
         const userCheckboxes = document.querySelectorAll(".user-checkbox");
@@ -97,10 +93,10 @@
         // Function to update selected users list
         function updateSelectedList() {
             const selectedItems = Array.from(selectedUsersList.querySelectorAll('li'));
-            
+
             // Update submit button state
             submitBtn.disabled = selectedItems.length === 0;
-            
+
             // Show/hide empty state
             if (selectedItems.length === 0) {
                 selectedUsersList.innerHTML = '<li class="text-gray-500">No protocols selected</li>';
@@ -109,7 +105,7 @@
 
         // Add event listeners to checkboxes
         userCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener("change", function() {
+            checkbox.addEventListener("change", function () {
                 const userId = this.value;
                 const protocolId = this.dataset.protocolId;
                 const userName = this.closest('td').querySelector('span').textContent.trim();
@@ -122,26 +118,26 @@
                     li.textContent = `${userName} (Protocol: ${protocolId})`;
                     li.setAttribute("data-user-id", userId);
                     li.setAttribute("data-protocol-id", protocolId);
-                    
+
                     // Remove empty state if it exists
                     if (selectedUsersList.querySelector('.text-gray-500')) {
                         selectedUsersList.innerHTML = '';
                     }
-                    
+
                     selectedUsersList.appendChild(li);
                 } else if (!this.checked && existing) {
                     // Remove from list
                     existing.remove();
                 }
-                
+
                 updateSelectedList();
             });
         });
 
         // Submit button functionality
-        submitBtn.addEventListener('click', function() {
+        submitBtn.addEventListener('click', function () {
             const selectedItems = Array.from(selectedUsersList.querySelectorAll('li:not(.text-gray-500)'));
-            
+
             if (selectedItems.length === 0) {
                 alert('Please select at least one protocol to assign.');
                 return;
@@ -168,36 +164,36 @@
                 },
                 body: JSON.stringify({ protocols: selectedData })
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    alert(data.message || 'Protocols assigned successfully!');
-                    location.reload();
-                } else {
-                    throw new Error(data.message || 'Unknown error occurred');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error assigning protocols: ' + error.message);
-            })
-            .finally(() => {
-                // Re-enable button
-                this.disabled = false;
-                this.textContent = 'Assign';
-            });
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        alert(data.message || 'Protocols assigned successfully!');
+                        location.reload();
+                    } else {
+                        throw new Error(data.message || 'Unknown error occurred');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error assigning protocols: ' + error.message);
+                })
+                .finally(() => {
+                    // Re-enable button
+                    this.disabled = false;
+                    this.textContent = 'Assign';
+                });
         });
 
         // Initialize selected list state
         updateSelectedList();
 
         // Add search functionality enhancement
-        $('#myTable_filter input').on('keyup', function() {
+        $('#myTable_filter input').on('keyup', function () {
             // Clear selections when searching (optional)
             // userCheckboxes.forEach(cb => cb.checked = false);
             // selectedUsersList.innerHTML = '<li class="text-gray-500">No protocols selected</li>';

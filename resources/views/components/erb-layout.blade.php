@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Fonts and Styles -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
-    
+
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.5/css/responsive.dataTables.css">
@@ -43,6 +43,33 @@
         </main>
     </div>
     <script>
+        $(document).ready(function () {
+            // Only initialize if not already initialized
+            if (!$.fn.dataTable.isDataTable('#myTable')) {
+                const table = new DataTable('#myTable', {
+                    responsive: true,
+                    paging: false,
+                    scrollY: '300px',
+                    order: [[0, 'asc']]
+                });
+
+                // ✅ Move the DataTables search bar into our custom search-wrapper
+                const dtSearch = $('div.dt-search');
+                $('.search-wrapper').append(dtSearch);
+
+                // ✅ Build dropdown filter dynamically
+                const offices = [...new Set(table.column(1).data().toArray())].sort();
+                const select = $('#officeFilter');
+                offices.forEach(o => select.append(`<option value="${o}">${o}</option>`));
+
+                // ✅ Apply filter to Office column
+                select.on('change', function () {
+                    const val = $.fn.dataTable.util.escapeRegex($(this).val());
+                    table.column(1).search(val ? '^' + val + '$' : '', true, false).draw();
+                });
+            }
+        });
+
         document.addEventListener('click', function (e) {
             // Only stop propagation if the checkbox or button is inside a specific table
             const isInsideTable = e.target.closest('#myTable'); // or use a more specific class
@@ -59,7 +86,7 @@
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('overlay');
             const isHidden = sidebar.classList.contains('-translate-x-full');
-            
+
             sidebar.classList.toggle('-translate-x-full');
             overlay.classList.toggle('hidden');
         }

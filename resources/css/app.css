@@ -16,14 +16,14 @@ table td, table th {
 .search-wrapper {
     display: flex;
     justify-content: flex-end;
-    flex: 1;
+    margin-left: 20px;
 }
 
 /* Make filter move */
 .filter-wrapper {
     display: flex;
     justify-content: flex-end;
-    flex: 4.7;
+    flex: 1;
 }
 
 select {

@@ -157,16 +157,6 @@
     </main>
 </x-iacuc-layout>
 <script>
-    $(document).ready(function () {
-        // Initialize DataTable
-        $('#myTable').DataTable({
-            responsive: true,
-            paging: false,
-            scrollY: '300px',
-            order: [[0, 'asc']]
-        });
-    });
-
     // Modal controls
     const userCheckboxes = document.querySelectorAll(".user-checkbox");
     const selectedUsersList = document.getElementById("selectedUsers");

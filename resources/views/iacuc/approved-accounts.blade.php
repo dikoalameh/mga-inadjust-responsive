@@ -7,9 +7,9 @@
         </h2>
         <br>
 
-        <!-- CSS NG FILTER + SEARCH BAR -->
-        <div class="top-controls flex items-center max-md:flex-col">
-            <div class="search-wrapper max-sm:mt-3 max-sm:justify-center max-sm:items-center"></div>
+        <!-- CSS NG SEARCH BAR -->
+        <div class="top-controls">
+            <div class="search-wrapper mt-1 flex max-sm:justify-center max-sm:items-center"></div>
         </div>
         
         <table id="myTable" class="display overflow-scroll border-collapse w-full">

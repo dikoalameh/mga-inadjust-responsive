@@ -20,7 +20,7 @@
     <form method="POST" action="{{ route('register') }}" id="studentForm" enctype="multipart/form-data">
         <div id="step1" class="step active">
             @csrf
-            <h2 class="mb-4 font-medium uppercase text-xl max-sm:text-base text-primary">Registration Form</h2>
+            <h2 class="mb-4 font-semibold mt-2 uppercase text-xl max-sm:text-base text-primary">Registration Form</h2>
             <!-- Name -->
             <div id="pi-wrapper">
                 <x-input-label for="pi_name" :value="__('Principal Investigator')" />
@@ -74,13 +74,13 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <a class="text-sm max-sm:text-[13px] text-primary hover:text-secondary duration-200 rounded-md focus:outline-none"
+                <a class="max-sm:text-sm text-primary hover:text-secondary duration-200 rounded-md focus:outline-none"
                     href="{{ route('login') }}">
                     {{ __('Back to Login') }}
                 </a>
                 <!-- button type="button" ginamit ko para madirect sya into 2nd part khit nakarequired(pag submit button ginamit, di madidirect si user sa 2ndo part since naka required sya) -->
                 <button type="button" onclick="nextStep()"
-                    class="bg-secondary hover:bg-primary text-primary hover:text-secondary max-sm:text-sm px-4 py-2 rounded-md ms-2 uppercase tracking-widest duration-200">
+                    class="bg-secondary hover:bg-primary text-primary hover:text-secondary max-sm:text-sm px-4 py-2 rounded-md ms-2 mt-1 uppercase tracking-widest duration-200">
                     Next
                 </button>
             </div>
@@ -102,7 +102,7 @@
                     <input id="toggleCheckBox" type="checkbox" class="rounded max-sm:w-[14px] max-sm:h-[14px]"
                         name="research_checkmcu" value="1" />
                     <span id="inputSpan"
-                        class="text-[14px] text-primary max-sm:text-[13px]">{{ __('Check if not MCU student') }}
+                        class="text-primary max-sm:text-sm">{{ __('Check if not MCU student') }}
                     </span>
                 </label>
 
@@ -142,16 +142,16 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <a class="text-sm max-sm:text-[13px] text-primary hover:text-secondary duration-200 rounded-md focus:outline-none"
+                <a class="max-sm:text-sm text-primary hover:text-secondary duration-200 rounded-md focus:outline-none"
                     href="{{ route('login') }}">
                     {{ __('Back to Login') }}
                 </a>
                 <!-- button type="button" ginamit ko para madirect sya into 1st part khit nakarequired(pag submit button ginamit, di madidirect si user sa 2nd part since naka required sya) -->
                 <button type="button" onclick="prevStep()"
-                    class="ms-2 bg-secondary hover:bg-primary text-primary hover:text-secondary max-sm:text-sm px-4 py-2 rounded-lg uppercase tracking-widest">
+                    class="bg-secondary hover:bg-primary text-primary hover:text-secondary max-sm:text-[15px] px-4 py-2 rounded-md ms-2 mt-1 uppercase tracking-widest duration-200">
                     Back
                 </button>
-                <x-primary-button class="ms-2 max-sm:text-sm" type="submit">
+                <x-primary-button class="ms-2 mt-1 max-sm:text-[15px]" type="submit">
                     {{ __('Register') }}
                 </x-primary-button>
             </div>

@@ -69,20 +69,3 @@
         </table>
     </main>
 </x-erb-layout>
-<script>
-    $(document).ready(function () {
-        // Only initialize if not already initialized
-        if (!$.fn.dataTable.isDataTable('#myTable')) {
-            const table = new DataTable('#myTable', {
-                responsive: true,
-                paging: false,
-                scrollY: '300px',
-                order: [[0, 'asc']]
-            });
-
-            // ✅ Move the DataTables search bar into our custom search-wrapper
-            const dtSearch = $('div.dt-search');
-            $('.search-wrapper').append(dtSearch);
-        }
-    });
-</script>

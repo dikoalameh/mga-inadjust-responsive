@@ -4,17 +4,17 @@
         <img src="" alt="ERB MAS BAGO">
     </div>
 
-    <ul class="mt-12 flex-1 text-[18px]">
+    <ul class="mt-8 flex-1 text-[18px]">
         <!-- Dashboard -->
         <li>
-            <a href="{{ url('/erb/dashboard') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary
+            <a href="{{ url('/erb/dashboard') }}" class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary
                 {{ Request::is('erb/dashboard') ? 'text-secondary' : '' }}">
                 <i class="bi bi-file-earmark-bar-graph-fill"></i>
                 <span class="w-full flex justify-between items-center px-3">Dashboard</span>
             </a>
         </li>
         <!-- Dropdown -->
-        <li class="px-3 py-4">
+        <li class="px-3 py-3">
             <button class="dropdownToggle w-full flex justify-between items-center hover:text-secondary transition-all 
                 {{ Request::is('erb/view-reviews') ? 'text-secondary' : '' }} {{ Request::is('erb/assign-reviewer')
     || Request::is('erb/erb/view-review-files/*') ? 'text-secondary' : ''}}">
@@ -25,7 +25,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                 </svg>
             </button>
-            <ul class="dropdownMenu ml-1 mt-4 space-y-1 hidden">
+            <ul class="dropdownMenu ml-1 mt-4 hidden">
                 <!-- View Reviews -->
                 <li>
                     <a href="{{ url('/erb/view-reviews') }}"
@@ -51,7 +51,7 @@
         </li>
         <!-- Pending Accounts -->
         <li>
-            <a href="{{ url('/erb/iro-approved-accounts') }}" class="flex items-center justify-between px-3 py-4 transition-all flex duration-200 hover:text-secondary
+            <a href="{{ url('/erb/iro-approved-accounts') }}" class="flex items-center justify-between px-3 py-3 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('erb/iro-approved-accounts') ? 'text-secondary' : '' }}">
                 <i class="bi bi-person-fill"></i>
                 <span class="w-full flex justify-between items-center px-3">
@@ -62,7 +62,7 @@
         <!-- Research Records -->
         <li>
             <a href="{{ url('/erb/research-records') }}"
-                class="flex items-center justify-between px-3 py-4 transition-all flex duration-200 hover:text-secondary
+                class="flex items-center justify-between px-3 py-3 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('erb/research-records') || Request::is('erb/submitted-documents/*') ? 'text-secondary' : '' }}">
                 <i class="bi bi-database"></i>
                 <span class="w-full flex justify-between items-center px-3">
@@ -72,7 +72,7 @@
         </li>
         <!-- Approved Accounts -->
         <li>
-            <a href="{{ url('/erb/approved-accounts') }}" class="flex items-center justify-between px-3 py-4 transition-all flex duration-200 hover:text-secondary
+            <a href="{{ url('/erb/approved-accounts') }}" class="flex items-center justify-between px-3 py-3 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('erb/approved-accounts') ? 'text-secondary' : '' }}">
                 <i class="bi bi-person-check-fill"></i>
                 <span class="w-full flex justify-between items-center px-3">
@@ -82,7 +82,7 @@
         </li>
         <!-- Pending Reviews -->
         <li>
-            <a href="{{ url('/erb/pending-reviews') }}" class="flex items-center justify-between px-3 py-4 transition-all flex duration-200 hover:text-secondary
+            <a href="{{ url('/erb/pending-reviews') }}" class="flex items-center justify-between px-3 py-3 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('erb/pending-reviews') ? 'text-secondary' : '' }}">
                 <i class="bi bi-clock-fill"></i>
                 <span class="w-full flex justify-between items-center px-3">
@@ -92,7 +92,7 @@
         </li>
         <!-- Submitted Tickets -->
         <li>
-            <a href="{{ url('/erb/submitted-tickets') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary 
+            <a href="{{ url('/erb/submitted-tickets') }}" class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary 
                 {{ Request::is('erb/submitted-tickets') ? 'text-secondary' : ''}}">
                 <i class="bi bi-ticket-detailed"></i>
                 <span class="w-full flex justify-between items-center px-3">
@@ -102,7 +102,7 @@
         </li>
         <!-- Assign Amendments -->
         <li>
-            <a href="{{ url('/erb/assign-amendments') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary
+            <a href="{{ url('/erb/assign-amendments') }}" class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary
             {{ Request::is('erb/assign-amendments') ? 'text-secondary' : ''}}">
                 <i class="bi bi-pencil-square"></i>
                 <span class="w-full flex justify-between items-center px-3">
@@ -113,7 +113,7 @@
         <!-- Process Monitoring -->
         <li>
             <a href="{{ url('/erb/monitoring-process') }}"
-                class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary {{ Request::is('erb/monitoring-process') ? 'text-secondary' : ''}}">
+                class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary {{ Request::is('erb/monitoring-process') ? 'text-secondary' : ''}}">
                 <i class="bi bi-tv-fill"></i>
                 <span class="w-full flex justify-between items-center px-3">
                     Process Monitoring
@@ -122,7 +122,7 @@
         </li>
         <!-- Settings -->
         <li>
-            <a href="{{ url('/erb/settings') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary
+            <a href="{{ url('/erb/settings') }}" class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary
                 {{ Request::is('erb/settings') ? 'text-secondary' : '' }}">
                 <i class="bi bi-gear-wide-connected"></i>
                 <span class="w-full flex justify-between items-center px-3">
@@ -131,7 +131,7 @@
             </a>
         </li>
         <!-- Profile Information -->
-        <li class="fixed h-[60px] w-[300px] left-0 bottom-0 py-1.5 px-3.5 overflow-hidden ease-in-out duration-200">
+        <li class="fixed h-[60px] w-[300px] left-0 bottom-0 py-1.5 px-3.5 overflow-hidden ease-in-out duration-200 bg-primary">
             <div class="flex items-center flex-nowrap">
                 <img src="" alt="" class="h-[45px] w-[45px] object-cover rounded-[50%] mr-[10px] border-2 border-white">
                 <div class="">
@@ -158,14 +158,14 @@
         <ul class="text-white max-2xl:mt-[65px] max-sm:mt-[55px]">
             <!-- Dashboard -->
             <li>
-                <a href="{{ url('/erb/dashboard') }}" class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary
+                <a href="{{ url('/erb/dashboard') }}" class="flex items-center justify-between px-3 py-2.5 transition-all duration-200 hover:text-secondary
                 {{ Request::is('erb/dashboard') ? 'text-secondary' : '' }}">
                     <i class="bi bi-file-earmark-bar-graph-fill"></i>
                     <span class="w-full flex justify-between items-center px-3">Dashboard</span>
                 </a>
             </li>
             <!-- Dropdown -->
-            <li class="px-3 py-3">
+            <li class="px-3 py-2.5">
                 <button class="dropdownToggle w-full flex justify-between items-center hover:text-secondary transition-all 
                     {{ Request::is('erb/view-reviews') ? 'text-secondary' : '' }} {{ Request::is('erb/assign-reviewer')
     || Request::is('erb/erb/view-review-files/*') ? 'text-secondary' : ''}}">
@@ -176,7 +176,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                     </svg>
                 </button>
-                <ul class="dropdownMenu ml-1 mt-4 space-y-1 hidden">
+                <ul class="dropdownMenu ml-1 mt-4 hidden">
                     <!-- View Reviews -->
                     <li>
                         <a href="{{ url('/erb/view-reviews') }}"
@@ -202,7 +202,7 @@
             </li>
             <!-- Pending Accounts -->
             <li>
-                <a href="{{ url('/erb/iro-approved-accounts') }}" class="flex items-center justify-between px-3 py-3 transition-all flex duration-200 hover:text-secondary
+                <a href="{{ url('/erb/iro-approved-accounts') }}" class="flex items-center justify-between px-3 py-2.5 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('erb/iro-approved-accounts') ? 'text-secondary' : '' }}">
                     <i class="bi bi-person-fill"></i>
                     <span class="w-full flex justify-between items-center px-3">
@@ -213,7 +213,7 @@
             <!-- Research Records -->
             <li>
                 <a href="{{ url('/erb/research-records') }}"
-                    class="flex items-center justify-between px-3 py-3 transition-all flex duration-200 hover:text-secondary
+                    class="flex items-center justify-between px-3 py-2.5 transition-all flex duration-200 hover:text-secondary
                     {{ Request::is('erb/research-records') || Request::is('erb/submitted-documents/*') ? 'text-secondary' : '' }}">
                     <i class="bi bi-database"></i>
                     <span class="w-full flex justify-between items-center px-3">
@@ -223,7 +223,7 @@
             </li>
             <!-- Approved Accounts -->
             <li>
-                <a href="{{ url('/erb/approved-accounts') }}" class="flex items-center justify-between px-3 py-3 transition-all flex duration-200 hover:text-secondary
+                <a href="{{ url('/erb/approved-accounts') }}" class="flex items-center justify-between px-3 py-2.5 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('erb/approved-accounts') ? 'text-secondary' : '' }}">
                     <i class="bi bi-person-check-fill"></i>
                     <span class="w-full flex justify-between items-center px-3">
@@ -233,7 +233,7 @@
             </li>
             <!-- Pending Reviews -->
             <li>
-                <a href="{{ url('/erb/pending-reviews') }}" class="flex items-center justify-between px-3 py-3 transition-all flex duration-200 hover:text-secondary
+                <a href="{{ url('/erb/pending-reviews') }}" class="flex items-center justify-between px-3 py-2.5 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('erb/pending-reviews') ? 'text-secondary' : '' }}">
                     <i class="bi bi-clock-fill"></i>
                     <span class="w-full flex justify-between items-center px-3">
@@ -242,7 +242,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ url('/erb/submitted-tickets') }}" class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary 
+                <a href="{{ url('/erb/submitted-tickets') }}" class="flex items-center justify-between px-3 py-2.5 transition-all duration-200 hover:text-secondary 
                 {{ Request::is('erb/submitted-tickets') ? 'text-secondary' : ''}}">
                     <i class="bi bi-ticket-detailed"></i>
                     <span class="w-full flex justify-between items-center px-3">
@@ -252,7 +252,7 @@
             </li>
             <!-- Assign Amendments -->
             <li>
-                <a href="{{ url('/erb/assign-amendments') }}" class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary
+                <a href="{{ url('/erb/assign-amendments') }}" class="flex items-center justify-between px-3 py-2.5 transition-all duration-200 hover:text-secondary
             {{ Request::is('erb/assign-amendments') ? 'text-secondary' : ''}}">
                     <i class="bi bi-pencil-square"></i>
                     <span class="w-full flex justify-between items-center px-3">
@@ -263,7 +263,7 @@
             <!-- Process Monitoring -->
             <li>
                 <a href="{{ url('/erb/monitoring-process') }}"
-                    class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary {{ Request::is('erb/monitoring-process') ? 'text-secondary' : ''}}">
+                    class="flex items-center justify-between px-3 py-2.5 transition-all duration-200 hover:text-secondary {{ Request::is('erb/monitoring-process') ? 'text-secondary' : ''}}">
                     <i class="bi bi-tv-fill"></i>
                     <span class="w-full flex justify-between items-center px-3">
                         Process Monitoring
@@ -272,7 +272,7 @@
             </li>
             <!-- Settings -->
             <li>
-                <a href="{{ url('/erb/settings') }}" class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary
+                <a href="{{ url('/erb/settings') }}" class="flex items-center justify-between px-3 py-2.5 transition-all duration-200 hover:text-secondary
                 {{ Request::is('erb/settings') ? 'text-secondary' : '' }}">
                     <i class="bi bi-gear-wide-connected"></i>
                     <span class="w-full flex justify-between items-center px-3">
@@ -281,7 +281,7 @@
                 </a>
             </li>
             <!-- Profile Information -->
-            <li class="fixed h-[60px] w-[300px] left-0 bottom-0 py-1.5 px-3.5 overflow-hidden ease-in-out duration-200">
+            <li class="fixed h-[60px] w-[300px] left-0 bottom-0 py-1.5 px-3.5 overflow-hidden ease-in-out duration-200 bg-primary">
                 <div class="flex items-center flex-nowrap">
                     <img src="" alt=""
                         class="h-[45px] w-[45px] object-cover rounded-[50%] mr-[10px] border-2 border-white">
