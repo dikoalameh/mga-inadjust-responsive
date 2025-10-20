@@ -17,7 +17,7 @@
         <li class="px-3 py-4">
             <button class="dropdownToggle w-full flex justify-between items-center hover:text-secondary transition-all 
                 {{ Request::is('erb/view-reviews') ? 'text-secondary' : '' }} {{ Request::is('erb/assign-reviewer')
-                || Request::is('erb/erb/view-review-files/*') ? 'text-secondary' : ''}}">
+    || Request::is('erb/erb/view-review-files/*') ? 'text-secondary' : ''}}">
                 <i class="bi bi-file-earmark-fill"></i>
                 <span class="mr-auto px-3">View Documents</span>
                 <svg class="dropdownArrow w-4 h-4 transition-transform" fill="none" stroke="currentColor"
@@ -110,6 +110,16 @@
                 </span>
             </a>
         </li>
+        <!-- Process Monitoring -->
+        <li>
+            <a href="{{ url('/erb/monitoring-process') }}"
+                class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary {{ Request::is('erb/monitoring-process') ? 'text-secondary' : ''}}">
+                <i class="bi bi-tv-fill"></i>
+                <span class="w-full flex justify-between items-center px-3">
+                    Process Monitoring
+                </span>
+            </a>
+        </li>
         <!-- Settings -->
         <li>
             <a href="{{ url('/erb/settings') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary
@@ -158,7 +168,7 @@
             <li class="px-3 py-3">
                 <button class="dropdownToggle w-full flex justify-between items-center hover:text-secondary transition-all 
                     {{ Request::is('erb/view-reviews') ? 'text-secondary' : '' }} {{ Request::is('erb/assign-reviewer')
-                    || Request::is('erb/erb/view-review-files/*') ? 'text-secondary' : ''}}">
+    || Request::is('erb/erb/view-review-files/*') ? 'text-secondary' : ''}}">
                     <i class="bi bi-file-earmark-fill"></i>
                     <span class="mr-auto px-3">View Documents</span>
                     <svg class="dropdownArrow w-4 h-4 transition-transform" fill="none" stroke="currentColor"
@@ -247,6 +257,16 @@
                     <i class="bi bi-pencil-square"></i>
                     <span class="w-full flex justify-between items-center px-3">
                         Assign Amendments
+                    </span>
+                </a>
+            </li>
+            <!-- Process Monitoring -->
+            <li>
+                <a href="{{ url('/erb/monitoring-process') }}"
+                    class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary {{ Request::is('erb/monitoring-process') ? 'text-secondary' : ''}}">
+                    <i class="bi bi-tv-fill"></i>
+                    <span class="w-full flex justify-between items-center px-3">
+                        Process Monitoring
                     </span>
                 </a>
             </li>

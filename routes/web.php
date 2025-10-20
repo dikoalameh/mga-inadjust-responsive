@@ -77,36 +77,41 @@ Route::middleware(['auth', 'access:ERB Admin'])->prefix('erb')->group(function (
 
     // Pending Reviews
     Route::get('/pending-reviews', [ERBDecisionController::class, 'index'])
-    ->name('erb.pending-reviews');
+        ->name('erb.pending-reviews');
 
     Route::post('/pending-reviews/store', [ERBDecisionController::class, 'store'])
-    ->name('erb.pending-reviews.store');
+        ->name('erb.pending-reviews.store');
 
     // Assign Reviewer
     Route::get('/assign-reviewer', [assignReviewer::class, 'index'])->name('erb.assigned-reviewer');
 
     Route::post('/assign-reviewer/store', [AssignReviewer::class, 'ERBstore'])
-    ->name('assign-reviewer.store');
-    
+        ->name('assign-reviewer.store');
+
     // View Reviews
     Route::get('/view-reviews', [ERBViewReviews::class, 'index'])
-    ->name('erb.view-reviews');
+        ->name('erb.view-reviews');
 
     Route::get('/erb/view-review-files/{protocolId}/{reviewerId}', [ERBViewReviews::class, 'showFiles'])
-    ->name('erb.view-review-files');
-    
+        ->name('erb.view-review-files');
+
     // Submitted Tickets
-    Route::get('/submitted-tickets', function() {
+    Route::get('/submitted-tickets', function () {
         return view('erb.submitted-tickets');
     });
-    
+
     // Assigned Amendments
-    Route::get('/assign-amendments', function() {
+    Route::get('/assign-amendments', function () {
         return view('erb.assign-amendments');
     });
 
+    // Process Monitoring
+    Route::get('/monitoring-process', function () {
+        return view('erb.monitoring-process');
+    });
+
     // Tickets
-    Route::get('/tickets', function() {
+    Route::get('/tickets', function () {
         return view('erb.tickets');
     });
 
@@ -164,22 +169,28 @@ Route::middleware(['auth', 'access:IACUC Admin'])->prefix('iacuc')->group(functi
     Route::get('/iacuc/viewing-file', function () {
         return view('iacuc.viewing-file');
     });
-    
+
     // Submitted Tickets
-    Route::get('/submitted-tickets', function() {
+    Route::get('/submitted-tickets', function () {
         return view('iacuc.submitted-tickets');
     });
-    
+
     // Assigned Amendments
-    Route::get('/assign-amendments', function() {
+    Route::get('/assign-amendments', function () {
         return view('iacuc.assign-amendments');
     });
 
-    Route::get('/submitted-documents', function() {
+    // Submitted Documents
+    Route::get('/submitted-documents', function () {
         return view('iacuc.submitted-documents');
     });
 
-    Route::get('/tickets', function() {
+    // Monitoring Process
+    Route::get('/monitoring-process', function() {
+        return view('iacuc.monitoring-process');
+    });
+
+    Route::get('/tickets', function () {
         return view('iacuc.tickets');
     });
 });
@@ -188,7 +199,7 @@ Route::middleware(['auth', 'access:IACUC Admin'])->prefix('iacuc')->group(functi
 Route::middleware(['auth', 'access:Superadmin'])->prefix('superadmin')->group(function () {
 
     // Dashboard
-    Route::get('/dashboard', [MonitoringDashboard::class,'dashboard'])->name('superadmin.dashboard');
+    Route::get('/dashboard', [MonitoringDashboard::class, 'dashboard'])->name('superadmin.dashboard');
 
     // Permission control
     Route::get('/permission-control', [RegisteredUserController::class, 'index'])->name('permission-control');
@@ -199,20 +210,24 @@ Route::middleware(['auth', 'access:Superadmin'])->prefix('superadmin')->group(fu
     Route::post('/classifications/bulk-update', [ClassificationController::class, 'bulkUpdate'])->name('classifications.bulk-update');
 
     // Other pages
-    Route::get('/pending-reviews', [MonitoringDashboard::class,'viewEvaluatedProtocols'])
-    ->name('superadmin.pending-reviews');
+    Route::get('/pending-reviews', [MonitoringDashboard::class, 'viewEvaluatedProtocols'])
+        ->name('superadmin.pending-reviews');
 
-    Route::get('/assign-reviewer', [MonitoringDashboard::class,'viewUnassignedReviewer'])
-    ->name('superadmin.assign-reviewer');
+    Route::get('/assign-reviewer', [MonitoringDashboard::class, 'viewUnassignedReviewer'])
+        ->name('superadmin.assign-reviewer');
 
-    Route::get('/research-records', [MonitoringDashboard::class,'superadminResearchRecords'])
-    ->name('superadmin.research-records');
+    Route::get('/research-records', [MonitoringDashboard::class, 'superadminResearchRecords'])
+        ->name('superadmin.research-records');
 
     Route::get('/view-reviews', function () {
         return view('superadmin.view-reviews');
     });
 
     Route::get('/monitoring', [MonitoringDashboard::class, 'index'])->name('monitoring');
+
+    Route::get('/monitoring-process', function () {
+        return view('superadmin.monitoring-process');
+    });
 
     Route::get('/settings', function () {
         return view('superadmin.settings');
@@ -234,7 +249,7 @@ Route::middleware(['auth', 'access:ERB Reviewer', CheckReviewerInformation::clas
 
     // Protocol assignment page
     Route::get('/protocol-assign', [ERBReviewer::class, 'index'])
-    ->name('erb-reviewer.protocol-assign');
+        ->name('erb-reviewer.protocol-assign');
 
     // Settings
     Route::get('/settings', function () {
@@ -252,6 +267,10 @@ Route::middleware(['auth', 'access:ERB Reviewer', CheckReviewerInformation::clas
     });
     Route::get('/forms/form3b', function () {
         return view('erb-reviewer.forms.form3b');
+    });
+
+    Route::get('/monitoring-process', function () {
+        return view('erb-reviewer.monitoring-process');
     });
 
     // Submission Tab
@@ -275,7 +294,7 @@ Route::middleware(['auth', 'access:ERB Reviewer'])
         Route::post('/college-dept', [ReviewerInformationController::class, 'erbStore'])
             ->name('erb-reviewer.college-dept.store');
     });
-    
+
 //iacuc reviewer
 Route::get('/iacuc-reviewer/dashboard', function () {
     return view('iacuc-reviewer.dashboard');
@@ -283,6 +302,10 @@ Route::get('/iacuc-reviewer/dashboard', function () {
 
 Route::get('/iacuc-reviewer/protocol-assign', function () {
     return view('iacuc-reviewer.protocol-assign');
+});
+
+Route::get('/iacuc-reviewer/monitoring-process', function () {
+    return view('iacuc-reviewer.monitoring-process');
 });
 
 Route::get('/iacuc-reviewer/settings', function () {
@@ -323,12 +346,16 @@ Route::middleware(['auth', 'access:Principal Investigator'])->prefix('student')-
 
     Route::get('/download-forms', [FormAssignment::class, 'assignedFormsDisplay'])
         ->name('student.download-forms');
+    
+    Route::get('/monitoring-process', function () {
+        return view('student.monitoring-process');
+    });
 
     Route::get('/settings', function () {
         return view('student.settings');
     });
     Route::post('/tickets/store', [TicketController::class, 'store'])->name('student.tickets.store');
-    
+
     // sample form layout
     Route::prefix('forms')->group(function () {
 

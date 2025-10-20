@@ -15,15 +15,26 @@
         </li>
         <!-- Assigned Research Protocol -->
         <li>
-            <a href="{{ url('erb-reviewer/protocol-assign') }}" class="px-3 py-4 transition-all flex duration-200 hover:text-secondary
+            <a href="{{ url('erb-reviewer/protocol-assign') }}"
+                class="flex items-center justify-between px-3 py-4 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('erb-reviewer/protocol-assign') || Request::is('erb-reviewer/forms/*') ? 'text-secondary' : '' }}">
                 <i class="bi bi-file-earmark-fill"></i>
                 <span class="w-full flex justify-between items-center px-3">Assigned Research Protocol</span>
             </a>
         </li>
+        <!-- Process Monitoring -->
+        <li>
+            <a href="{{ url('/erb-reviewer/monitoring-process') }}"
+                class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary {{ Request::is('erb-reviewer/monitoring-process') ? 'text-secondary' : ''}}">
+                <i class="bi bi-tv-fill"></i>
+                <span class="w-full flex justify-between items-center px-3">
+                    Process Monitoring
+                </span>
+            </a>
+        </li>
         <!-- Settings -->
         <li>
-            <a href="{{ url('erb-reviewer/settings') }}" class="px-3 py-4 transition-all flex duration-200 hover:text-secondary
+            <a href="{{ url('erb-reviewer/settings') }}" class="flex items-center justify-between px-3 py-4 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('erb-reviewer/settings') ? 'text-secondary' : '' }}">
                 <i class="bi bi-gear-wide-connected"></i>
                 <span class="w-full flex justify-between items-center px-3">Settings</span>
@@ -34,7 +45,8 @@
             <div class="flex items-center flex-nowrap">
                 <img src="" alt="" class="h-[45px] w-[45px] object-cover rounded-[50%] mr-[10px] border-2 border-white">
                 <div class="">
-                    <div class="text-[16px] whitespace-nowrap" name="userName">{{ Auth::user()->user_Fname }} {{ Auth::user()->user_MI }} {{ Auth::user()->user_Lname }}</div>
+                    <div class="text-[16px] whitespace-nowrap" name="userName">{{ Auth::user()->user_Fname }}
+                        {{ Auth::user()->user_MI }} {{ Auth::user()->user_Lname }}</div>
                     <div class="text-[14px] whitespace-nowrap" name="userAccess">ERB Reviewer</div>
                 </div>
             </div>
@@ -55,21 +67,32 @@
         <ul class="text-white max-2xl:mt-[65px] max-sm:mt-[55px]">
             <li>
                 <!-- Dashboard -->
-                <a href="{{ url('/erb-reviewer/dashboard') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary
+                <a href="{{ url('/erb-reviewer/dashboard') }}" class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary
                     {{ Request::is('erb-reviewer/dashboard') ? 'text-secondary' : '' }}">
                     <i class="bi bi-file-earmark-bar-graph-fill"></i>
                     <span class="w-full flex justify-between items-center px-3">Dashboard</span>
                 </a>
             </li>
             <!-- Assigned Research Protocol -->
-            <a href="{{ url('erb-reviewer/protocol-assign') }}" class="px-3 py-4 transition-all flex duration-200 hover:text-secondary
+            <a href="{{ url('erb-reviewer/protocol-assign') }}"
+                class="px-3 py-3 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('erb-reviewer/protocol-assign') || Request::is('erb-reviewer/forms/*') ? 'text-secondary' : '' }}">
                 <i class="bi bi-file-earmark-fill"></i>
                 <span class="w-full flex justify-between items-center px-3">Assigned Research Protocol</span>
             </a>
+            <!-- Process Monitoring -->
+            <li>
+                <a href="{{ url('/erb-reviewer/monitoring-process') }}"
+                    class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary {{ Request::is('erb-reviewer/monitoring-process') ? 'text-secondary' : ''}}">
+                    <i class="bi bi-tv-fill"></i>
+                    <span class="w-full flex justify-between items-center px-3">
+                        Process Monitoring
+                    </span>
+                </a>
+            </li>
             <!-- Settings -->
             <li>
-                <a href="{{ url('erb-reviewer/settings') }}" class="px-3 py-4 transition-all flex duration-200 hover:text-secondary
+                <a href="{{ url('erb-reviewer/settings') }}" class="px-3 py-3 transition-all flex duration-200 hover:text-secondary
                     {{ Request::is('erb-reviewer/settings') ? 'text-secondary' : '' }}">
                     <i class="bi bi-gear-wide-connected"></i>
                     <span class="w-full flex justify-between items-center px-3">Settings</span>
@@ -81,7 +104,8 @@
                     <img src="" alt=""
                         class="h-[45px] w-[45px] object-cover rounded-[50%] mr-[10px] border-2 border-white">
                     <div class="">
-                        <div class="text-[16px] whitespace-nowrap" name="userName">{{ Auth::user()->user_Fname }} {{ Auth::user()->user_MI }} {{ Auth::user()->user_Lname }}</div>
+                        <div class="text-[16px] whitespace-nowrap" name="userName">{{ Auth::user()->user_Fname }}
+                            {{ Auth::user()->user_MI }} {{ Auth::user()->user_Lname }}</div>
                         <div class="text-[14px] whitespace-nowrap" name="userAccess">ERB Reviewer</div>
                     </div>
                 </div>

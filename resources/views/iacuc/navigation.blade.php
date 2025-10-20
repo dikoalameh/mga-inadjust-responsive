@@ -19,7 +19,7 @@
         <li class="px-3 py-4">
             <button class="dropdownToggle w-full flex justify-between items-center hover:text-secondary transition-all 
                 {{ Request::is('iacuc/view-reviews') ? 'text-secondary' : '' }} {{ Request::is('iacuc/assign-reviewer')
-                || Request::is('iacuc/viewing-file') ? 'text-secondary' : '' }}">
+    || Request::is('iacuc/viewing-file') ? 'text-secondary' : '' }}">
                 <i class="bi bi-file-earmark-fill"></i>
                 <span class="mr-auto px-3">View Documents</span>
                 <svg class="dropdownArrow w-4 h-4 transition-transform" fill="none" stroke="currentColor"
@@ -63,7 +63,8 @@
         </li>
         <!-- Research Records -->
         <li>
-            <a href="{{ url('iacuc/research-records') }}" class="flex items-center justify-between px-3 py-4 transition-all flex duration-200 hover:text-secondary
+            <a href="{{ url('iacuc/research-records') }}"
+                class="flex items-center justify-between px-3 py-4 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('iacuc/research-records') || Request::is('iacuc/submitted-documents') ? 'text-secondary' : '' }}">
                 <i class="bi bi-database"></i>
                 <span class="w-full flex justify-between items-center px-3">
@@ -93,7 +94,8 @@
         </li>
         <!-- Submitted Tickets -->
         <li>
-            <a href="{{ url('/iacuc/submitted-tickets') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary 
+            <a href="{{ url('/iacuc/submitted-tickets') }}"
+                class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary 
                 {{ Request::is('iacuc/submitted-tickets') || Request::is('iacuc/tickets') || Request::is('iacuc/tickets/*') ? 'text-secondary' : ''}}">
                 <i class="bi bi-ticket-detailed"></i>
                 <span class="w-full flex justify-between items-center px-3">
@@ -108,6 +110,16 @@
                 <i class="bi bi-pencil-square"></i>
                 <span class="w-full flex justify-between items-center px-3">
                     Assign Amendments
+                </span>
+            </a>
+        </li>
+        <!-- Process Monitoring -->
+        <li>
+            <a href="{{ url('/iacuc/monitoring-process') }}"
+                class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary {{ Request::is('iacuc/monitoring-process') ? 'text-secondary' : ''}}">
+                <i class="bi bi-tv-fill"></i>
+                <span class="w-full flex justify-between items-center px-3">
+                    Process Monitoring
                 </span>
             </a>
         </li>
@@ -159,7 +171,7 @@
             <li class="px-3 py-3">
                 <button class="dropdownToggle w-full flex justify-between items-center hover:text-secondary transition-all 
                 {{ Request::is('iacuc/view-reviews') ? 'text-secondary' : '' }} {{ Request::is('iacuc/assign-reviewer')
-                || Request::is('iacuc/viewing-file') ? 'text-secondary' : '' }}">
+    || Request::is('iacuc/viewing-file') ? 'text-secondary' : '' }}">
                     <i class="bi bi-file-earmark-fill"></i>
                     <span class="mr-auto px-3">View Documents</span>
                     <svg class="dropdownArrow w-4 h-4 transition-transform" fill="none" stroke="currentColor"
@@ -233,7 +245,8 @@
             </li>
             <!-- Submitted Documents -->
             <li>
-                <a href="{{ url('/iacuc/submitted-tickets') }}" class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary 
+                <a href="{{ url('/iacuc/submitted-tickets') }}"
+                    class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary 
                 {{ Request::is('iacuc/submitted-tickets') || Request::is('iacuc/tickets') || Request::is('iacuc/tickets/*') ? 'text-secondary' : ''}}">
                     <i class="bi bi-ticket-detailed"></i>
                     <span class="w-full flex justify-between items-center px-3">
@@ -248,6 +261,16 @@
                     <i class="bi bi-pencil-square"></i>
                     <span class="w-full flex justify-between items-center px-3">
                         Assign Amendments
+                    </span>
+                </a>
+            </li>
+            <!-- Process Monitoring -->
+            <li>
+                <a href="{{ url('/iacuc/monitoring-process') }}"
+                    class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary {{ Request::is('iacuc/monitoring-process') ? 'text-secondary' : ''}}">
+                    <i class="bi bi-tv-fill"></i>
+                    <span class="w-full flex justify-between items-center px-3">
+                        Process Monitoring
                     </span>
                 </a>
             </li>

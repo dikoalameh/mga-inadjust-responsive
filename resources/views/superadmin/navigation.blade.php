@@ -98,6 +98,16 @@
                 </span>
             </a>
         </li>
+        <!-- Process Monitoring -->
+        <li>
+            <a href="{{ url('/superadmin/monitoring-process') }}"
+                class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary {{ Request::is('superadmin/monitoring-process') ? 'text-secondary' : ''}}">
+                <i class="bi bi-tv-fill"></i>
+                <span class="w-full flex justify-between items-center px-3">
+                    Process Monitoring
+                </span>
+            </a>
+        </li>
         <!-- Settings -->
         <li>
             <a href="{{ url('superadmin/settings') }}" class="px-3 py-4 flex duration-200 hover:text-secondary
@@ -114,7 +124,8 @@
                 <img src="" alt="" class="h-[45px] w-[45px] object-cover rounded-[50%] mr-[10px] border-2 border-white">
                 <div class="">
                     <div class="text-[16px] whitespace-nowrap">{{ Auth::user()->user_Fname }}
-                        {{ Auth::user()->user_MI }} {{ Auth::user()->user_Lname }}</div>
+                        {{ Auth::user()->user_MI }} {{ Auth::user()->user_Lname }}
+                    </div>
                     <div class="text-[14px] whitespace-nowrap">Superadmin</div>
                 </div>
             </div>
@@ -135,14 +146,14 @@
         <ul class="text-white max-2xl:mt-[65px] max-sm:mt-[55px]">
             <!-- Dashboard -->
             <li>
-                <a href="{{ url('/superadmin/dashboard') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary
+                <a href="{{ url('/superadmin/dashboard') }}" class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary
                 {{ Request::is('superadmin/dashboard') ? 'text-secondary' : '' }}">
                     <i class="bi bi-file-earmark-bar-graph-fill"></i>
                     <span class="w-full flex justify-between items-center px-3">Dashboard</span>
                 </a>
             </li>
             <!-- Dropdown -->
-            <li class="px-3 py-4">
+            <li class="px-3 py-3">
                 <button
                     class="dropdownToggle w-full flex justify-between items-center hover:text-secondary transition-all 
                     {{ Request::is('superadmin/view-reviews') ? 'text-secondary' : '' }} {{ Request::is('superadmin/assign-reviewer') ? 'text-secondary' : '' }}">
@@ -178,7 +189,7 @@
             </li>
             <!-- Classification of Accounts -->
             <li>
-                <a href="{{ url('/superadmin/accounts-classifications') }}" class="px-3 py-4 transition-all flex duration-200 hover:text-secondary 
+                <a href="{{ url('/superadmin/accounts-classifications') }}" class="px-3 py-3 transition-all flex duration-200 hover:text-secondary 
                 {{ Request::is('superadmin/accounts-classifications') ? 'text-secondary' : '' }}">
                     <i class="bi bi-person-fill"></i>
                     <span class="w-full flex justify-between items-center px-3">
@@ -188,7 +199,7 @@
             </li>
             <!-- Research Records -->
             <li>
-                <a href="{{ url('/superadmin/research-records') }}" class="px-3 py-4 transition-all flex duration-200 hover:text-secondary
+                <a href="{{ url('/superadmin/research-records') }}" class="px-3 py-3 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('superadmin/research-records') ? 'text-secondary' : '' }}">
                     <i class="bi bi-database"></i>
                     <span class="w-full flex justify-between items-center px-3">
@@ -198,7 +209,7 @@
             </li>
             <!-- Pending Reviews -->
             <li>
-                <a href="{{ url('/superadmin/pending-reviews') }}" class="px-3 py-4 transition-all flex duration-200 hover:text-secondary
+                <a href="{{ url('/superadmin/pending-reviews') }}" class="px-3 py-3 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('superadmin/pending-reviews') ? 'text-secondary' : '' }}">
                     <i class="bi bi-clock-fill"></i>
                     <span class="w-full flex justify-between items-center px-3">
@@ -208,7 +219,7 @@
             </li>
             <!-- Permission Control -->
             <li>
-                <a href="{{ url('/superadmin/permission-control') }}" class="px-3 py-4 transition-all flex duration-200 hover:text-secondary
+                <a href="{{ url('/superadmin/permission-control') }}" class="px-3 py-3 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('superadmin/permission-control') ? 'text-secondary' : '' }}">
                     <i class="bi bi-universal-access-circle"></i>
                     <span class="w-full flex justify-between items-center px-3">
@@ -216,9 +227,19 @@
                     </span>
                 </a>
             </li>
+            <!-- Process Monitoring -->
+            <li>
+                <a href="{{ url('/superadmin/monitoring-process') }}"
+                    class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary {{ Request::is('superadmin/monitoring-process') ? 'text-secondary' : ''}}">
+                    <i class="bi bi-tv-fill"></i>
+                    <span class="w-full flex justify-between items-center px-3">
+                        Process Monitoring
+                    </span>
+                </a>
+            </li>
             <!-- Settings -->
             <li>
-                <a href="{{ url('superadmin/settings') }}" class="px-3 py-4 flex duration-200 hover:text-secondary
+                <a href="{{ url('superadmin/settings') }}" class="px-3 py-3 flex duration-200 hover:text-secondary
                 {{ Request::is('superadmin/settings') ? 'text-secondary' : '' }}">
                     <i class="bi bi-gear-wide-connected"></i>
                     <span class="w-full flex justify-between items-center px-3">
@@ -233,7 +254,8 @@
                         class="h-[45px] w-[45px] object-cover rounded-[50%] mr-[10px] border-2 border-white">
                     <div class="">
                         <div class="text-[16px] whitespace-nowrap">{{ Auth::user()->user_Fname }}
-                            {{ Auth::user()->user_MI }} {{ Auth::user()->user_Lname }}</div>
+                            {{ Auth::user()->user_MI }} {{ Auth::user()->user_Lname }}
+                        </div>
                         <div class="text-[14px] whitespace-nowrap">Superadmin</div>
                     </div>
                 </div>

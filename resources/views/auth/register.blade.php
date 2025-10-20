@@ -132,6 +132,15 @@
                     placeholder="Research Title" />
                 <x-input-error :messages="$errors->get('research_title')" class="mt-2" />
             </div>
+            
+            <!-- PI Contact Number -->
+            <div class="mt-2">
+                <x-input-label for="pi_contact" :value="__('PI Contact Number')" />
+                <x-text-input id="pi_contact" class="block mt-1 w-full text-[14px] max-sm:text-[13px] h-[35px]"
+                    type="text" name="pi_contact" :value="old('pi_contact')" required autocomplete="pi_contact"
+                    placeholder="PI Contact Number" />
+                <x-input-error :messages="$errors->get('pi_contact')" class="mt-2" />
+            </div>
 
             <!-- Attach Endorsement Letter File -->
             <div class="mt-2">

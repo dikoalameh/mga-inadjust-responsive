@@ -46,12 +46,6 @@
         </main>
     </div>
     <script>
-        new DataTable('#myTable', {
-            paging: false,
-            responsive: true,
-            scrollY: '300px'
-        });
-
         dropDownMenu();
 
         function toggleSidebar() {

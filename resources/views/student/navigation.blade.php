@@ -37,6 +37,16 @@
                 <span class="w-full flex justify-between items-center px-3">Submit Tickets</span>
             </a>
         </li>
+        <!-- Process Monitoring -->
+            <li>
+                <a href="{{ url('/student/monitoring-process') }}"
+                    class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary {{ Request::is('student/monitoring-process') ? 'text-secondary' : ''}}">
+                    <i class="bi bi-tv-fill"></i>
+                    <span class="w-full flex justify-between items-center px-3">
+                        Process Monitoring
+                    </span>
+                </a>
+            </li>
         <!-- Settings -->
         <li>
             <a href="{{ url('student/settings') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary 
@@ -98,6 +108,16 @@
                 {{ Request::is('student/submit-tickets') ? 'text-secondary' : '' }}">
                     <i class="bi bi-file-earmark-fill"></i>
                     <span class="w-full flex justify-between items-center px-3">Submit Tickets</span>
+                </a>
+            </li>
+            <!-- Process Monitoring -->
+            <li>
+                <a href="{{ url('/student/monitoring-process') }}"
+                    class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary {{ Request::is('student/monitoring-process') ? 'text-secondary' : ''}}">
+                    <i class="bi bi-tv-fill"></i>
+                    <span class="w-full flex justify-between items-center px-3">
+                        Process Monitoring
+                    </span>
                 </a>
             </li>
             <!-- Settings -->
