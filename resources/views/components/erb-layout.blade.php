@@ -12,11 +12,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Fonts and Styles -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
-
+    <!-- Browser tab icon -->
+    <link rel="icon" href="{{ asset('images/mculogo2.png') }}" type="image/x-icon">
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.5/css/responsive.dataTables.css">
-
     <!-- DataTables and jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
@@ -50,7 +50,13 @@
                     responsive: true,
                     paging: false,
                     scrollY: '300px',
-                    order: [[0, 'asc']]
+                    order: [[0, 'asc']],
+                    // Tell DataTables not to auto-detect data sources
+                    deferRender: true,
+                    // Use the existing HTML as-is
+                    columnDefs: [
+                        { targets: '_all', defaultContent: '' }
+                    ]
                 });
 
                 // ✅ Move the DataTables search bar into our custom search-wrapper
@@ -59,7 +65,7 @@
 
                 // ✅ Build dropdown filter dynamically
                 const offices = [...new Set(table.column(1).data().toArray())].sort();
-                const select = $('#officeFilter');
+                const select = $('#filter');
                 offices.forEach(o => select.append(`<option value="${o}">${o}</option>`));
 
                 // ✅ Apply filter to Office column
@@ -136,9 +142,9 @@
         const titles = {
             "/erb/dashboard": "DASHBOARD",
             "/erb/assign-reviewer": "ASSIGN REVIEWER",
-            "/erb/approved-accounts": "APPROVED ACCOUNTS",
+            "/erb/approved-accounts": "ASSIGNED FORMS",
             "/erb/iro-approved-accounts": "APPROVED ACCOUNTS",
-            "/erb/pending-reviews": "PENDING REVIEWS",
+            "/erb/pending-reviews": "PROTOCOL DECISION",
             "/erb/research-records": "RESEARCH RECORDS",
             "/erb/ongoing-reviews": "ONGOING REVIEWS",
             "/erb/submitted-documents": "SUBMITTED DOCUMENTS",
@@ -150,31 +156,6 @@
 
         // Update the text content of the header and the <title> tag
         document.getElementById("page-title").textContent = pageTitle;
-
-        // ✅ Modal element references
-        const modal = document.getElementById("modal");
-        const piName = document.getElementById("piName");
-        const researchTitle = document.getElementById("researchTitle");
-        const subjectField = document.getElementById("subjectField");
-
-        // ✅ Modal functions
-        function openModal(name, title, subject) {
-            piName.value = name;
-            researchTitle.value = title;
-            subjectField.textContent = subject;
-            modal.classList.remove("hidden");
-            modal.classList.add("flex");
-        }
-
-        function closeModal() {
-            modal.classList.add("hidden");
-            modal.classList.remove("flex");
-        }
-
-        // Close modal when clicking outside content
-        window.onclick = (e) => {
-            if (e.target === modal) closeModal();
-        };
     </script>
 </body>
 

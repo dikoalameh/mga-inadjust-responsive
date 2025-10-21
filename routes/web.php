@@ -43,7 +43,7 @@ Route::get('/', function () {
 Route::middleware('throttle:10,1')->get('/check-session', function () {
     if (Auth::check()) {
         $user = Auth::user();
-        $redirectUrl = match($user->user_Access) {
+        $redirectUrl = match ($user->user_Access) {
             'Superadmin' => route('superadmin.dashboard'),
             'ERB Admin' => route('erb.dashboard'),
             'IACUC Admin' => route('iacuc.dashboard'),
@@ -52,7 +52,7 @@ Route::middleware('throttle:10,1')->get('/check-session', function () {
             'Principal Investigator' => route('student.dashboard'),
             default => null,
         };
-        
+
         return response()->json([
             'loggedIn' => true,
             'redirectUrl' => $redirectUrl
@@ -74,9 +74,9 @@ Route::get('/register-co-inv', function () {
 });
 
 // erb - ADDED no-cache MIDDLEWARE
-Route::middleware(['auth', 'access:ERB Admin', 'no-cache','prevent-back'])->prefix('erb')->group(function () {
+Route::middleware(['auth', 'access:ERB Admin', 'no-cache', 'prevent-back'])->prefix('erb')->group(function () {
     Route::get('/dashboard', [ERBDashboard::class, 'dashboard'])
-    ->name('erb.dashboard');
+        ->name('erb.dashboard');
 
     // Research Records
     Route::get('/research-records', [ResearchFileController::class, 'researchRecords'])
@@ -88,8 +88,8 @@ Route::middleware(['auth', 'access:ERB Admin', 'no-cache','prevent-back'])->pref
 
     // In your routes file (web.php)
     Route::post('/research-files/{file}/soft-delete', [ResearchFileController::class, 'softDeleteResearchFile'])
-    ->name('research-files.soft-delete');
-    
+        ->name('research-files.soft-delete');
+
     Route::get('/iro-approved-accounts', [FormAssignment::class, 'approvedAccounts'])
         ->name('erb.iro-approved-accounts');
 
@@ -102,44 +102,54 @@ Route::middleware(['auth', 'access:ERB Admin', 'no-cache','prevent-back'])->pref
 
     // Pending Reviews
     Route::get('/pending-reviews', [ERBDecisionController::class, 'index'])
-    ->name('erb.pending-reviews');
+        ->name('erb.pending-reviews');
 
     Route::post('/pending-reviews/store', [ERBDecisionController::class, 'store'])
-    ->name('erb.pending-reviews.store');
+        ->name('erb.pending-reviews.store');
 
     // Assign Reviewer
     Route::get('/assign-reviewer', [assignReviewer::class, 'index'])->name('erb.assigned-reviewer');
 
     Route::post('/assign-reviewer/store', [AssignReviewer::class, 'ERBstore'])
-    ->name('assign-reviewer.store');
-    
+        ->name('assign-reviewer.store');
+
     // View Reviews
     Route::get('/view-reviews', [ERBViewReviews::class, 'index'])
-    ->name('erb.view-reviews');
+        ->name('erb.view-reviews');
 
     Route::get('/erb/view-review-files/{protocolId}/{reviewerId}', [ERBViewReviews::class, 'showFiles'])
-    ->name('erb.view-review-files');
-    
+        ->name('erb.view-review-files');
+
     // Submitted Tickets
-    Route::get('/submitted-tickets', function() {
+    Route::get('/submitted-tickets', function () {
         return view('erb.submitted-tickets');
     });
-    
+
     // Assigned Amendments
     Route::get('/assign-amendments', [AmendmentsERB::class, 'assignedAmendments'])
-    ->name('assigned.amendments');
+        ->name('assigned.amendments');
 
     Route::post('/assign-amendments', [AmendmentsERB::class, 'assignAmendments'])
-    ->name('assign.amendments');
+        ->name('assign.amendments');
 
     // Tickets
-    Route::get('/tickets', function() {
+    Route::get('/tickets', function () {
         return view('erb.tickets');
     });
 
     // Monitoring Process
     Route::get('/monitoring-process', function () {
         return view('erb.monitoring-process');
+    });
+
+    // Assign Full Board Review
+    Route::get('/full-board-review', function() {
+        return view('erb.full-board-review');
+    });
+
+    // Final Completion
+    Route::get('/final-completion', function() {
+        return view('erb.final-completion');
     });
 
     // Settings
@@ -161,8 +171,11 @@ Route::middleware(['auth', 'access:ERB Admin', 'no-cache','prevent-back'])->pref
     })->name('erb.notification.markAllRead');
 });
 
+// routes ng issuance of cert (nilabas ko lang sa middleware)
+Route::get('/export-form2i', [PdfExportController::class, 'exportForm2I'])->name('export.form2i');
+
 // iacuc - ADDED no-cache MIDDLEWARE
-Route::middleware(['auth', 'access:IACUC Admin', 'no-cache','prevent-back'])->prefix('iacuc')->group(function () {
+Route::middleware(['auth', 'access:IACUC Admin', 'no-cache', 'prevent-back'])->prefix('iacuc')->group(function () {
 
     // Dashboard
     Route::get('/dashboard', function () {
@@ -208,22 +221,22 @@ Route::middleware(['auth', 'access:IACUC Admin', 'no-cache','prevent-back'])->pr
     Route::get('/iacuc/viewing-file', function () {
         return view('iacuc.viewing-file');
     });
-    
+
     // Submitted Tickets
-    Route::get('/submitted-tickets', function() {
+    Route::get('/submitted-tickets', function () {
         return view('iacuc.submitted-tickets');
     });
-    
+
     // Assigned Amendments
-    Route::get('/assign-amendments', function() {
+    Route::get('/assign-amendments', function () {
         return view('iacuc.assign-amendments');
     });
 
-    Route::get('/submitted-documents', function() {
+    Route::get('/submitted-documents', function () {
         return view('iacuc.submitted-documents');
     });
 
-    Route::get('/tickets', function() {
+    Route::get('/tickets', function () {
         return view('iacuc.tickets');
     });
 });
@@ -232,7 +245,7 @@ Route::middleware(['auth', 'access:IACUC Admin', 'no-cache','prevent-back'])->pr
 Route::middleware(['auth', 'access:Superadmin', 'no-cache', 'prevent-back'])->prefix('superadmin')->group(function () {
 
     // Dashboard
-    Route::get('/dashboard', [MonitoringDashboard::class,'dashboard'])->name('superadmin.dashboard');
+    Route::get('/dashboard', [MonitoringDashboard::class, 'dashboard'])->name('superadmin.dashboard');
 
     // Permission control
     Route::get('/permission-control', [RegisteredUserController::class, 'index'])->name('permission-control');
@@ -243,14 +256,14 @@ Route::middleware(['auth', 'access:Superadmin', 'no-cache', 'prevent-back'])->pr
     Route::post('/classifications/bulk-update', [ClassificationController::class, 'bulkUpdate'])->name('classifications.bulk-update');
 
     // Other pages
-    Route::get('/pending-reviews', [MonitoringDashboard::class,'viewEvaluatedProtocols'])
-    ->name('superadmin.pending-reviews');
+    Route::get('/pending-reviews', [MonitoringDashboard::class, 'viewEvaluatedProtocols'])
+        ->name('superadmin.pending-reviews');
 
-    Route::get('/assign-reviewer', [MonitoringDashboard::class,'viewUnassignedReviewer'])
-    ->name('superadmin.assign-reviewer');
+    Route::get('/assign-reviewer', [MonitoringDashboard::class, 'viewUnassignedReviewer'])
+        ->name('superadmin.assign-reviewer');
 
-    Route::get('/research-records', [MonitoringDashboard::class,'superadminResearchRecords'])
-    ->name('superadmin.research-records');
+    Route::get('/research-records', [MonitoringDashboard::class, 'superadminResearchRecords'])
+        ->name('superadmin.research-records');
 
     Route::get('/view-reviews', function () {
         return view('superadmin.view-reviews');
@@ -265,6 +278,21 @@ Route::middleware(['auth', 'access:Superadmin', 'no-cache', 'prevent-back'])->pr
     // Monitoring Process
     Route::get('/monitoring-process', function () {
         return view('superadmin.monitoring-process');
+    });
+
+    // Full Board Review
+    Route::get('/full-board-review', function () {
+        return view('superadmin.full-board-review');
+    });
+
+    // Assign Amendments
+    Route::get('/assign-amendments', function () {
+        return view('superadmin.assign-amendments');
+    });
+
+    // Final Completion
+    Route::get('/final-completion', function () {
+        return view('superadmin.final-completion');
     });
 
     Route::post('/notifications/mark-all-read', function () {
@@ -283,7 +311,7 @@ Route::middleware(['auth', 'access:ERB Reviewer', 'check.reviewer.info', 'no-cac
 
     // Protocol assignment page
     Route::get('/protocol-assign', [ERBReviewer::class, 'index'])
-    ->name('erb-reviewer.protocol-assign');
+        ->name('erb-reviewer.protocol-assign');
 
     Route::post('/notifications/{id}/mark-read', function ($id) {
         $notification = auth()->user()->notifications()->find($id);
@@ -344,7 +372,7 @@ Route::middleware(['auth', 'access:ERB Reviewer', 'no-cache', 'prevent-back'])
         Route::post('/college-dept', [ReviewerInformationController::class, 'erbStore'])
             ->name('erb-reviewer.college-dept.store');
     });
-    
+
 //iacuc reviewer - ADDED no-cache MIDDLEWARE
 Route::middleware(['auth', 'access:IACUC Reviewer', 'no-cache', 'prevent-back'])->prefix('iacuc-reviewer')->group(function () {
     Route::get('/dashboard', function () {
@@ -402,21 +430,21 @@ Route::middleware(['auth', 'access:Principal Investigator', 'no-cache', 'prevent
     });
 
     Route::post('/tickets/store', [TicketController::class, 'store'])
-    ->name('student.tickets.store');
+        ->name('student.tickets.store');
 
     Route::post('/notifications/{id}/mark-read', function ($id) {
-    $notification = auth()->user()->notifications()->find($id);
-    if ($notification) {
-        $notification->markAsRead();
-    }
-    return back()->with('success', 'Notification marked as read.');
+        $notification = auth()->user()->notifications()->find($id);
+        if ($notification) {
+            $notification->markAsRead();
+        }
+        return back()->with('success', 'Notification marked as read.');
     })->name('student.notification.markRead');
 
     Route::post('/notifications/mark-all-read', function () {
         auth()->user()->unreadNotifications->markAsRead();
         return back()->with('success', 'All notifications marked as read.');
     })->name('student.notification.markAllRead');
-    
+
     // sample form layout
     Route::prefix('forms')->group(function () {
 

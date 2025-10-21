@@ -1,5 +1,5 @@
 @section('title', 'Assign Reviewer')
-<x-erb-layout>  
+<x-erb-layout>
     <main class="xl:ml-[335px] max-xl:ml-auto p-4 max-md:p-2">
         <h2 class="max-xl:hidden text-left bg-[#f2f2f2] shadow-lg p-[35px] rounded-[30px] font-medium text-[28px]">
             ASSIGN REVIEWER
@@ -9,7 +9,7 @@
         {{-- ✅ START FORM --}}
         <form id="assignForm" action="{{ route('assign-reviewer.store') }}" method="POST">
             @csrf
-            
+
             <!-- CSS NG FILTER + SEARCH BAR -->
             <div class="top-controls flex items-center max-md:flex-col">
                 <div class="filter-wrapper items-center gap-x-2 max-sm:justify-center max-sm:items-center">
@@ -21,7 +21,7 @@
                 </div>
                 <div class="search-wrapper max-sm:mt-3 max-sm:justify-center max-sm:items-center"></div>
             </div>
-            
+
             <table id="myTable" class="display overflow-scroll border-collapse w-full">
                 <thead class="bg-primary text-white text-lg/7 max-lg:text-base/7">
                     <tr class="header-table">
@@ -33,40 +33,45 @@
                 </thead>
                 <tbody class="text-base/7 max-lg:text-sm/6">
                     @foreach ($piWithForms as $assignReviewer)
-                    <tr>
-                        <td>
-                            <input type="checkbox" value="{{ $assignReviewer->user_ID }}">
-                            <span>{{ $assignReviewer->researchInformation?->research_title }}</span>
-                        </td>
-                        <td>{{ $assignReviewer->user_Fname }} {{ $assignReviewer->user_MI }} {{ $assignReviewer->user_Lname }}</td>
-                        <td>{{ $assignReviewer->researchInformation?->research_CoInvestigator }}</td>
-                        <td>Pending</td>
-                    </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="user-checkbox w-[14px] h-[14px] mb-1"
+                                    value="{{ $assignReviewer->user_ID }}" data-name="{{ $assignReviewer->researchInformation?->research_title }}">
+                                <span>{{ $assignReviewer->researchInformation?->research_title }}</span>
+                            </td>
+                            <td>{{ $assignReviewer->user_Fname }} {{ $assignReviewer->user_MI }}
+                                {{ $assignReviewer->user_Lname }}
+                            </td>
+                            <td>{{ $assignReviewer->researchInformation?->research_CoInvestigator }}</td>
+                            <td>Pending</td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
 
-            <div class="grid grid-cols-4 max-xl:grid-cols-2 max-sm:block gap-x-5">
-                <div class="mt-2 max-sm:max-w-full">
-                    <label for="reviewtype" class="block max-sm:text-sm">Type of Review</label>
-                    <select name="review_type" id="reviewtype" class="w-full max-sm:text-sm border border-darkgray rounded-md h-[35px] leading-[18px]">
-                        <option disabled selected>Choose type</option>
-                        <option value="Exempted">Exempted</option>
-                        <option value="Expedite">Expedite</option>
-                        <option value="Full Board">Full Board</option>
-                    </select>
+            <div class="block">
+                <label for="reviewtype" class="block max-sm:text-sm gap-x-5">Type of Review</label>
+                <select name="review_type" id="reviewtype"
+                    class="w-[400px] max-md:w-full max-sm:text-sm border border-darkgray rounded-md h-[35px] leading-[18px]">
+                    <option disabled selected>Choose type</option>
+                    <option value="Full Board">Full Board</option>
+                    <option value="Exempted">Exempted</option>
+                    <option value="Expedite">Expedite</option>
+                </select>
+            </div>
 
+            <div id="reviewer_assignment" style="display: none;"
+                class="grid grid-cols-4 max-xl:grid-cols-1 max-sm:block gap-x-5">
+                <div class="mt-2 max-sm:max-w-full">
                     <label for="reviewer1" class="mt-3 block max-sm:text-sm">Reviewer 1</label>
                     <select name="reviewer1" id="reviewer1" class="w-full border border-darkgray rounded-md h-[35px]">
                         <option disabled selected>Choose Reviewer</option>
                         <option value="N/A">N/A</option>
                         @foreach($erbReviewer as $reviewer)
-                            <option 
-                                value="{{ $reviewer->user_ID }}"
+                            <option value="{{ $reviewer->user_ID }}"
                                 data-name="{{ $reviewer->user_Fname }} {{ $reviewer->user_Lname }}"
                                 data-college="{{ $reviewer->reviewerInformation->Reviewer_Dept ?? 'N/A' }}"
-                                data-prog="{{ $reviewer->reviewerInformation->Reviewer_Prog ?? 'N/A' }}"
-                            >
+                                data-prog="{{ $reviewer->reviewerInformation->Reviewer_Prog ?? 'N/A' }}">
                                 {{ $reviewer->user_Fname }} {{ $reviewer->user_Lname }}
                             </option>
                         @endforeach
@@ -77,12 +82,10 @@
                         <option disabled selected>Choose Reviewer</option>
                         <option value="N/A">N/A</option>
                         @foreach($erbReviewer as $reviewer)
-                            <option 
-                                value="{{ $reviewer->user_ID }}"
+                            <option value="{{ $reviewer->user_ID }}"
                                 data-name="{{ $reviewer->user_Fname }} {{ $reviewer->user_Lname }}"
                                 data-college="{{ $reviewer->reviewerInformation->Reviewer_Dept ?? 'N/A' }}"
-                                data-prog="{{ $reviewer->reviewerInformation->Reviewer_Prog ?? 'N/A' }}"
-                            >
+                                data-prog="{{ $reviewer->reviewerInformation->Reviewer_Prog ?? 'N/A' }}">
                                 {{ $reviewer->user_Fname }} {{ $reviewer->user_Lname }}
                             </option>
                         @endforeach
@@ -93,11 +96,8 @@
                         <h3 class="text-lg font-semibold mb-3">Assignment of Forms</h3>
                         <div class="gap-x-3 gap-y-3 grid grid-cols-2">
                             @foreach ($forms as $form)
-                                <div 
-                                    class="room cursor-pointer bg-gray hover:bg-darkgray px-3 py-2 rounded-md"
-                                    data-formid="{{ $form->form_id }}"
-                                    data-code="{{ $form->form_code }}"
-                                >
+                                <div class="room cursor-pointer bg-gray hover:bg-darkgray px-3 py-2 rounded-md"
+                                    data-formid="{{ $form->form_id }}" data-code="{{ $form->form_code }}">
                                     {{ $form->form_code }}
                                 </div>
                             @endforeach
@@ -150,8 +150,24 @@
                 {{-- Assigned Forms --}}
                 <div class="mt-2 bg-lightgray shadow-md rounded-md p-3">
                     <h3 class="text-lg font-semibold mb-3">Assigned Forms</h3>
-                    <ul id="assignedList" class="list-disc px-6 grid grid-cols-2 max-md:text-sm gap-x-2 gap-y-3"></ul>
+                    <ul id="assignedList" class="list-disc px-6 grid grid-cols-2 max-md:text-sm gap-x-2 gap-y-3">
+                    </ul>
                 </div>
+            </div>
+            <div id="fullboard" style="display: none;" class="bg-lightgray p-4 mt-4 shadow-md rounded-md">
+                <h3 class="font-semibold text-lg max-md:text-base mb-3">SELECTED PROTOCOLS FOR FULLBOARD REVIEW</h3>
+                <div class="h-16 overflow-y-auto">
+                    <ul id="selectedUsers"
+                        class="list-disc pl-5 flex grid grid-cols-4 max-md:grid-cols-1 max-md:text-sm"></ul>
+                </div>
+            </div>
+
+            <div class="flex mt-4 flex-1">
+                <button id="submitBtn"
+                    class="bg-secondary hover:bg-primary text-primary hover:text-secondary px-4 py-3 rounded-md uppercase tracking-widest duration-200"
+                    type="button">
+                    Submit
+                </button>
             </div>
 
             {{-- ✅ Hidden Inputs --}}
@@ -160,14 +176,6 @@
             <input type="hidden" name="reviewer2_id" id="hidden_reviewer2">
             <input type="hidden" name="review_type" id="hidden_reviewtype">
             <input type="hidden" name="form_ids" id="hidden_forms">
-
-            <div class="flex justify-start mt-4 mx-4">
-                <button id="submitBtn"
-                    class="bg-secondary hover:bg-primary text-primary hover:text-secondary px-4 py-3 rounded-md uppercase tracking-widest duration-200"
-                    type="button">
-                    Submit
-                </button>
-            </div>
         </form>
         {{-- ✅ END FORM --}}
     </main>
@@ -175,6 +183,53 @@
 
 {{-- ✅ SCRIPT --}}
 <script>
+    // hide show cards after choosing type of reviews
+    document.addEventListener("DOMContentLoaded", function () {
+        const reviewType = document.getElementById("reviewtype");
+        const reviewerSection = document.getElementById("reviewer_assignment");
+        const fullBoard = document.getElementById("fullboard");
+
+        reviewType.addEventListener("change", function () {
+            const selected = reviewType.value;
+
+            if (selected === "Expedite") {
+                reviewerSection.style.display = "grid"; // show the section
+            }
+            else if (selected === "Full Board") {
+                reviewerSection.style.display = "none";
+                fullBoard.style.display = "block";
+            }
+            else {
+                reviewerSection.style.display = "none"; // hide the section
+                fullBoard.style.display = "none";
+            }
+        });
+    });
+
+   // Modal controls
+    const userCheckboxes = document.querySelectorAll(".user-checkbox");
+    const selectedUsersList = document.getElementById("selectedUsers");
+
+    userCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener("change", () => {
+            const userId = checkbox.value;
+            const userName = checkbox.dataset.name;
+
+            const existing = selectedUsersList.querySelector(`[data-user-id="${userId}"]`);
+
+            if (checkbox.checked && !existing) {
+                // Add to list
+                const li = document.createElement("li");
+                li.textContent = userName;
+                li.setAttribute("data-user-id", userId);
+                selectedUsersList.appendChild(li);
+            } else if (!checkbox.checked && existing) {
+                // Remove from list
+                existing.remove();
+            }
+        });
+    });
+
     const rooms = document.querySelectorAll(".room");
     const assignedList = document.getElementById("assignedList");
 
@@ -253,7 +308,7 @@
     // ✅ Select PI checkbox
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     checkboxes.forEach(cb => {
-        cb.addEventListener("change", function() {
+        cb.addEventListener("change", function () {
             checkboxes.forEach(c => { if (c !== this) c.checked = false; });
             document.getElementById("user_id").value = this.checked ? this.value : '';
         });
@@ -263,7 +318,7 @@
     const submitBtn = document.getElementById("submitBtn");
     const assignForm = document.getElementById("assignForm");
 
-    submitBtn.addEventListener("click", function(e) {
+    submitBtn.addEventListener("click", function (e) {
         e.preventDefault();
 
         const userId = document.getElementById("user_id").value;
@@ -303,33 +358,33 @@
             },
             body: JSON.stringify(data)
         })
-        .then(response => response.json())
-        .then(res => {
-            submitBtn.disabled = false;
-            submitBtn.textContent = "Submit";
+            .then(response => response.json())
+            .then(res => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Submit";
 
-            if (res.message) {
-                alert("✅ " + res.message);
-                assignForm.reset();
-                assignedList.innerHTML = "";
-                document.querySelectorAll(".room").forEach(r => {
-                    r.classList.remove("bg-darkgray");
-                    r.classList.add("bg-gray");
-                });
-                document.getElementById("r1_name").textContent = "—";
-                document.getElementById("r2_name").textContent = "—";
-                document.getElementById("r1_forms").textContent = "—";
-                document.getElementById("r2_forms").textContent = "—";
-            } else {
-                alert("⚠️ Something went wrong while saving.");
-            }
-        })
-        .catch(err => {
-            console.error(err);
-            alert("❌ Failed to save. Check console for details.");
-            submitBtn.disabled = false;
-            submitBtn.textContent = "Submit";
-        });
+                if (res.message) {
+                    alert("✅ " + res.message);
+                    assignForm.reset();
+                    assignedList.innerHTML = "";
+                    document.querySelectorAll(".room").forEach(r => {
+                        r.classList.remove("bg-darkgray");
+                        r.classList.add("bg-gray");
+                    });
+                    document.getElementById("r1_name").textContent = "—";
+                    document.getElementById("r2_name").textContent = "—";
+                    document.getElementById("r1_forms").textContent = "—";
+                    document.getElementById("r2_forms").textContent = "—";
+                } else {
+                    alert("⚠️ Something went wrong while saving.");
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert("❌ Failed to save. Check console for details.");
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Submit";
+            });
     });
 
     // Initialize form selection state on page load

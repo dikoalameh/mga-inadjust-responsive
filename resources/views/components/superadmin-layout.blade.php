@@ -46,10 +46,26 @@
         </main>
     </div>
     <script>
-        new DataTable('#myTable', {
-            paging: false,
-            responsive: true,
-            scrollY: '300px'
+        $(document).ready(function () {
+            // Only initialize if not already initialized
+            if (!$.fn.dataTable.isDataTable('#myTable')) {
+                const table = new DataTable('#myTable', {
+                    responsive: true,
+                    paging: false,
+                    scrollY: '300px',
+                    order: [[0, 'asc']],
+                    // Tell DataTables not to auto-detect data sources
+                    deferRender: true,
+                    // Use the existing HTML as-is
+                    columnDefs: [
+                        { targets: '_all', defaultContent: '' }
+                    ]
+                });
+
+                // ✅ Move the DataTables search bar into our custom search-wrapper
+                const dtSearch = $('div.dt-search');
+                $('.search-wrapper').append(dtSearch);
+            }
         });
 
         dropDownMenu();

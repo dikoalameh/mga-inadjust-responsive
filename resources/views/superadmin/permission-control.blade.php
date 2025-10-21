@@ -111,13 +111,18 @@
             </script>
         @endif
 
+        <!-- CSS NG SEARCH BAR -->
+        <div class="top-controls">
+            <div class="search-wrapper mt-1 flex max-sm:justify-center max-sm:items-center"></div>
+        </div>
+        
         <table id="myTable" class="display overflow-scroll border-collapse w-full">
             <!-- Table header -->
             <thead class="bg-primary text-white text-lg/7 max-lg:text-base/7">
                 <tr class="header-table">
                     <th class="w-[20.00%]">Account Name</th>
                     <th class="w-[20.00%]">Username</th>
-                    <th class="w-[20.00%]">Access</th>
+                    <th class="w-[20.00%]">Email</th>
                     <th class="w-[20.00%]">Role</th>
                     <th class="w-[20.00%]">Date Modified</th>
                 </tr>

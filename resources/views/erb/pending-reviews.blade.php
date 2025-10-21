@@ -3,7 +3,7 @@
     <!-- Main Content -->
     <main class="xl:ml-[335px] max-xl:ml-auto p-4 max-md:p-2">
         <h2 class="max-xl:hidden text-left bg-[#f2f2f2] shadow-lg p-[35px] rounded-[30px] font-medium text-[28px]">
-            Protocol Decision
+            PROTOCOL DECISION
         </h2>
         <br>
 

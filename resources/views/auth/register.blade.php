@@ -26,19 +26,19 @@
                 <x-input-label for="pi_name" :value="__('Principal Investigator')" />
                 <div class="flex space-x-2">
                     <div class="w-1/3">
-                        <x-text-input id="user_Lname" class="block mt-1 w-full text-[14px] max-sm:text-[13px] h-[35px]"
+                        <x-text-input id="user_Lname" class="block mt-1 w-full text-[15px] max-sm:text-sm h-[35px]"
                             type="text" name="user_Lname" :value="old('user_Lname')" required autofocus
                             autocomplete="user_Lname" placeholder="Last name" />
                         <x-input-error :messages="$errors->get('user_Lname')" class="mt-2" />
                     </div>
                     <div class="w-1/3">
-                        <x-text-input id="user_Fname" class="block mt-1 w-full text-[14px] max-sm:text-[13px] h-[35px]"
+                        <x-text-input id="user_Fname" class="block mt-1 w-full text-[15px] max-sm:text-sm h-[35px]"
                             type="text" name="user_Fname" :value="old('user_Fname')" required autofocus
                             autocomplete="user_Fname" placeholder="First name" />
                         <x-input-error :messages="$errors->get('user_Fname')" class="mt-2" />
                     </div>
                     <div class="w-1/3">
-                        <x-text-input id="user_MI" class="block mt-1 w-full text-[14px] max-sm:text-[13px] h-[35px]"
+                        <x-text-input id="user_MI" class="block mt-1 w-full text-[15px] max-sm:text-sm h-[35px]"
                             type="text" name="user_MI" maxlength="4" :value="old('user_MI')" required autofocus
                             autocomplete="user_MI" placeholder="M.I." />
                         <x-input-error :messages="$errors->get('user_MI')" class="mt-2" />
@@ -49,7 +49,7 @@
             <!-- Email Address -->
             <div class="mt-2">
                 <x-input-label for="user_Email" :value="__('Email')" />
-                <x-text-input id="user_Email" class="block mt-1 w-full text-[14px] max-sm:text-[13px] h-[35px]"
+                <x-text-input id="user_Email" class="block mt-1 w-full text-[15px] max-sm:text-sm h-[35px]"
                     type="email" name="user_Email" :value="old('user_Email')" required autocomplete="username"
                     placeholder="you@example.com" />
                 <x-input-error :messages="$errors->get('user_Email')" class="mt-2" />
@@ -58,7 +58,7 @@
             <!-- Password -->
             <div class="mt-2">
                 <x-input-label for="user_Password" :value="__('Password')" />
-                <x-text-input id="user_Password" class="block mt-1 w-full text-[14px] max-sm:text-[13px] h-[35px]"
+                <x-text-input id="user_Password" class="block mt-1 w-full text-[15px] max-sm:text-sm h-[35px]"
                     type="password" name="user_Password" required autocomplete="user_Password" placeholder="Password" />
                 <x-input-error :messages="$errors->get('user_Password')" class="mt-2" />
             </div>
@@ -67,7 +67,7 @@
             <div class="mt-2">
                 <x-input-label for="user_Password" :value="__('Confirm Password')" />
                 <x-text-input id="user_Password_confirmation"
-                    class="block mt-1 w-full text-[14px] max-sm:text-[13px] h-[35px]" type="password"
+                    class="block mt-1 w-full text-[15px] max-sm:text-sm h-[35px]" type="password"
                     name="user_Password_confirmation" required autocomplete="user_Password"
                     placeholder="Confirm Password" />
                 <x-input-error :messages="$errors->get('user_Password_confirmation')" class="mt-2" />
@@ -76,7 +76,7 @@
             <div class="flex items-center justify-end mt-4">
                 <a class="max-sm:text-sm text-primary hover:text-secondary duration-200 rounded-md focus:outline-none"
                     href="{{ route('login') }}">
-                    {{ __('Back to Login') }}
+                    {{ __('Go to Login') }}
                 </a>
                 <!-- button type="button" ginamit ko para madirect sya into 2nd part khit nakarequired(pag submit button ginamit, di madidirect si user sa 2ndo part since naka required sya) -->
                 <button type="button" onclick="nextStep()"
@@ -86,11 +86,11 @@
             </div>
         </div>
         <div id="step2" class="step">
-            <h2 class="mb-4 font-medium uppercase text-xl max-sm:text-base text-primary">Registration Form</h2>
+            <h2 class="mb-4 font-semibold mt-2 uppercase text-xl max-sm:text-base text-primary">Registration Form</h2>
             <!-- Name -->
             <div id="co-wrapper">
                 <x-input-label for="research_CoInvestigator" :value="__('Co-Investigator/s (type N/A if none)')" />
-                <x-text-input id="research_CoInvestigator" class="block mt-1 w-full text-[14px] max-sm:text-[13px] h-[35px]"
+                <x-text-input id="research_CoInvestigator" class="block mt-1 w-full text-[15px] max-sm:text-sm h-[35px]"
                     type="text" name="research_CoInvestigator" :value="old('Co_Investigators')" required
                     autocomplete="research_CoInvestigator" placeholder="e.g. (Last Name, First Name, M.I.)" />
                 <x-input-error :messages="$errors->get('research_CoInvestigator')" class="mt-2" />
@@ -111,23 +111,23 @@
                 
                 <x-input-label id="inputLabel" for="pi_program" :value="__('Select College and Department')" />
                 <x-combo-box id="pi_program" name="research_college" onchange="updateDepartments()"
-                    class="block border-gray mt-1 w-full text-sm max-sm:text-[13px] h-[35px] leading-[15px]" />
+                    class="block border-gray mt-1 w-full text-[15px] max-sm:text-sm max-sm:text-sm h-[35px] leading-[20px]" />
                 <div id="departmentWrapper">
-                    <select id="department" name="research_department" class="w-full text-sm mt-1 border-gray rounded-md">
+                    <select id="department" name="research_department" class="w-full text-[15px] max-sm:text-sm mt-1 border-gray rounded-md h-[35px]">
                         <option value="" disabled selected>-- Select Department --</option>
                     </select>
                 </div>
                 <x-input-error :messages="$errors->get('research_college')" class="mt-2" />
 
                 <input type="text" id="textBox" name="research_school"
-                        class="h-[35px] text-[14px] block mt-1 w-full border-gray hover:bg-gray rounded-md duration-200 hidden"
+                        class="h-[35px] text-[15px] max-sm:text-sm block mt-1 w-full border-gray hover:bg-gray rounded-md duration-200 hidden"
                         placeholder="School" value="{{ old('research_school') }}" />
             </div>
 
             <!-- Research Title -->
             <div class="mt-2">
                 <x-input-label for="research_title" :value="__('Research Title')" />
-                <x-text-input id="research_title" class="block mt-1 w-full text-[14px] max-sm:text-[13px] h-[35px]"
+                <x-text-input id="research_title" class="block mt-1 w-full text-[15px] max-sm:text-sm h-[35px]"
                     type="text" name="research_title" :value="old('research_title')" required autocomplete="research_title"
                     placeholder="Research Title" />
                 <x-input-error :messages="$errors->get('research_title')" class="mt-2" />
@@ -137,14 +137,14 @@
             <div class="mt-2">
                 <x-input-label for="attachments" :value="__('Endorsement Letter')" />
                 <x-text-input id="research_Endorsement"
-                    class="block mt-1 w-full rounded-md p-1 hover:bg-transparent text-[14px] max-sm:text-[13px] h-[35px]"
+                    class="block mt-1 w-full rounded-md p-1 hover:bg-transparent text-[15px] max-sm:text-sm h-[35px]"
                     type="file" name="research_Endorsement" multiple />
             </div>
 
             <div class="flex items-center justify-end mt-4">
                 <a class="max-sm:text-sm text-primary hover:text-secondary duration-200 rounded-md focus:outline-none"
                     href="{{ route('login') }}">
-                    {{ __('Back to Login') }}
+                    {{ __('Go to Login') }}
                 </a>
                 <!-- button type="button" ginamit ko para madirect sya into 1st part khit nakarequired(pag submit button ginamit, di madidirect si user sa 2nd part since naka required sya) -->
                 <button type="button" onclick="prevStep()"

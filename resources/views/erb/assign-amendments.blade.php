@@ -70,21 +70,6 @@
 </x-erb-layout>
 <script>
     $(document).ready(function () {
-        // Initialize DataTable with simpler column configuration
-        const dataTable = $('#myTable').DataTable({
-            order: [[0, 'asc']]
-            language: {
-                emptyTable: 'No approved protocols found.'
-            },
-            // Tell DataTables not to auto-detect data sources
-            autoWidth: false,
-            deferRender: true,
-            // Use the existing HTML as-is
-            columnDefs: [
-                { targets: '_all', defaultContent: '' }
-            ]
-        });
-
         // Modal controls
         const userCheckboxes = document.querySelectorAll(".user-checkbox");
         const selectedUsersList = document.getElementById("selectedUsers");

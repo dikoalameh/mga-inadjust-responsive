@@ -7,9 +7,9 @@
         </h2>
         <br>
 
-        <!-- CSS NG FILTER + SEARCH BAR -->
-        <div class="top-controls flex items-center max-md:flex-col">
-            <div class="search-wrapper max-sm:mt-3 max-sm:justify-center max-sm:items-center"></div>
+        <!-- CSS NG SEARCH BAR -->
+        <div class="top-controls">
+            <div class="search-wrapper mt-1 flex max-sm:justify-center max-sm:items-center"></div>
         </div>
 
         <table id="myTable" class="display overflow-scroll border-collapse w-full">
@@ -38,31 +38,3 @@
         </table>
     </main>
 </x-superadmin-layout>
-<script>
-     $(document).ready(function () {
-        // Only initialize if not already initialized
-        if (!$.fn.dataTable.isDataTable('#myTable')) {
-            const table = new DataTable('#myTable', {
-                responsive: true,
-                paging: false,
-                scrollY: '300px',
-                order: [[0, 'asc']]
-            });
-
-            // ✅ Move the DataTables search bar into our custom search-wrapper
-            const dtSearch = $('div.dt-search');
-            $('.search-wrapper').append(dtSearch);
-
-            // ✅ Build dropdown filter dynamically
-            const offices = [...new Set(table.column(1).data().toArray())].sort();
-            const select = $('#officeFilter');
-            offices.forEach(o => select.append(`<option value="${o}">${o}</option>`));
-
-            // ✅ Apply filter to Office column
-            select.on('change', function () {
-                const val = $.fn.dataTable.util.escapeRegex($(this).val());
-                table.column(1).search(val ? '^' + val + '$' : '', true, false).draw();
-            });
-        }
-    });
-</script>

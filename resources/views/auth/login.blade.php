@@ -73,7 +73,8 @@
         <!-- Username -->
         <div>
             <x-input-label for="user_ID" :value="__('Username')" />
-            <x-text-input id="user_ID" class="block mt-1 w-full text-[14px] max-sm:text-[13px] h-[35px]" type="text"
+            <label for="user_ID" class="text-sm italic text-primary">(sent to your provided email)</label>
+            <x-text-input id="user_ID" class="block mt-1 w-full text-[15px] max-sm:text-sm h-[35px]" type="text"
                 name="user_ID" :value="old('user_ID')" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('user_ID')" class="mt-2" />
         </div>
@@ -81,7 +82,8 @@
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="user_Password" :value="__('Password')" />
-            <x-text-input id="user_Password" class="block mt-1 w-full text-[14px] max-sm:text-[13px] h-[35px]"
+            <label for="user_Password" class="text-sm italic text-primary">(your password)</label>
+            <x-text-input id="user_Password" class="block mt-1 w-full text-[15px] max-sm:text-sm h-[35px]"
                 type="password" name="user_Password" required autocomplete="current-password" />
             <x-input-error :messages="$errors->get('user_Password')" class="mt-2" />
         </div>

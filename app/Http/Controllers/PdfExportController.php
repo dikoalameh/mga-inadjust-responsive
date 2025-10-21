@@ -162,4 +162,18 @@ class PdfExportController extends Controller
             ->margins(15, 15, 15, 15)
             ->inline('IACUC-Protocol-Review-Form.pdf');
     }
+
+    public function exportForm2I()
+    {
+        //sample code
+        $protocol = (object)[
+            
+        ];
+
+        //dito din palitan mo nalang din
+        return Pdf::view('erb.forms.form2iPdf', compact('protocol'))
+            ->format('Letter')
+            ->margins(15, 15, 15, 15)
+            ->inline('Form-2I.pdf');
+    }
 }

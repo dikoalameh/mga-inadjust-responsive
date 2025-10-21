@@ -1,6 +1,6 @@
 @props(['disabled' => false])
 
-<select @disabled($disabled) {{ $attributes->merge(['class' => 'rounded-md']) }}>
+<select @disabled($disabled) {{ $attributes->merge(['class' => 'rounded-md h-12 overflow-y-auto']) }}>
     <option value="" disabled selected>-- Select College --</option>
     <option value="cas">College of Arts and Sciences</option>
     <option value="ioe">Institute of Education</option>

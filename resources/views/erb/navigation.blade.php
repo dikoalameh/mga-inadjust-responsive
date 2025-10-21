@@ -16,7 +16,7 @@
         <!-- Dropdown -->
         <li class="px-3 py-3">
             <button class="dropdownToggle w-full flex justify-between items-center hover:text-secondary transition-all 
-                {{ Request::is('erb/view-reviews') ? 'text-secondary' : '' }} {{ Request::is('erb/assign-reviewer')
+                {{ Request::is('erb/view-reviews') || Request::is('erb/assign-reviewer') || Request::is('erb/full-board-review')
     || Request::is('erb/erb/view-review-files/*') ? 'text-secondary' : ''}}">
                 <i class="bi bi-file-earmark-fill"></i>
                 <span class="mr-auto px-3">View Documents</span>
@@ -29,7 +29,7 @@
                 <!-- View Reviews -->
                 <li>
                     <a href="{{ url('/erb/view-reviews') }}"
-                        class="block hover:text-secondary duration-200 px-2 py-2 flex
+                        class="block hover:text-secondary duration-200 px-2 py-1.5 flex
                         {{ Request::is('erb/view-reviews') || Request::is('erb/erb/view-review-files/*') ? 'text-secondary' : '' }}">
                         <i class="bi bi-clock"></i>
                         <span class="w-full flex justify-between items-center px-3">
@@ -39,7 +39,7 @@
                 </li>
                 <!-- Assign Reviewer -->
                 <li>
-                    <a href="{{ url('/erb/assign-reviewer') }}" class="block hover:text-secondary duration-200 px-2 py-2 flex
+                    <a href="{{ url('/erb/assign-reviewer') }}" class="block hover:text-secondary duration-200 px-2 py-1.5 flex
                         {{ Request::is('erb/assign-reviewer') ? 'text-secondary' : '' }}">
                         <i class="bi bi-person-fill-add"></i>
                         <span class="w-full flex justify-between items-center px-3">
@@ -47,9 +47,18 @@
                         </span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ url('/erb/full-board-review') }}" class="block hover:text-secondary duration-200 px-2 py-1.5 flex
+                        {{ Request::is('erb/full-board-review') ? 'text-secondary' : '' }}">
+                        <i class="bi bi-person-fill-add"></i>
+                        <span class="w-full flex justify-between items-center px-3">
+                            Assign Full Board Review
+                        </span>
+                    </a>
+                </li>
             </ul>
         </li>
-        <!-- Pending Accounts -->
+        <!-- IRO Approved Accounts -->
         <li>
             <a href="{{ url('/erb/iro-approved-accounts') }}" class="flex items-center justify-between px-3 py-3 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('erb/iro-approved-accounts') ? 'text-secondary' : '' }}">
@@ -70,23 +79,23 @@
                 </span>
             </a>
         </li>
-        <!-- Approved Accounts -->
+        <!-- Assigned Forms -->
         <li>
             <a href="{{ url('/erb/approved-accounts') }}" class="flex items-center justify-between px-3 py-3 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('erb/approved-accounts') ? 'text-secondary' : '' }}">
                 <i class="bi bi-person-check-fill"></i>
                 <span class="w-full flex justify-between items-center px-3">
-                    Approved Accounts
+                    Assigned Forms
                 </span>
             </a>
         </li>
-        <!-- Pending Reviews -->
+        <!-- Protocol Decision -->
         <li>
             <a href="{{ url('/erb/pending-reviews') }}" class="flex items-center justify-between px-3 py-3 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('erb/pending-reviews') ? 'text-secondary' : '' }}">
                 <i class="bi bi-clock-fill"></i>
                 <span class="w-full flex justify-between items-center px-3">
-                    Pending Reviews
+                    Protocol Decision
                 </span>
             </a>
         </li>
@@ -120,6 +129,16 @@
                 </span>
             </a>
         </li>
+        <!-- Final Completion -->
+        <li>
+            <a href="{{ url('/erb/final-completion') }}"
+                class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary {{ Request::is('erb/final-completion') ? 'text-secondary' : ''}}">
+                <i class="bi bi-clipboard2-check-fill"></i>
+                <span class="w-full flex justify-between items-center px-3">
+                    Final Completion
+                </span>
+            </a>
+        </li>
         <!-- Settings -->
         <li>
             <a href="{{ url('/erb/settings') }}" class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary
@@ -131,7 +150,8 @@
             </a>
         </li>
         <!-- Profile Information -->
-        <li class="fixed h-[60px] w-[300px] left-0 bottom-0 py-1.5 px-3.5 overflow-hidden ease-in-out duration-200 bg-primary">
+        <li
+            class="fixed h-[60px] w-[300px] left-0 bottom-0 py-1.5 px-3.5 overflow-hidden ease-in-out duration-200 bg-primary">
             <div class="flex items-center flex-nowrap">
                 <img src="" alt="" class="h-[45px] w-[45px] object-cover rounded-[50%] mr-[10px] border-2 border-white">
                 <div class="">
@@ -143,7 +163,7 @@
             </div>
             <form method="POST" action="{{ route('logout') }}" class="inline">
                 @csrf
-                <button type="submit" class="duration-200 hover:text-secondary p-0 m-0 bg-transparent border-0">
+                <button class="duration-200 hover:text-secondary p-0 m-0 bg-transparent border-0">
                     <i class="bi bi-box-arrow-left text-2xl absolute right-0 top-[45%] -translate-y-1/2"></i>
                 </button>
             </form>
@@ -167,7 +187,7 @@
             <!-- Dropdown -->
             <li class="px-3 py-2.5">
                 <button class="dropdownToggle w-full flex justify-between items-center hover:text-secondary transition-all 
-                    {{ Request::is('erb/view-reviews') ? 'text-secondary' : '' }} {{ Request::is('erb/assign-reviewer')
+                    {{ Request::is('erb/view-reviews') || Request::is('erb/assign-reviewer') || Request::is('erb/full-board-review')
     || Request::is('erb/erb/view-review-files/*') ? 'text-secondary' : ''}}">
                     <i class="bi bi-file-earmark-fill"></i>
                     <span class="mr-auto px-3">View Documents</span>
@@ -180,7 +200,7 @@
                     <!-- View Reviews -->
                     <li>
                         <a href="{{ url('/erb/view-reviews') }}"
-                            class="block hover:text-secondary duration-200 px-2 py-2 flex
+                            class="block hover:text-secondary duration-200 px-2 py-1.5 flex
                             {{ Request::is('erb/view-reviews') || Request::is('erb/erb/view-review-files/*') ? 'text-secondary' : '' }}">
                             <i class="bi bi-clock"></i>
                             <span class="w-full flex justify-between items-center px-3">
@@ -190,11 +210,20 @@
                     </li>
                     <!-- Assign Reviewer -->
                     <li>
-                        <a href="{{ url('/erb/assign-reviewer') }}" class="block hover:text-secondary duration-200 px-2 py-2 flex
+                        <a href="{{ url('/erb/assign-reviewer') }}" class="block hover:text-secondary duration-200 px-2 py-1.5 flex
                         {{ Request::is('erb/assign-reviewer') ? 'text-secondary' : '' }}">
                             <i class="bi bi-person-fill-add"></i>
                             <span class="w-full flex justify-between items-center px-3">
                                 Assign Reviewer
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/erb/full-board-review') }}" class="block hover:text-secondary duration-200 px-2 py-1.5 flex
+                        {{ Request::is('erb/full-board-review') ? 'text-secondary' : '' }}">
+                            <i class="bi bi-person-fill-add"></i>
+                            <span class="w-full flex justify-between items-center px-3">
+                                Assign Full Board Review
                             </span>
                         </a>
                     </li>
@@ -227,7 +256,7 @@
                 {{ Request::is('erb/approved-accounts') ? 'text-secondary' : '' }}">
                     <i class="bi bi-person-check-fill"></i>
                     <span class="w-full flex justify-between items-center px-3">
-                        Approved Accounts
+                        Assigned Forms
                     </span>
                 </a>
             </li>
@@ -237,7 +266,7 @@
                 {{ Request::is('erb/pending-reviews') ? 'text-secondary' : '' }}">
                     <i class="bi bi-clock-fill"></i>
                     <span class="w-full flex justify-between items-center px-3">
-                        Pending Reviews
+                        Protocol Decision
                     </span>
                 </a>
             </li>
@@ -281,7 +310,8 @@
                 </a>
             </li>
             <!-- Profile Information -->
-            <li class="fixed h-[60px] w-[300px] left-0 bottom-0 py-1.5 px-3.5 overflow-hidden ease-in-out duration-200 bg-primary">
+            <li
+                class="fixed h-[60px] w-[300px] left-0 bottom-0 py-1.5 px-3.5 overflow-hidden ease-in-out duration-200 bg-primary">
                 <div class="flex items-center flex-nowrap">
                     <img src="" alt=""
                         class="h-[45px] w-[45px] object-cover rounded-[50%] mr-[10px] border-2 border-white">
@@ -294,7 +324,7 @@
                 </div>
                 <form method="POST" action="{{ route('logout') }}" class="inline">
                     @csrf
-                    <button type="submit" class="duration-200 hover:text-secondary p-0 m-0 bg-transparent border-0">
+                    <button class="duration-200 hover:text-secondary p-0 m-0 bg-transparent border-0">
                         <i class="bi bi-box-arrow-left text-2xl absolute right-0 top-[45%] -translate-y-1/2"></i>
                     </button>
                 </form>
