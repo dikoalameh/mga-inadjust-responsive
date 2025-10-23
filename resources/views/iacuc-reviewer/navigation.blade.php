@@ -4,10 +4,10 @@
         <img src="" alt="REVIEWER MAS BAGO">
     </div>
 
-    <ul class="mt-12 flex-1 text-[18px]">
+    <ul class="mt-8 text-[18px]">
         <li>
             <!-- Dashboard -->
-            <a href="{{ url('/iacuc-reviewer/dashboard') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary
+            <a href="{{ url('/iacuc-reviewer/dashboard') }}" class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary
                 {{ Request::is('iacuc-reviewer/dashboard') ? 'text-secondary' : '' }}">
                 <i class="bi bi-file-earmark-bar-graph-fill"></i>
                 <span class="w-full flex justify-between items-center px-3">Dashboard</span>
@@ -15,7 +15,7 @@
         </li>
         <!-- Assigned Research Protocol -->
         <li>
-            <a href="{{ url('iacuc-reviewer/protocol-assign') }}" class="px-3 py-4 transition-all flex duration-200 hover:text-secondary
+            <a href="{{ url('iacuc-reviewer/protocol-assign') }}" class="px-3 py-3 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('iacuc-reviewer/protocol-assign') || Request::is('iacuc-reviewer/forms/*') ? 'text-secondary' : '' }}">
                 <i class="bi bi-file-earmark-fill"></i>
                 <span class="w-full flex justify-between items-center px-3">Assigned Research Protocol</span>
@@ -23,25 +23,25 @@
         </li>
         <!-- Settings -->
         <li>
-            <a href="{{ url('iacuc-reviewer/settings') }}" class="px-3 py-4 transition-all flex duration-200 hover:text-secondary
+            <a href="{{ url('iacuc-reviewer/settings') }}" class="px-3 py-3 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('iacuc-reviewer/settings') ? 'text-secondary' : '' }}">
                 <i class="bi bi-gear-wide-connected"></i>
                 <span class="w-full flex justify-between items-center px-3">Settings</span>
             </a>
         </li>
         <!-- Profile Information -->
-        <li class="fixed h-[60px] w-[300px] left-0 bottom-0 py-1.5 px-3.5 overflow-hidden ease-in-out duration-200">
+        <li class="fixed h-[60px] w-[335px] left-0 bottom-0 py-1.5 px-3.5 overflow-hidden ease-in-out duration-200 bg-primary">
             <div class="flex items-center flex-nowrap">
                 <img src="" alt="" class="h-[45px] w-[45px] object-cover rounded-[50%] mr-[10px] border-2 border-white">
                 <div class="">
-                    <div class="text-[16px] whitespace-nowrap" name="userName">{{ Auth::user()->user_Fname }} {{ Auth::user()->user_MI }} {{ Auth::user()->user_Lname }}</div>
-                    <div class="text-[14px] whitespace-nowrap" name="userAccess">IACUC Reviewer</div>
+                    <div class="text-base whitespace-nowrap" name="userName">{{ Auth::user()->user_Fname }} {{ Auth::user()->user_MI }} {{ Auth::user()->user_Lname }}</div>
+                    <div class="text-sm whitespace-nowrap" name="userAccess">IACUC Reviewer</div>
                 </div>
             </div>
             <form method="POST" action="{{ route('logout') }}" class="inline">
                 @csrf
                 <button type="submit" class="duration-200 hover:text-secondary p-0 m-0 bg-transparent border-0">
-                    <i class="bi bi-box-arrow-left text-2xl absolute right-0 top-[45%] -translate-y-1/2"></i>
+                    <i class="bi bi-box-arrow-left text-2xl absolute right-6 top-[50%] -translate-y-1/2"></i>
                 </button>
             </form>
         </li>
@@ -55,38 +55,38 @@
         <ul class="text-white max-2xl:mt-[65px] max-sm:mt-[55px]">
             <li>
                 <!-- Dashboard -->
-                <a href="{{ url('/iacuc-reviewer/dashboard') }}" class="flex items-center justify-between px-3 py-4 transition-all duration-200 hover:text-secondary
+                <a href="{{ url('/iacuc-reviewer/dashboard') }}" class="flex items-center justify-between px-3 py-2.5 transition-all duration-200 hover:text-secondary
                     {{ Request::is('iacuc-reviewer/dashboard') ? 'text-secondary' : '' }}">
                     <i class="bi bi-file-earmark-bar-graph-fill"></i>
                     <span class="w-full flex justify-between items-center px-3">Dashboard</span>
                 </a>
             </li>
             <!-- Assigned Research Protocol -->
-            <a href="{{ url('iacuc-reviewer/protocol-assign') }}" class="px-3 py-4 transition-all flex duration-200 hover:text-secondary
+            <a href="{{ url('iacuc-reviewer/protocol-assign') }}" class="px-3 py-2.5 transition-all flex duration-200 hover:text-secondary
                 {{ Request::is('iacuc-reviewer/protocol-assign') || Request::is('iacuc-reviewer/forms/*') ? 'text-secondary' : '' }}">
                 <i class="bi bi-file-earmark-fill"></i>
                 <span class="w-full flex justify-between items-center px-3">Assigned Research Protocol</span>
             </a>
             <!-- Settings -->
             <li>
-                <a href="{{ url('iacuc-reviewer/settings') }}" class="px-3 py-4 transition-all flex duration-200 hover:text-secondary
+                <a href="{{ url('iacuc-reviewer/settings') }}" class="px-3 py-2.5 transition-all flex duration-200 hover:text-secondary
                     {{ Request::is('iacuc-reviewer/settings') ? 'text-secondary' : '' }}">
                     <i class="bi bi-gear-wide-connected"></i>
                     <span class="w-full flex justify-between items-center px-3">Settings</span>
                 </a>
             </li>
             <!-- Profile Information -->
-            <li class="fixed h-[60px] w-[300px] left-0 bottom-0 py-1.5 px-3.5 overflow-hidden ease-in-out duration-200">
+            <li class="fixed h-[60px] w-80 left-0 bottom-0 py-1.5 px-3.5 overflow-hidden ease-in-out duration-200 bg-primary">
                 <div class="flex items-center flex-nowrap">
                     <img src="" alt=""
                         class="h-[45px] w-[45px] object-cover rounded-[50%] mr-[10px] border-2 border-white">
                     <div class="">
-                        <div class="text-[16px] whitespace-nowrap" name="userName">{{ Auth::user()->user_Fname }} {{ Auth::user()->user_MI }} {{ Auth::user()->user_Lname }}</div>
-                        <div class="text-[14px] whitespace-nowrap" name="userAccess">IACUC Reviewer</div>
+                        <div class="max-md:text-[15px] whitespace-nowrap" name="userName">{{ Auth::user()->user_Fname }} {{ Auth::user()->user_MI }} {{ Auth::user()->user_Lname }}</div>
+                        <div class="text-sm whitespace-nowrap" name="userAccess">IACUC Reviewer</div>
                     </div>
                 </div>
                 <a href="{{ url('/') }}" class="duration-200 hover:text-secondary">
-                    <i class="bi bi-box-arrow-left text-2xl absolute right-0 top-[45%] -translate-y-1/2"></i>
+                    <i class="bi bi-box-arrow-left text-2xl absolute right-5 top-[50%] -translate-y-1/2"></i>
                 </a>
             </li>
         </ul>

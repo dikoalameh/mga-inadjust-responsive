@@ -63,7 +63,7 @@
                 <!-- Left Selection -->
                 <div class="bg-lightgray p-4 shadow-md rounded-md">
                     <h3 class="text-lg font-semibold max-md:text-base mb-3">Assignment of Forms</h3>
-                    <div class="flex grid grid-cols-3 max-sm:grid-cols-2 gap-y-3 gap-x-3 font-semibold max-md:text-sm">
+                    <div class="flex h-40 max-md:h-28 overflow-y-auto grid grid-cols-3 max-sm:grid-cols-2 gap-y-3 gap-x-3 font-semibold max-md:text-sm">
                         @foreach ($selectForms as $form)
                             <div class="room cursor-pointer bg-gray hover:bg-darkgray px-3 py-2 rounded-md"
                                 data-room="{{ $form->form_id }}" data-view="{{ $form->form_view }}">
@@ -77,7 +77,7 @@
                 <div class="bg-lightgray p-4 shadow-md rounded-md">
                     <h3 class="text-lg font-semibold max-md:text-base mb-3">Assigned Forms</h3>
                     <ul id="assignedList"
-                        class="list-disc mx-2 pl-6 pt-2 flex grid grid-cols-3 max-sm:grid-cols-2 gap-x-2 gap-y-3 max-md:text-sm">
+                        class="list-disc h-40 max-md:h-28 overflow-y-auto mx-2 pl-6 pt-2 flex grid grid-cols-3 max-sm:grid-cols-2 gap-x-2 gap-y-3 max-md:text-sm">
                         <!-- Already assigned forms and forms to be assigned will appear here -->
                     </ul>
                 </div>

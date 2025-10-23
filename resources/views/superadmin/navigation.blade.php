@@ -4,7 +4,7 @@
         <img src="" alt="IRO MAS BAGO">
     </div>
 
-    <ul class="mt-8 flex-1 text-[18px]">
+    <ul class="mt-8 text-[18px]">
         <!-- Dashboard -->
         <li>
             <a href="{{ url('/superadmin/dashboard') }}" class="flex items-center justify-between px-3 py-3 transition-all duration-200 hover:text-secondary
@@ -149,20 +149,20 @@
             </a>
         </li>
         <!-- Profile Info -->
-        <li class="fixed h-[60px] w-[300px] left-0 bottom-0 py-1.5 px-3.5 overflow-hidden ease-in-out duration-200">
+        <li class="fixed h-[60px] w-[335px] left-0 bottom-0 py-1.5 px-3.5 overflow-hidden ease-in-out duration-200 bg-primary">
             <div class="flex items-center flex-nowrap">
                 <img src="" alt="" class="h-[45px] w-[45px] object-cover rounded-[50%] mr-[10px] border-2 border-white">
                 <div class="">
-                    <div class="text-[16px] whitespace-nowrap">{{ Auth::user()->user_Fname }}
+                    <div class="text-base whitespace-nowrap">{{ Auth::user()->user_Fname }}
                         {{ Auth::user()->user_MI }} {{ Auth::user()->user_Lname }}
                     </div>
-                    <div class="text-[14px] whitespace-nowrap">Superadmin</div>
+                    <div class="text-sm whitespace-nowrap">Superadmin</div>
                 </div>
             </div>
             <form method="POST" action="{{ route('logout') }}" class="inline">
                 @csrf
                 <button class="duration-200 hover:text-secondary p-0 m-0 bg-transparent border-0">
-                    <i class="bi bi-box-arrow-left text-2xl absolute right-0 top-[45%] -translate-y-1/2"></i>
+                    <i class="bi bi-box-arrow-left text-2xl absolute right-6 top-[50%] -translate-y-1/2"></i>
                 </button>
             </form>
         </li>
@@ -307,21 +307,21 @@
                 </a>
             </li>
             <!-- Profile Info -->
-            <li class="fixed h-[60px] w-[300px] left-0 bottom-0 py-1.5 px-3.5 overflow-hidden ease-in-out duration-200">
+            <li class="fixed h-[60px] w-80 left-0 bottom-0 py-1.5 px-3.5 overflow-hidden ease-in-out duration-200">
                 <div class="flex items-center flex-nowrap">
                     <img src="" alt=""
                         class="h-[45px] w-[45px] object-cover rounded-[50%] mr-[10px] border-2 border-white">
                     <div class="">
-                        <div class="text-[16px] whitespace-nowrap">{{ Auth::user()->user_Fname }}
+                        <div class="max-md:text-sm whitespace-nowrap">{{ Auth::user()->user_Fname }}
                             {{ Auth::user()->user_MI }} {{ Auth::user()->user_Lname }}
                         </div>
-                        <div class="text-[14px] whitespace-nowrap">Superadmin</div>
+                        <div class="text-sm whitespace-nowrap">Superadmin</div>
                     </div>
                 </div>
                 <form method="POST" action="{{ route('logout') }}" class="inline">
                     @csrf
                     <button class="duration-200 hover:text-secondary p-0 m-0 bg-transparent border-0">
-                        <i class="bi bi-box-arrow-left text-2xl absolute right-0 top-[45%] -translate-y-1/2"></i>
+                        <i class="bi bi-box-arrow-left text-2xl absolute right-5 top-[50%] -translate-y-1/2"></i>
                     </button>
                 </form>
             </li>

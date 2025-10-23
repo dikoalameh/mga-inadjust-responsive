@@ -152,11 +152,12 @@
                     </ul>
                 </div>
             </div>
+            <!-- FOR FULL BOARD REVIEW -->
             <div id="fullboard" style="display: none;" class="bg-lightgray p-4 mt-4 shadow-md rounded-md">
                 <h3 class="font-semibold text-lg max-md:text-base mb-3">SELECTED PROTOCOLS FOR FULLBOARD REVIEW</h3>
-                <div class="h-16 overflow-y-auto">
+                <div class="h-20 overflow-y-auto">
                     <ul id="selectedUsers"
-                        class="list-disc pl-5 flex grid grid-cols-4 max-md:grid-cols-1 max-md:text-sm"></ul>
+                        class="list-disc pl-5 flex grid max-md:grid-cols-1 max-md:text-sm"></ul>
                 </div>
             </div>
 

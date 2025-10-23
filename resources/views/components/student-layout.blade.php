@@ -15,10 +15,14 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Fonts and Styles -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
-    <!-- DataTables & jQuery -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.5/css/responsive.dataTables.css">
+    <!-- DataTables and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.5/js/dataTables.responsive.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.5/js/responsive.dataTables.js"></script>
 </head>
 
 <body>
@@ -40,6 +44,27 @@
         </main>
     </div>
     <script>
+        $(document).ready(function () {
+            // Only initialize if not already initialized
+            if (!$.fn.dataTable.isDataTable('#myTable')) {
+                const table = new DataTable('#myTable', {
+                    responsive: true,
+                    paging: false,
+                    scrollY: '300px',
+                    order: [[0, 'asc']],
+                    // Tell DataTables not to auto-detect data sources
+                    deferRender: true,
+                    // Use the existing HTML as-is
+                    columnDefs: [
+                        { targets: '_all', defaultContent: '' }
+                    ]
+                });
+                // ✅ Move the DataTables search bar into our custom search-wrapper
+                const dtSearch = $('div.dt-search');
+                $('.search-wrapper').append(dtSearch);
+            }
+        });
+
         document.addEventListener("DOMContentLoaded", () => {
             const radios = document.querySelectorAll("input[type=radio]");
 
@@ -120,6 +145,7 @@
             "/student/download-forms": "SUBMIT FORMS",
             "/student/submit-tickets": "SUBMIT TICKETS",
             "/student/submit-form-layout": "SUBMIT FORMS",
+            "/student/monitoring-process": "MONITORING PROCESS",
             "/student/settings": "SETTINGS",
             "/student/forms/form2a": "FORM 2(A)",
             "/student/forms/form2b": "FORM 2(B)",

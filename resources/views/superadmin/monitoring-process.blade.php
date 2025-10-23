@@ -20,6 +20,7 @@
                     <th>Research Title</th>
                     <th>Type of Account</th>
                     <th>Process Date</th>
+                    <th>Description</th>
                 </tr>
             </thead>
 
@@ -32,6 +33,9 @@
                     <td>
                         10/22/25<br>
                         22:30:50
+                    </td>
+                    <td>
+                        Received classified (erb/iacuc)
                     </td>
                 </tr>
             </tbody>

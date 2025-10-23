@@ -23,13 +23,13 @@
             <!-- Table header -->
             <thead class="bg-primary text-white text-lg/7 max-lg:text-base/7">
                 <tr class="header-table">
-                    <th class="w-[16.66%]">Protocol ID</th>
-                    <th class="w-[16.66%]">Research Title</th>
-                    <th class="w-[16.66%]">P.I. Name</th>
-                    <th class="w-[16.66%]">Co-Investigator</th>
-                    <th class="w-[16.66%]">Status</th>
-                    <th class="w-[16.66%]">Date Submitted</th>
-                    <th class="w-[16.66%]">Review Date</th>
+                    <th class="w-[14.28%]">Protocol ID</th>
+                    <th class="w-[14.28%]">Research Title</th>
+                    <th class="w-[14.28%]">P.I. Name</th>
+                    <th class="w-[14.28%]">Co-Investigator</th>
+                    <th class="w-[14.28%]">Status</th>
+                    <th class="w-[14.28%]">Date Submitted</th>
+                    <th class="w-[14.28%]">Review Date</th>
                 </tr>
             </thead>
 
@@ -86,7 +86,7 @@
             <!-- Selected Protocol -->
             <div class="bg-lightgray p-4 shadow-md rounded-md">
                 <h3 class="font-semibold text-lg max-md:text-base mb-3">SELECTED PROTOCOL</h3>
-                <div class="h-16 overflow-y-auto">
+                <div class="h-24 max-md:h-16 overflow-y-auto">
                     <ul id="selectedProtocols"
                         class="list-disc pl-5 flex grid grid-cols-2 max-md:grid-cols-1 max-md:text-sm"></ul>
                 </div>
@@ -95,7 +95,7 @@
             <!-- Decision Tab -->
             <div class="bg-lightgray p-4 shadow-md rounded-md">
                 <h3 class="font-semibold text-lg max-md:text-base mb-4">DECISION TAB</h3>
-                <div class="flex h-16 grid grid-cols-3 max-md:grid-cols-2">
+                <div class="flex h-24 max-md:h-16 overflow-y-auto grid grid-cols-3 max-md:grid-cols-2">
                     <div class="flex gap-x-1">
                         <input type="radio" name="decision" value="Resubmission" class="mt-1 w-[14px] h-[14px]">
                         <span>Resubmission</span>

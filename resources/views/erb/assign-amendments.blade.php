@@ -1,9 +1,9 @@
-@section('title', 'Assigned Amendments')
+@section('title', 'Resubmission')
 <x-erb-layout>
     <!-- Main Content -->
     <main class="xl:ml-[335px] max-xl:ml-auto p-4 max-md:p-2">
         <h2 class="max-xl:hidden text-left bg-[#f2f2f2] shadow-lg p-[35px] rounded-[30px] font-medium text-[28px]">
-            ASSIGN AMENDMENTS
+            RESUBMISSION
         </h2>
         <br>
 
@@ -53,12 +53,12 @@
             <!-- Selected Users -->
             <div class="bg-lightgray p-4 shadow-md rounded-md">
                 <h3 class="font-semibold text-lg max-md:text-base mb-3">SELECTED PROTOCOLS FOR ASSIGNMENT</h3>
-                <div class="h-16 overflow-y-auto">
+                <div class="h-24 overflow-y-auto">
                     <ul id="selectedUsers"
                         class="list-disc pl-5 flex grid grid-cols-4 max-md:grid-cols-1 max-md:text-sm"></ul>
                 </div>
             </div>
-            <div class="flex justify-start mx-4">
+            <div class="flex justify-start max-md:justify-center mx-4">
                 <button id="submitBtn"
                     class="bg-secondary hover:bg-primary text-primary hover:text-secondary px-4 py-3 rounded-md uppercase tracking-widest duration-200"
                     type="button">
